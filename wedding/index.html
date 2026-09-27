@@ -1,86 +1,1158 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Wedding</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Our Wedding</title>
+  <meta name="description" content="We are getting married.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --ivory: #f7f4ed;
+      --ivory-light: #fbfaf6;
+      --forest: #30483a;
+      --forest-dark: #23372d;
+      --sage: #69776b;
+      --sand: #c0a77a;
+      --sand-light: #d8c7a6;
+      --white: #ffffff;
+      --text: #304036;
+      --muted: #6f776f;
+      --border: rgba(48, 72, 58, 0.14);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--ivory);
+      color: var(--text);
+      font-family: "DM Sans", sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* NAVIGATION */
+
+    nav {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 20;
+      padding: 28px 5vw;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: white;
+    }
+
+    .monogram {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 25px;
+      letter-spacing: 0.08em;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .nav-links a {
+      opacity: 0.9;
+      transition: opacity 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      opacity: 1;
+    }
+
+    .nav-gifts {
+      border: 1px solid rgba(255,255,255,0.55);
+      padding: 9px 16px;
+      border-radius: 30px;
+    }
+
+    /* HERO */
+
+    .hero {
+      min-height: 100vh;
+      position: relative;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+      background:
+        linear-gradient(
+          to bottom,
+          rgba(25, 38, 30, 0.25),
+          rgba(25, 38, 30, 0.18) 40%,
+          rgba(25, 38, 30, 0.70)
+        ),
+        url("../assets/wedding/hero.jpg") center center / cover no-repeat;
+      color: white;
+    }
+
+    .hero-content {
+      width: 100%;
+      padding: 0 7vw 9vh;
+      position: relative;
+      z-index: 2;
+    }
+
+    .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      font-size: 11px;
+      margin-bottom: 18px;
+      opacity: 0.9;
+    }
+
+    .hero h1 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(70px, 12vw, 150px);
+      font-weight: 400;
+      line-height: 0.78;
+      letter-spacing: -0.035em;
+    }
+
+    .hero-date {
+      margin-top: 30px;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 25px;
+    }
+
+    .hero-date::before {
+      content: "";
+      width: 45px;
+      height: 1px;
+      background: rgba(255,255,255,0.7);
+    }
+
+    .scroll-note {
+      position: absolute;
+      bottom: 30px;
+      right: 5vw;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      opacity: 0.7;
+      writing-mode: vertical-rl;
+    }
+
+    /* INTRO */
+
+    .intro {
+      padding: 120px 7vw 130px;
+      text-align: center;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .section-label {
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      font-size: 10px;
+      color: var(--sage);
+      margin-bottom: 20px;
+    }
+
+    .intro h2 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(42px, 5vw, 64px);
+      font-weight: 400;
+      line-height: 1.05;
+      color: var(--forest);
+      margin-bottom: 28px;
+    }
+
+    .intro p {
+      max-width: 670px;
+      margin: auto;
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    /* DETAILS */
+
+    .details-section {
+      background: var(--forest);
+      color: white;
+      padding: 110px 7vw;
+    }
+
+    .details-header {
+      text-align: center;
+      margin-bottom: 65px;
+    }
+
+    .details-header .section-label {
+      color: var(--sand-light);
+    }
+
+    .details-header h2 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(42px, 5vw, 62px);
+      font-weight: 400;
+      line-height: 1;
+    }
+
+    .details-grid {
+      max-width: 1100px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: rgba(255,255,255,0.16);
+    }
+
+    .detail {
+      background: var(--forest);
+      padding: 45px 35px;
+      text-align: center;
+    }
+
+    .detail-number {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 18px;
+      color: var(--sand-light);
+      margin-bottom: 18px;
+    }
+
+    .detail h3 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 34px;
+      font-weight: 400;
+      margin-bottom: 10px;
+    }
+
+    .detail p {
+      font-size: 13px;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.72);
+    }
+
+    /* CEREMONY */
+
+    .ceremony {
+      padding: 130px 7vw;
+    }
+
+    .ceremony-grid {
+      max-width: 1150px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 620px;
+    }
+
+    .ceremony-image {
+      background:
+        linear-gradient(
+          rgba(35, 55, 45, 0.12),
+          rgba(35, 55, 45, 0.12)
+        ),
+        url("../assets/wedding/church.jpg") center center / cover no-repeat;
+      min-height: 500px;
+    }
+
+    .ceremony-content {
+      background: var(--ivory-light);
+      padding: 70px 65px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .ceremony-content h2 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(42px, 5vw, 62px);
+      font-weight: 400;
+      line-height: 1;
+      color: var(--forest);
+      margin-bottom: 28px;
+    }
+
+    .ceremony-content p {
+      color: var(--muted);
+      font-size: 15px;
+      margin-bottom: 25px;
+    }
+
+    .location {
+      margin-top: 15px;
+      padding-top: 22px;
+      border-top: 1px solid var(--border);
+    }
+
+    .location strong {
+      display: block;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 25px;
+      font-weight: 500;
+      color: var(--forest);
+    }
+
+    .location span {
+      display: block;
+      margin-top: 3px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    /* RECEPTION */
+
+    .reception {
+      padding: 0 7vw 130px;
+    }
+
+    .reception-card {
+      max-width: 1150px;
+      margin: auto;
+      position: relative;
+      min-height: 620px;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+      background:
+        linear-gradient(
+          to top,
+          rgba(25, 38, 30, 0.78),
+          rgba(25, 38, 30, 0.05) 65%
+        ),
+        url("../assets/wedding/venue.jpg") center center / cover no-repeat;
+    }
+
+    .reception-content {
+      color: white;
+      padding: 65px;
+      max-width: 650px;
+    }
+
+    .reception-content .section-label {
+      color: var(--sand-light);
+    }
+
+    .reception-content h2 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(48px, 6vw, 75px);
+      font-weight: 400;
+      line-height: 0.95;
+      margin-bottom: 22px;
+    }
+
+    .reception-content p {
+      font-size: 15px;
+      color: rgba(255,255,255,0.82);
+    }
+
+    .venue-details {
+      display: flex;
+      gap: 35px;
+      margin-top: 28px;
+      padding-top: 22px;
+      border-top: 1px solid rgba(255,255,255,0.3);
+    }
+
+    .venue-details div {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .venue-details strong {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 24px;
+      font-weight: 500;
+    }
+
+    .venue-details span {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      opacity: 0.7;
+      margin-top: 2px;
+    }
+
+    /* GIFTS */
+
+    .gifts {
+      background: #ebe7dc;
+      padding: 110px 7vw;
+      text-align: center;
+    }
+
+    .gifts-inner {
+      max-width: 750px;
+      margin: auto;
+    }
+
+    .gifts h2 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(44px, 5vw, 65px);
+      font-weight: 400;
+      line-height: 1;
+      color: var(--forest);
+      margin-bottom: 22px;
+    }
+
+    .gifts p {
+      color: var(--muted);
+      max-width: 570px;
+      margin: auto;
+      font-size: 15px;
+    }
+
+    .gift-button {
+      display: inline-block;
+      margin-top: 35px;
+      padding: 14px 27px;
+      background: var(--forest);
+      color: white;
+      font-size: 11px;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+
+    .gift-button:hover {
+      background: var(--forest-dark);
+      transform: translateY(-2px);
+    }
+
+    /* CLOSING */
+
+    .closing {
+      padding: 130px 7vw;
+      text-align: center;
+    }
+
+    .closing-mark {
+      font-family: "Cormorant Garamond", serif;
+      color: var(--sand);
+      font-size: 35px;
+      margin-bottom: 25px;
+    }
+
+    .closing h2 {
+      font-family: "Cormorant Garamond", serif;
+      font-weight: 400;
+      font-size: clamp(43px, 5vw, 65px);
+      line-height: 1;
+      color: var(--forest);
+      margin-bottom: 25px;
+    }
+
+    .closing p {
+      max-width: 570px;
+      margin: auto;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .names {
+      margin-top: 35px;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 29px;
+      color: var(--forest);
+    }
+
+    /* FOOTER */
+
+    footer {
+      background: var(--forest-dark);
+      color: rgba(255,255,255,0.65);
+      padding: 30px 5vw;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    footer .footer-monogram {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 18px;
+      color: white;
+      letter-spacing: 0.08em;
+    }
+
+    /* ERROR PAGE */
+
+    .error-page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 40px;
+    }
+
+    .error-page h1 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 60px;
+      font-weight: 400;
+      color: var(--forest);
+      margin-bottom: 20px;
+    }
+
+    .error-page p {
+      color: var(--muted);
+      margin-bottom: 30px;
+    }
+
+    .error-page a {
+      padding: 14px 27px;
+      background: var(--forest);
+      color: white;
+      font-size: 11px;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+    }
+
+    /* RESPONSIVE */
+
+    @media (max-width: 800px) {
+
+      nav {
+        padding: 22px 6vw;
+      }
+
+      .nav-links {
+        gap: 15px;
+      }
+
+      .nav-links a:not(.nav-gifts) {
+        display: none;
+      }
+
+      .hero-content {
+        padding: 0 7vw 13vh;
+      }
+
+      .hero h1 {
+        font-size: clamp(65px, 20vw, 105px);
+      }
+
+      .hero-date {
+        font-size: 21px;
+      }
+
+      .scroll-note {
+        display: none;
+      }
+
+      .intro {
+        padding: 90px 7vw;
+      }
+
+      .details-section {
+        padding: 85px 7vw;
+      }
+
+      .details-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .detail {
+        padding: 38px 30px;
+      }
+
+      .ceremony {
+        padding: 90px 7vw;
+      }
+
+      .ceremony-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .ceremony-image {
+        min-height: 420px;
+      }
+
+      .ceremony-content {
+        padding: 55px 35px;
+      }
+
+      .reception {
+        padding: 0 7vw 90px;
+      }
+
+      .reception-card {
+        min-height: 600px;
+      }
+
+      .reception-content {
+        padding: 40px 30px;
+      }
+
+      .venue-details {
+        gap: 22px;
+      }
+
+      .gifts {
+        padding: 85px 7vw;
+      }
+
+      .closing {
+        padding: 95px 7vw;
+      }
+
+      footer {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+
+      .hero-date {
+        gap: 10px;
+      }
+
+      .hero-date::before {
+        width: 25px;
+      }
+
+      .ceremony-image {
+        min-height: 350px;
+      }
+
+      .reception-card {
+        min-height: 560px;
+      }
+
+      .venue-details {
+        flex-direction: column;
+        gap: 15px;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-    <main id="wedding-page" hidden>
+  <!-- ERROR PAGE -->
 
-        <h1 id="couple-names"></h1>
+  <main id="error-page" class="error-page" hidden>
 
-        <p id="wedding-date"></p>
+    <h1>Wedding website not found</h1>
 
-        <p id="wedding-city"></p>
+    <p>
+      This wedding website requires a personalised link.
+    </p>
 
-        <h2>Ceremony</h2>
-        <p id="ceremony-venue"></p>
+    <a href="../">
+      Create a wedding website
+    </a>
 
-        <h2>Reception</h2>
-        <p id="reception-venue"></p>
+  </main>
 
-    </main>
 
-    <main id="error-page" hidden>
+  <!-- WEDDING PAGE -->
 
-        <h1>Wedding website not found</h1>
+  <div id="wedding-page" hidden>
+
+    <!-- NAVIGATION -->
+
+    <nav>
+
+      <a href="../" class="monogram" id="nav-monogram">
+        E & G
+      </a>
+
+      <div class="nav-links">
+        <a href="#details">The day</a>
+        <a href="#ceremony">Ceremony</a>
+        <a href="#reception">Reception</a>
+        <a href="../gifts/" class="nav-gifts">Honeymoon gifts</a>
+      </div>
+
+    </nav>
+
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+      <div class="hero-content">
+
+        <div class="eyebrow">
+          We are getting married
+        </div>
+
+        <h1 id="couple-names">
+          Edoardo<br>
+          & Gaia
+        </h1>
+
+        <div class="hero-date" id="hero-date">
+          4 September 2027 · Rome
+        </div>
+
+      </div>
+
+      <div class="scroll-note">
+        Scroll to discover
+      </div>
+
+    </section>
+
+
+    <!-- INTRO -->
+
+    <section class="intro">
+
+      <div class="section-label">
+        A day to remember
+      </div>
+
+      <h2>
+        We cannot wait<br>
+        to celebrate with you.
+      </h2>
+
+      <p>
+        After years together, countless meals, too many bottles of wine
+        and a life built between places, we are getting married in Rome.
+        We would love to have you there to celebrate this day with us.
+      </p>
+
+    </section>
+
+
+    <!-- THE DAY -->
+
+    <section class="details-section" id="details">
+
+      <div class="details-header">
+
+        <div class="section-label">
+          The day
+        </div>
+
+        <h2 id="details-date">
+          Saturday · 4 September 2027
+        </h2>
+
+      </div>
+
+      <div class="details-grid">
+
+        <div class="detail">
+
+          <div class="detail-number">
+            I
+          </div>
+
+          <h3>
+            Ceremony
+          </h3>
+
+          <p>
+            Our religious ceremony will take place in the heart of Rome,
+            surrounded by the people who mean the most to us.
+          </p>
+
+        </div>
+
+        <div class="detail">
+
+          <div class="detail-number">
+            II
+          </div>
+
+          <h3>
+            Celebration
+          </h3>
+
+          <p>
+            After the ceremony, we will continue the evening with dinner,
+            drinks, music and plenty of time together.
+          </p>
+
+        </div>
+
+        <div class="detail">
+
+          <div class="detail-number">
+            III
+          </div>
+
+          <h3 id="city-name">
+            Rome
+          </h3>
+
+          <p>
+            One of our favourite cities, and the place where we want
+            to celebrate the beginning of this next chapter.
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- CEREMONY -->
+
+    <section class="ceremony" id="ceremony">
+
+      <div class="ceremony-grid">
+
+        <div class="ceremony-image"></div>
+
+        <div class="ceremony-content">
+
+          <div class="section-label">
+            The ceremony
+          </div>
+
+          <h2 id="church-name">
+            San Pietro<br>
+            in Montorio
+          </h2>
+
+          <p>
+            We will exchange our vows at the beautiful church of
+            San Pietro in Montorio, overlooking Rome from the
+            slopes of the Gianicolo.
+          </p>
+
+          <p>
+            We will share more details about the ceremony,
+            timing and practical information closer to the date.
+          </p>
+
+          <div class="location">
+
+            <strong id="church-location">
+              San Pietro in Montorio
+            </strong>
+
+            <span id="church-city">
+              Piazza di San Pietro in Montorio · Rome
+            </span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- RECEPTION -->
+
+    <section class="reception" id="reception">
+
+      <div class="reception-card">
+
+        <div class="reception-content">
+
+          <div class="section-label">
+            The reception
+          </div>
+
+          <h2 id="venue-name">
+            Villa Giovanelli<br>
+            Fogaccia
+          </h2>
+
+          <p>
+            After the ceremony, we will head to
+            <span id="venue-name-text">Villa Giovanelli Fogaccia</span>
+            for dinner and an evening of celebration together.
+          </p>
+
+          <div class="venue-details">
+
+            <div>
+
+              <strong id="venue-date">
+                4 September
+              </strong>
+
+              <span>
+                Wedding day
+              </span>
+
+            </div>
+
+            <div>
+
+              <strong id="venue-city">
+                Rome
+              </strong>
+
+              <span id="venue-name-small">
+                Villa Giovanelli Fogaccia
+              </span>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- HONEYMOON GIFTS -->
+
+    <section class="gifts">
+
+      <div class="gifts-inner">
+
+        <div class="section-label">
+          If you would like to give us something
+        </div>
+
+        <h2>
+          Come with us to Rwanda.
+        </h2>
 
         <p>
-            This wedding website requires a personalised link.
+          We are planning a honeymoon filled with mountains, wildlife,
+          safari and, hopefully, gorillas. Instead of traditional gifts,
+          we have put together a few pieces of the trip that you can
+          help us experience.
         </p>
 
-        <a href="../">Create a wedding website</a>
+        <a href="../gifts/" class="gift-button">
+          Explore our honeymoon
+        </a>
 
-    </main>
+      </div>
 
-    <script>
+    </section>
 
-        const params = new URLSearchParams(window.location.search);
 
-        const name1 = params.get("name1");
-        const name2 = params.get("name2");
-        const date = params.get("date");
-        const city = params.get("city");
-        const church = params.get("church");
-        const venue = params.get("venue");
+    <!-- CLOSING -->
 
-        const allParametersPresent =
-            name1 &&
-            name2 &&
-            date &&
-            city &&
-            church &&
-            venue;
+    <section class="closing">
 
-        if (allParametersPresent) {
+      <div class="closing-mark" id="closing-monogram">
+        E & G
+      </div>
 
-            document.getElementById("couple-names").textContent =
-                `${name1} & ${name2}`;
+      <h2>
+        See you in <span id="closing-city">Rome</span>.
+      </h2>
 
-            document.getElementById("wedding-date").textContent =
-                date;
+      <p>
+        We are very lucky to be able to share this day with the people
+        we love. We cannot wait to celebrate, eat, drink, dance and
+        make some very good memories together.
+      </p>
 
-            document.getElementById("wedding-city").textContent =
-                city;
+      <div class="names" id="closing-names">
+        Edoardo & Gaia
+      </div>
 
-            document.getElementById("ceremony-venue").textContent =
-                church;
+    </section>
 
-            document.getElementById("reception-venue").textContent =
-                venue;
 
-            document.getElementById("wedding-page").hidden = false;
+    <!-- FOOTER -->
 
-        } else {
+    <footer>
 
-            document.getElementById("error-page").hidden = false;
+      <div class="footer-monogram" id="footer-monogram">
+        E & G
+      </div>
 
-        }
+      <div id="footer-date-city">
+        4 September 2027 · Rome
+      </div>
 
-    </script>
+      <div>
+        <a href="../gifts/">
+          Honeymoon gifts
+        </a>
+      </div>
+
+    </footer>
+
+  </div>
+
+
+  <script>
+
+    const params = new URLSearchParams(window.location.search);
+
+    const name1 = params.get("name1");
+    const name2 = params.get("name2");
+    const date = params.get("date");
+    const city = params.get("city");
+    const church = params.get("church");
+    const venue = params.get("venue");
+
+
+    /*
+     * Check that all required parameters are present.
+     */
+
+    const allParametersPresent =
+      name1 &&
+      name2 &&
+      date &&
+      city &&
+      church &&
+      venue;
+
+
+    if (!allParametersPresent) {
+
+      document.getElementById("error-page").hidden = false;
+
+    } else {
+
+      /*
+       * Basic helper to create a monogram from the two names.
+       */
+
+      const monogram =
+        `${name1.charAt(0).toUpperCase()} & ${name2.charAt(0).toUpperCase()}`;
+
+
+      /*
+       * Couple names
+       */
+
+      document.getElementById("couple-names").innerHTML =
+        `${name1}<br>& ${name2}`;
+
+      document.getElementById("closing-names").textContent =
+        `${name1} & ${name2}`;
+
+
+      /*
+       * Monograms
+       */
+
+      document.getElementById("nav-monogram").textContent =
+        monogram;
+
+      document.getElementById("closing-monogram").textContent =
+        monogram;
+
+      document.getElementById("footer-monogram").textContent =
+        monogram;
+
+
+      /*
+       * Date and city
+       */
+
+      document.getElementById("hero-date").textContent =
+        `${date} · ${city}`;
+
+      document.getElementById("details-date").textContent =
+        date;
+
+      document.getElementById("city-name").textContent =
+        city;
+
+      document.getElementById("closing-city").textContent =
+        city;
+
+      document.getElementById("footer-date-city").textContent =
+        `${date} · ${city}`;
+
+
+      /*
+       * Ceremony
+       */
+
+      document.getElementById("church-name").textContent =
+        church;
+
+      document.getElementById("church-location").textContent =
+        church;
+
+      document.getElementById("church-city").textContent =
+        city;
+
+
+      /*
+       * Reception
+       */
+
+      document.getElementById("venue-name").textContent =
+        venue;
+
+      document.getElementById("venue-name-text").textContent =
+        venue;
+
+      document.getElementById("venue-name-small").textContent =
+        venue;
+
+      document.getElementById("venue-city").textContent =
+        city;
+
+      document.getElementById("venue-date").textContent =
+        date;
+
+
+      /*
+       * Browser title and description
+       */
+
+      document.title =
+        `${name1} & ${name2} · ${date}`;
+
+      document
+        .querySelector('meta[name="description"]')
+        .setAttribute(
+          "content",
+          `${name1} & ${name2} are getting married in ${city} on ${date}.`
+        );
+
+
+      /*
+       * Display the personalised wedding page.
+       */
+
+      document.getElementById("wedding-page").hidden = false;
+
+    }
+
+  </script>
 
 </body>
 </html>
