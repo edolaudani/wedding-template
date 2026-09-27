@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Wedding</title>
+</head>
+
+<body>
+
+    <h1 id="couple-names"></h1>
+
+    <p id="wedding-date"></p>
+
+    <p id="wedding-city"></p>
+
+    <h2>Ceremony</h2>
+    <p id="ceremony-venue"></p>
+
+    <h2>Reception</h2>
+    <p id="reception-venue"></p>
+
+    <script>
+
+        const params = new URLSearchParams(window.location.search);
+
+        const name1 = params.get("name1");
+        const name2 = params.get("name2");
+        const date = params.get("date");
+        const city = params.get("city");
+        const church = params.get("church");
+        const venue = params.get("venue");
+
+        document.getElementById("couple-names").textContent =
+            `${name1} & ${name2}`;
+
+        document.getElementById("wedding-date").textContent =
+            date;
+
+        document.getElementById("wedding-city").textContent =
+            city;
+
+        document.getElementById("ceremony-venue").textContent =
+            church;
+
+        document.getElementById("reception-venue").textContent =
+            venue;
+
+    </script>
+
+</body>
+</html>
