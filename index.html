@@ -3,101 +3,811 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Create Your Wedding Website</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+
+        :root {
+            --ivory: #f7f4ed;
+            --ivory-light: #fbfaf6;
+            --forest: #30483a;
+            --forest-dark: #23372d;
+            --sage: #69776b;
+            --sand: #c0a77a;
+            --sand-light: #d8c7a6;
+            --white: #ffffff;
+            --text: #304036;
+            --muted: #6f776f;
+            --border: rgba(48, 72, 58, 0.14);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            background: var(--ivory);
+            color: var(--text);
+            font-family: "DM Sans", sans-serif;
+            font-weight: 300;
+            line-height: 1.7;
+        }
+
+        /* -------------------------
+           PAGE
+        ------------------------- */
+
+        .page {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* -------------------------
+           HEADER
+        ------------------------- */
+
+        header {
+            padding: 28px 6%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .brand {
+            color: var(--forest);
+            text-decoration: none;
+            font-family: "Cormorant Garamond", serif;
+            font-size: 25px;
+            font-weight: 600;
+            letter-spacing: 0.03em;
+        }
+
+        .header-note {
+            color: var(--muted);
+            font-size: 12px;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        /* -------------------------
+           MAIN
+        ------------------------- */
+
+        main {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 75px 6% 100px;
+            flex: 1;
+        }
+
+        .intro {
+            max-width: 760px;
+            margin-bottom: 65px;
+        }
+
+        .eyebrow {
+            margin: 0 0 18px;
+            color: var(--sage);
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            margin: 0 0 22px;
+            color: var(--forest-dark);
+            font-family: "Cormorant Garamond", serif;
+            font-size: clamp(48px, 6vw, 76px);
+            font-weight: 500;
+            line-height: 0.95;
+            letter-spacing: -0.02em;
+        }
+
+        .intro p {
+            max-width: 650px;
+            margin: 0;
+            color: var(--muted);
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+        /* -------------------------
+           CONTENT GRID
+        ------------------------- */
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(320px, 420px);
+            gap: 90px;
+            align-items: start;
+        }
+
+        /* -------------------------
+           FORM
+        ------------------------- */
+
+        .form-section {
+            background: var(--ivory-light);
+            padding: 48px;
+            border: 1px solid var(--border);
+        }
+
+        .form-heading {
+            margin: 0 0 8px;
+            color: var(--forest-dark);
+            font-family: "Cormorant Garamond", serif;
+            font-size: 36px;
+            font-weight: 500;
+            line-height: 1.1;
+        }
+
+        .form-subheading {
+            margin: 0 0 38px;
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .form-group {
+            margin-bottom: 30px;
+        }
+
+        .form-group:last-of-type {
+            margin-bottom: 36px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 9px;
+            color: var(--forest);
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+        }
+
+        input {
+            width: 100%;
+            height: 52px;
+            padding: 0 15px;
+            border: 1px solid rgba(48, 72, 58, 0.22);
+            border-radius: 0;
+            outline: none;
+            background: var(--white);
+            color: var(--text);
+            font-family: "DM Sans", sans-serif;
+            font-size: 14px;
+            font-weight: 300;
+            transition:
+                border-color 0.2s ease,
+                box-shadow 0.2s ease;
+        }
+
+        input::placeholder {
+            color: #9a9f9a;
+        }
+
+        input:focus {
+            border-color: var(--forest);
+            box-shadow: 0 0 0 3px rgba(48, 72, 58, 0.07);
+        }
+
+        .field-note {
+            margin: 7px 0 0;
+            color: var(--muted);
+            font-size: 11px;
+            line-height: 1.5;
+        }
+
+        /* -------------------------
+           FORM DIVIDER
+        ------------------------- */
+
+        .form-divider {
+            height: 1px;
+            margin: 10px 0 32px;
+            background: var(--border);
+        }
+
+        /* -------------------------
+           BUTTON
+        ------------------------- */
+
+        .submit-button {
+            width: 100%;
+            min-height: 56px;
+            padding: 15px 25px;
+            border: 1px solid var(--forest);
+            background: var(--forest);
+            color: var(--white);
+            cursor: pointer;
+            font-family: "DM Sans", sans-serif;
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            transition:
+                background 0.2s ease,
+                border-color 0.2s ease;
+        }
+
+        .submit-button:hover {
+            background: var(--forest-dark);
+            border-color: var(--forest-dark);
+        }
+
+        .button-note {
+            margin: 13px 0 0;
+            color: var(--muted);
+            font-size: 11px;
+            text-align: center;
+        }
+
+        /* -------------------------
+           SIDE CONTENT
+        ------------------------- */
+
+        .side-section {
+            padding-top: 5px;
+        }
+
+        .side-label {
+            margin: 0 0 18px;
+            color: var(--sage);
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+        }
+
+        .side-section h2 {
+            margin: 0 0 22px;
+            color: var(--forest-dark);
+            font-family: "Cormorant Garamond", serif;
+            font-size: 42px;
+            font-weight: 500;
+            line-height: 1.05;
+        }
+
+        .side-section > p {
+            margin: 0 0 35px;
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        /* -------------------------
+           BENEFITS
+        ------------------------- */
+
+        .benefits {
+            border-top: 1px solid var(--border);
+        }
+
+        .benefit {
+            display: grid;
+            grid-template-columns: 36px 1fr;
+            gap: 15px;
+            padding: 21px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .benefit-number {
+            color: var(--sand);
+            font-family: "Cormorant Garamond", serif;
+            font-size: 22px;
+            font-weight: 600;
+        }
+
+        .benefit h3 {
+            margin: 0 0 4px;
+            color: var(--forest);
+            font-family: "Cormorant Garamond", serif;
+            font-size: 23px;
+            font-weight: 600;
+            line-height: 1.1;
+        }
+
+        .benefit p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 12px;
+            line-height: 1.6;
+        }
+
+        /* -------------------------
+           PRICE MESSAGE
+        ------------------------- */
+
+        .price-message {
+            margin-top: 42px;
+            padding: 30px;
+            background: var(--forest);
+            color: var(--white);
+        }
+
+        .price-message .small-label {
+            margin: 0 0 10px;
+            color: var(--sand-light);
+            font-size: 10px;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+        }
+
+        .price-message h3 {
+            margin: 0 0 12px;
+            font-family: "Cormorant Garamond", serif;
+            font-size: 31px;
+            font-weight: 500;
+            line-height: 1.05;
+        }
+
+        .price-message p {
+            margin: 0;
+            color: rgba(255, 255, 255, 0.78);
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        /* -------------------------
+           FOOTER
+        ------------------------- */
+
+        footer {
+            padding: 30px 6%;
+            border-top: 1px solid var(--border);
+            text-align: center;
+        }
+
+        footer p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 11px;
+            letter-spacing: 0.04em;
+        }
+
+        /* -------------------------
+           MOBILE
+        ------------------------- */
+
+        @media (max-width: 900px) {
+
+            .content-grid {
+                grid-template-columns: 1fr;
+                gap: 70px;
+            }
+
+            .side-section {
+                max-width: 700px;
+            }
+
+        }
+
+        @media (max-width: 600px) {
+
+            header {
+                padding: 22px 6%;
+            }
+
+            .header-note {
+                display: none;
+            }
+
+            main {
+                padding: 55px 6% 75px;
+            }
+
+            .intro {
+                margin-bottom: 45px;
+            }
+
+            h1 {
+                font-size: 52px;
+            }
+
+            .form-section {
+                padding: 30px 24px;
+            }
+
+            .form-heading {
+                font-size: 32px;
+            }
+
+            .side-section h2 {
+                font-size: 37px;
+            }
+
+            .price-message {
+                padding: 25px;
+            }
+
+        }
+
+    </style>
 </head>
 
 <body>
 
-    <h1>Create Your Wedding Website</h1>
+<div class="page">
 
-    <form id="wedding-form">
+    <header>
+        <a href="./" class="brand">Weddings</a>
+        <div class="header-note">A simple wedding website</div>
+    </header>
 
-        <div>
-            <label for="name1">Partner 1</label>
-            <input
-                type="text"
-                id="name1"
-                name="name1"
-                required
-            >
+
+    <main>
+
+        <section class="intro">
+
+            <p class="eyebrow">Your wedding, your website</p>
+
+            <h1>Create your<br>Wedding Website</h1>
+
+            <p>
+                A beautiful place for your guests to find everything they need
+                before, during and after your wedding day.
+            </p>
+
+        </section>
+
+
+        <div class="content-grid">
+
+
+            <!-- FORM -->
+
+            <section class="form-section">
+
+                <h2 class="form-heading">Tell us about your wedding</h2>
+
+                <p class="form-subheading">
+                    Just a few details are needed to create your personalised website.
+                </p>
+
+
+                <form id="wedding-form">
+
+
+                    <div class="form-group">
+
+                        <label for="name1">First name</label>
+
+                        <input
+                            type="text"
+                            id="name1"
+                            name="name1"
+                            placeholder="e.g. Edoardo"
+                            autocomplete="given-name"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="name2">Second name</label>
+
+                        <input
+                            type="text"
+                            id="name2"
+                            name="name2"
+                            placeholder="e.g. Gaia"
+                            autocomplete="given-name"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-divider"></div>
+
+
+                    <div class="form-group">
+
+                        <label for="date">Wedding date</label>
+
+                        <input
+                            type="date"
+                            id="date"
+                            name="date"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="city">City</label>
+
+                        <input
+                            type="text"
+                            id="city"
+                            name="city"
+                            placeholder="e.g. Rome"
+                            autocomplete="address-level2"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-divider"></div>
+
+
+                    <div class="form-group">
+
+                        <label for="church">Ceremony venue</label>
+
+                        <input
+                            type="text"
+                            id="church"
+                            name="church"
+                            placeholder="e.g. San Pietro in Montorio"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="venue">Reception venue</label>
+
+                        <input
+                            type="text"
+                            id="venue"
+                            name="venue"
+                            placeholder="e.g. Villa Giovanelli Fogaccia"
+                            required
+                        >
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        class="submit-button"
+                    >
+                        Create My Website
+                    </button>
+
+                    <p class="button-note">
+                        Your personalised website will open immediately.
+                    </p>
+
+                </form>
+
+            </section>
+
+
+            <!-- SIDE CONTENT -->
+
+            <aside class="side-section">
+
+                <p class="side-label">Why have a wedding website?</p>
+
+                <h2>Because your guests will need more than an invitation.</h2>
+
+                <p>
+                    A wedding involves a surprising amount of information.
+                    A website gives your guests one place to find it, instead
+                    of answering the same questions again and again.
+                </p>
+
+
+                <div class="benefits">
+
+
+                    <div class="benefit">
+
+                        <div class="benefit-number">01</div>
+
+                        <div>
+                            <h3>Keep everyone informed</h3>
+
+                            <p>
+                                Share the date, venues, timings, directions,
+                                accommodation and all the practical details
+                                your guests need.
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="benefit">
+
+                        <div class="benefit-number">02</div>
+
+                        <div>
+                            <h3>Manage RSVPs</h3>
+
+                            <p>
+                                Give guests a simple place to confirm their
+                                attendance and provide the information you
+                                need to organise the day.
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="benefit">
+
+                        <div class="benefit-number">03</div>
+
+                        <div>
+                            <h3>Share your plans</h3>
+
+                            <p>
+                                Tell guests what to expect, from the ceremony
+                                and reception to transport, dress code and
+                                the schedule of the day.
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="benefit">
+
+                        <div class="benefit-number">04</div>
+
+                        <div>
+                            <h3>Manage your gifts</h3>
+
+                            <p>
+                                Create a dedicated space for your gift list,
+                                honeymoon fund or anything else you would
+                                like to share with your guests.
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+                <div class="price-message">
+
+                    <p class="small-label">One thing we believe</p>
+
+                    <h3>
+                        You should not be paying a fortune for a wedding website.
+                    </h3>
+
+                    <p>
+                        Your wedding is already expensive enough. A website
+                        should make organising and sharing your day easier,
+                        not become another major wedding expense.
+                    </p>
+
+                </div>
+
+
+            </aside>
+
+
         </div>
 
-        <div>
-            <label for="name2">Partner 2</label>
-            <input
-                type="text"
-                id="name2"
-                name="name2"
-                required
-            >
-        </div>
+    </main>
 
-        <div>
-            <label for="date">Wedding date</label>
-            <input
-                type="text"
-                id="date"
-                name="date"
-                placeholder="e.g. 12 June 2027"
-                required
-            >
-        </div>
 
-        <div>
-            <label for="city">City</label>
-            <input
-                type="text"
-                id="city"
-                name="city"
-                placeholder="e.g. Rome"
-                required
-            >
-        </div>
+    <footer>
 
-        <div>
-            <label for="church">Ceremony venue</label>
-            <input
-                type="text"
-                id="church"
-                name="church"
-                placeholder="e.g. San Pietro in Montorio"
-                required
-            >
-        </div>
+        <p>
+            Your wedding website, without the unnecessary expense.
+        </p>
 
-        <div>
-            <label for="venue">Reception venue</label>
-            <input
-                type="text"
-                id="venue"
-                name="venue"
-                placeholder="e.g. Villa Giovanelli Fogaccia"
-                required
-            >
-        </div>
+    </footer>
 
-        <button type="submit">Create Website</button>
+</div>
 
-    </form>
 
-    <script>
-        document.getElementById("wedding-form").addEventListener("submit", function(event) {
+<script>
+
+    /*
+     * Turns user-entered names into readable names.
+     *
+     * Examples:
+     * edoardo       → Edoardo
+     * GAIA          → Gaia
+     * maria luisa   → Maria Luisa
+     * anna-maria    → Anna-Maria
+     * o'connor      → O'Connor
+     */
+
+    function cleanName(value) {
+
+        return value
+            .trim()
+            .toLowerCase()
+            .replace(/\s+/g, " ")
+            .replace(/(^|[\s'-])([a-zà-ÿ])/g, function(match, separator, letter) {
+                return separator + letter.toUpperCase();
+            });
+
+    }
+
+
+    /*
+     * Converts the date selected in the date picker
+     * from YYYY-MM-DD into "D Month YYYY".
+     *
+     * Example:
+     * 2027-09-04 → 4 September 2027
+     */
+
+    function formatDate(value) {
+
+        const date = new Date(value + "T12:00:00");
+
+        return new Intl.DateTimeFormat("en-GB", {
+            day: "numeric",
+            month: "long",
+            year: "numeric"
+        }).format(date);
+
+    }
+
+
+    document
+        .getElementById("wedding-form")
+        .addEventListener("submit", function(event) {
+
             event.preventDefault();
 
             const form = event.target;
 
+
+            const name1 = cleanName(form.name1.value);
+            const name2 = cleanName(form.name2.value);
+
+            const date = formatDate(form.date.value);
+
+            const city = form.city.value.trim();
+            const church = form.church.value.trim();
+            const venue = form.venue.value.trim();
+
+
             const params = new URLSearchParams({
-                name1: form.name1.value.trim(),
-                name2: form.name2.value.trim(),
-                date: form.date.value.trim(),
-                city: form.city.value.trim(),
-                church: form.church.value.trim(),
-                venue: form.venue.value.trim()
+
+                name1: name1,
+                name2: name2,
+                date: date,
+                city: city,
+                church: church,
+                venue: venue
+
             });
 
+
             window.location.href = "wedding/?" + params.toString();
+
         });
-    </script>
+
+</script>
 
 </body>
 </html>
