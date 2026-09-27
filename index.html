@@ -47,10 +47,6 @@
             line-height: 1.7;
         }
 
-        /* -------------------------
-           PAGE
-        ------------------------- */
-
         .page {
             min-height: 100vh;
             display: flex;
@@ -62,27 +58,20 @@
         ------------------------- */
 
         header {
-            padding: 28px 6%;
+            padding: 27px 6%;
+            background: var(--sage);
             display: flex;
             align-items: center;
             justify-content: space-between;
-            border-bottom: 1px solid var(--border);
         }
 
         .brand {
-            color: var(--forest);
+            color: var(--ivory);
             text-decoration: none;
             font-family: "Cormorant Garamond", serif;
-            font-size: 25px;
+            font-size: 27px;
             font-weight: 600;
             letter-spacing: 0.03em;
-        }
-
-        .header-note {
-            color: var(--muted);
-            font-size: 12px;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
         }
 
         /* -------------------------
@@ -98,7 +87,7 @@
         }
 
         .intro {
-            max-width: 760px;
+            max-width: 780px;
             margin-bottom: 65px;
         }
 
@@ -138,6 +127,41 @@
             grid-template-columns: minmax(0, 1fr) minmax(320px, 420px);
             gap: 90px;
             align-items: start;
+        }
+
+        /* -------------------------
+           LEFT COLUMN
+        ------------------------- */
+
+        .left-column {
+            min-width: 0;
+        }
+
+        /* -------------------------
+           WEBSITE PREVIEW
+        ------------------------- */
+
+        .preview-wrapper {
+            margin-bottom: 45px;
+        }
+
+        .preview-label {
+            margin: 0 0 13px;
+            color: var(--sage);
+            font-size: 10px;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+        }
+
+        .preview-image {
+            display: block;
+            width: 100%;
+            height: auto;
+            aspect-ratio: 16 / 10;
+            object-fit: cover;
+            border-radius: 2px;
+            box-shadow: 0 18px 45px rgba(35, 55, 45, 0.12);
         }
 
         /* -------------------------
@@ -207,17 +231,6 @@
             border-color: var(--forest);
             box-shadow: 0 0 0 3px rgba(48, 72, 58, 0.07);
         }
-
-        .field-note {
-            margin: 7px 0 0;
-            color: var(--muted);
-            font-size: 11px;
-            line-height: 1.5;
-        }
-
-        /* -------------------------
-           FORM DIVIDER
-        ------------------------- */
 
         .form-divider {
             height: 1px;
@@ -406,10 +419,6 @@
                 padding: 22px 6%;
             }
 
-            .header-note {
-                display: none;
-            }
-
             main {
                 padding: 55px 6% 75px;
             }
@@ -420,6 +429,10 @@
 
             h1 {
                 font-size: 52px;
+            }
+
+            .preview-wrapper {
+                margin-bottom: 35px;
             }
 
             .form-section {
@@ -443,23 +456,40 @@
     </style>
 </head>
 
+
 <body>
 
 <div class="page">
 
+
+    <!-- HEADER -->
+
     <header>
-        <a href="./" class="brand">Weddings</a>
-        <div class="header-note">A simple wedding website</div>
+
+        <a href="./" class="brand">
+            Weddings
+        </a>
+
     </header>
 
 
+    <!-- MAIN -->
+
     <main>
+
+
+        <!-- INTRO -->
 
         <section class="intro">
 
-            <p class="eyebrow">Your wedding, your website</p>
+            <p class="eyebrow">
+                Your wedding, your website
+            </p>
 
-            <h1>Create your<br>Wedding Website</h1>
+            <h1>
+                Create your<br>
+                Wedding Website
+            </h1>
 
             <p>
                 A beautiful place for your guests to find everything they need
@@ -472,141 +502,184 @@
         <div class="content-grid">
 
 
-            <!-- FORM -->
+            <!-- LEFT COLUMN -->
 
-            <section class="form-section">
-
-                <h2 class="form-heading">Tell us about your wedding</h2>
-
-                <p class="form-subheading">
-                    Just a few details are needed to create your personalised website.
-                </p>
+            <div class="left-column">
 
 
-                <form id="wedding-form">
+                <!-- WEBSITE PREVIEW -->
 
+                <div class="preview-wrapper">
 
-                    <div class="form-group">
-
-                        <label for="name1">First name</label>
-
-                        <input
-                            type="text"
-                            id="name1"
-                            name="name1"
-                            placeholder="e.g. Edoardo"
-                            autocomplete="given-name"
-                            required
-                        >
-
-                    </div>
-
-
-                    <div class="form-group">
-
-                        <label for="name2">Second name</label>
-
-                        <input
-                            type="text"
-                            id="name2"
-                            name="name2"
-                            placeholder="e.g. Gaia"
-                            autocomplete="given-name"
-                            required
-                        >
-
-                    </div>
-
-
-                    <div class="form-divider"></div>
-
-
-                    <div class="form-group">
-
-                        <label for="date">Wedding date</label>
-
-                        <input
-                            type="date"
-                            id="date"
-                            name="date"
-                            required
-                        >
-
-                    </div>
-
-
-                    <div class="form-group">
-
-                        <label for="city">City</label>
-
-                        <input
-                            type="text"
-                            id="city"
-                            name="city"
-                            placeholder="e.g. Rome"
-                            autocomplete="address-level2"
-                            required
-                        >
-
-                    </div>
-
-
-                    <div class="form-divider"></div>
-
-
-                    <div class="form-group">
-
-                        <label for="church">Ceremony venue</label>
-
-                        <input
-                            type="text"
-                            id="church"
-                            name="church"
-                            placeholder="e.g. San Pietro in Montorio"
-                            required
-                        >
-
-                    </div>
-
-
-                    <div class="form-group">
-
-                        <label for="venue">Reception venue</label>
-
-                        <input
-                            type="text"
-                            id="venue"
-                            name="venue"
-                            placeholder="e.g. Villa Giovanelli Fogaccia"
-                            required
-                        >
-
-                    </div>
-
-
-                    <button
-                        type="submit"
-                        class="submit-button"
-                    >
-                        Create My Website
-                    </button>
-
-                    <p class="button-note">
-                        Your personalised website will open immediately.
+                    <p class="preview-label">
+                        Your website could look like this
                     </p>
 
-                </form>
+                    <img
+                        src="preview/wedding-preview.jpg"
+                        alt="Preview of a wedding website"
+                        class="preview-image"
+                    >
 
-            </section>
+                </div>
+
+
+                <!-- FORM -->
+
+                <section class="form-section">
+
+                    <h2 class="form-heading">
+                        Tell us about your wedding
+                    </h2>
+
+                    <p class="form-subheading">
+                        Just a few details are needed to create your personalised website.
+                    </p>
+
+
+                    <form id="wedding-form">
+
+
+                        <div class="form-group">
+
+                            <label for="name1">
+                                First name
+                            </label>
+
+                            <input
+                                type="text"
+                                id="name1"
+                                name="name1"
+                                placeholder="e.g. Edoardo"
+                                autocomplete="given-name"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="name2">
+                                Second name
+                            </label>
+
+                            <input
+                                type="text"
+                                id="name2"
+                                name="name2"
+                                placeholder="e.g. Gaia"
+                                autocomplete="given-name"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-divider"></div>
+
+
+                        <div class="form-group">
+
+                            <label for="date">
+                                Wedding date
+                            </label>
+
+                            <input
+                                type="date"
+                                id="date"
+                                name="date"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="city">
+                                City
+                            </label>
+
+                            <input
+                                type="text"
+                                id="city"
+                                name="city"
+                                placeholder="e.g. Rome"
+                                autocomplete="address-level2"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-divider"></div>
+
+
+                        <div class="form-group">
+
+                            <label for="church">
+                                Ceremony venue
+                            </label>
+
+                            <input
+                                type="text"
+                                id="church"
+                                name="church"
+                                placeholder="e.g. San Pietro in Montorio"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="venue">
+                                Reception venue
+                            </label>
+
+                            <input
+                                type="text"
+                                id="venue"
+                                name="venue"
+                                placeholder="e.g. Villa Giovanelli Fogaccia"
+                                required
+                            >
+
+                        </div>
+
+
+                        <button
+                            type="submit"
+                            class="submit-button"
+                        >
+                            Create My Website
+                        </button>
+
+                        <p class="button-note">
+                            Your personalised website will open immediately.
+                        </p>
+
+                    </form>
+
+                </section>
+
+
+            </div>
 
 
             <!-- SIDE CONTENT -->
 
             <aside class="side-section">
 
-                <p class="side-label">Why have a wedding website?</p>
+                <p class="side-label">
+                    Why have a wedding website?
+                </p>
 
-                <h2>Because your guests will need more than an invitation.</h2>
+                <h2>
+                    Because your guests will need more than an invitation.
+                </h2>
 
                 <p>
                     A wedding involves a surprising amount of information.
@@ -620,16 +693,22 @@
 
                     <div class="benefit">
 
-                        <div class="benefit-number">01</div>
+                        <div class="benefit-number">
+                            01
+                        </div>
 
                         <div>
-                            <h3>Keep everyone informed</h3>
+
+                            <h3>
+                                Keep everyone informed
+                            </h3>
 
                             <p>
                                 Share the date, venues, timings, directions,
                                 accommodation and all the practical details
                                 your guests need.
                             </p>
+
                         </div>
 
                     </div>
@@ -637,16 +716,22 @@
 
                     <div class="benefit">
 
-                        <div class="benefit-number">02</div>
+                        <div class="benefit-number">
+                            02
+                        </div>
 
                         <div>
-                            <h3>Manage RSVPs</h3>
+
+                            <h3>
+                                Manage RSVPs
+                            </h3>
 
                             <p>
                                 Give guests a simple place to confirm their
                                 attendance and provide the information you
                                 need to organise the day.
                             </p>
+
                         </div>
 
                     </div>
@@ -654,16 +739,22 @@
 
                     <div class="benefit">
 
-                        <div class="benefit-number">03</div>
+                        <div class="benefit-number">
+                            03
+                        </div>
 
                         <div>
-                            <h3>Share your plans</h3>
+
+                            <h3>
+                                Share your plans
+                            </h3>
 
                             <p>
                                 Tell guests what to expect, from the ceremony
                                 and reception to transport, dress code and
                                 the schedule of the day.
                             </p>
+
                         </div>
 
                     </div>
@@ -671,16 +762,22 @@
 
                     <div class="benefit">
 
-                        <div class="benefit-number">04</div>
+                        <div class="benefit-number">
+                            04
+                        </div>
 
                         <div>
-                            <h3>Manage your gifts</h3>
+
+                            <h3>
+                                Manage your gifts
+                            </h3>
 
                             <p>
                                 Create a dedicated space for your gift list,
                                 honeymoon fund or anything else you would
                                 like to share with your guests.
                             </p>
+
                         </div>
 
                     </div>
@@ -689,9 +786,13 @@
                 </div>
 
 
+                <!-- PRICE MESSAGE -->
+
                 <div class="price-message">
 
-                    <p class="small-label">One thing we believe</p>
+                    <p class="small-label">
+                        One thing we believe
+                    </p>
 
                     <h3>
                         You should not be paying a fortune for a wedding website.
@@ -714,6 +815,8 @@
     </main>
 
 
+    <!-- FOOTER -->
+
     <footer>
 
         <p>
@@ -722,15 +825,18 @@
 
     </footer>
 
+
 </div>
 
 
 <script>
 
+
     /*
-     * Turns user-entered names into readable names.
+     * Clean names before adding them to the personalised URL.
      *
      * Examples:
+     *
      * edoardo       → Edoardo
      * GAIA          → Gaia
      * maria luisa   → Maria Luisa
@@ -744,19 +850,21 @@
             .trim()
             .toLowerCase()
             .replace(/\s+/g, " ")
-            .replace(/(^|[\s'-])([a-zà-ÿ])/g, function(match, separator, letter) {
-                return separator + letter.toUpperCase();
-            });
+            .replace(
+                /(^|[\s'-])([a-zà-ÿ])/g,
+                function(match, separator, letter) {
+                    return separator + letter.toUpperCase();
+                }
+            );
 
     }
 
 
     /*
-     * Converts the date selected in the date picker
-     * from YYYY-MM-DD into "D Month YYYY".
+     * Convert the date selected in the date picker
+     * from YYYY-MM-DD into:
      *
-     * Example:
-     * 2027-09-04 → 4 September 2027
+     * 4 September 2027
      */
 
     function formatDate(value) {
@@ -772,6 +880,10 @@
     }
 
 
+    /*
+     * Create the personalised website.
+     */
+
     document
         .getElementById("wedding-form")
         .addEventListener("submit", function(event) {
@@ -782,12 +894,15 @@
 
 
             const name1 = cleanName(form.name1.value);
+
             const name2 = cleanName(form.name2.value);
 
             const date = formatDate(form.date.value);
 
             const city = form.city.value.trim();
+
             const church = form.church.value.trim();
+
             const venue = form.venue.value.trim();
 
 
@@ -803,9 +918,11 @@
             });
 
 
-            window.location.href = "wedding/?" + params.toString();
+            window.location.href =
+                "wedding/?" + params.toString();
 
         });
+
 
 </script>
 
