@@ -1,53 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Wedding</title>
 
-    <link
-        rel="preconnect"
-        href="https://fonts.googleapis.com"
-    >
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <link
-        rel="preconnect"
-        href="https://fonts.gstatic.com"
-        crossorigin
-    >
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=DM+Sans:wght@300;400;500&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap"
         rel="stylesheet"
     >
-
 
     <style>
 
         :root {
-
-            --ivory: #f7f4ee;
-            --paper: #fbfaf7;
-            --cream: #ebe5da;
-            --sand: #d5cab9;
-
-            --forest: #26382f;
-            --forest-light: #35493e;
-
-            --text: #303630;
-            --muted: #747a74;
-
-            --border: rgba(38, 56, 47, 0.16);
-
+            --ivory: #f7f4ed;
+            --ivory-light: #fbfaf6;
+            --forest: #30483a;
+            --forest-dark: #23372d;
+            --sage: #69776b;
+            --sand: #c0a77a;
+            --sand-light: #d8c7a6;
+            --white: #ffffff;
+            --text: #304036;
+            --muted: #6f776f;
+            --border: rgba(48, 72, 58, 0.14);
         }
-
 
         * {
             box-sizing: border-box;
@@ -55,1572 +36,894 @@
             padding: 0;
         }
 
-
         html {
             scroll-behavior: smooth;
         }
 
-
         body {
-
-            background: var(--ivory);
-
-            color: var(--text);
-
             font-family: "DM Sans", sans-serif;
-
             font-weight: 300;
-
+            color: var(--text);
+            background: var(--ivory);
             line-height: 1.7;
-
-            -webkit-font-smoothing: antialiased;
-
         }
-
-
-        h1,
-        h2,
-        h3 {
-
-            font-family: "Cormorant Garamond", serif;
-
-            font-weight: 400;
-
-            line-height: 1;
-
-        }
-
 
         a {
             color: inherit;
+            text-decoration: none;
+        }
+
+        img {
+            display: block;
+            width: 100%;
         }
 
 
-        /* =========================================
+        /* =========================
            NAVIGATION
-        ========================================= */
+        ========================= */
 
-        .nav {
-
+        nav {
             position: absolute;
-
             top: 0;
             left: 0;
-
             width: 100%;
-
-            padding: 30px 5vw;
+            z-index: 10;
 
             display: flex;
+            align-items: center;
+            justify-content: space-between;
 
-            justify-content: center;
-
-            z-index: 20;
-
+            padding: 28px 5%;
+            color: var(--white);
         }
-
 
         .monogram {
-
             font-family: "Cormorant Garamond", serif;
+            font-size: 28px;
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
 
-            font-size: 25px;
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 34px;
+        }
 
-            letter-spacing: 0.08em;
+        .nav-links a {
+            font-size: 12px;
+            font-weight: 400;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
 
-            color: var(--forest);
-
+        .nav-gifts {
+            padding-bottom: 3px;
+            border-bottom: 1px solid rgba(255,255,255,0.7);
         }
 
 
-        /* =========================================
+        /* =========================
            HERO
-        ========================================= */
+        ========================= */
 
         .hero {
-
-            min-height: 100vh;
-
-            padding: 120px 24px 90px;
-
-            display: flex;
-
-            align-items: center;
-
-            justify-content: center;
-
-            text-align: center;
-
             position: relative;
-
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             overflow: hidden;
 
-            background: var(--paper);
-
+            background: var(--forest);
         }
 
-
-        .hero::before {
-
-            content: "";
-
+        .hero-image {
             position: absolute;
-
-            width: min(70vw, 720px);
-
-            height: min(70vw, 720px);
-
-            border: 1px solid var(--border);
-
-            border-radius: 50%;
-
-            left: 50%;
-            top: 50%;
-
-            transform: translate(-50%, -50%);
-
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
-
-
-        .hero::after {
-
-            content: "";
-
-            position: absolute;
-
-            width: min(48vw, 490px);
-
-            height: min(48vw, 490px);
-
-            border: 1px solid rgba(38, 56, 47, 0.09);
-
-            border-radius: 50%;
-
-            left: 50%;
-            top: 50%;
-
-            transform: translate(-50%, -50%);
-
-        }
-
 
         .hero-content {
-
             position: relative;
-
             z-index: 2;
-
-            max-width: 1100px;
-
+            text-align: center;
+            color: var(--white);
+            padding: 120px 25px 80px;
         }
 
-
-        .hero-kicker {
-
-            margin-bottom: 34px;
+        .eyebrow {
+            margin-bottom: 18px;
 
             font-size: 11px;
-
-            letter-spacing: 0.24em;
-
+            font-weight: 500;
+            letter-spacing: 3px;
             text-transform: uppercase;
-
-            color: var(--muted);
-
         }
-
 
         .hero h1 {
-
-            font-size: clamp(70px, 12vw, 160px);
-
-            color: var(--forest);
-
-            letter-spacing: -0.045em;
-
+            font-family: "Cormorant Garamond", serif;
+            font-size: clamp(60px, 9vw, 110px);
+            font-weight: 400;
+            line-height: 0.9;
+            letter-spacing: -2px;
         }
-
-
-        .hero-ampersand {
-
-            font-size: 0.55em;
-
-            font-style: italic;
-
-            margin: 0 0.08em;
-
-        }
-
 
         .hero-date {
+            margin-top: 28px;
 
-            margin-top: 42px;
-
-            font-size: 12px;
-
-            letter-spacing: 0.2em;
-
-            text-transform: uppercase;
-
-            color: var(--forest);
-
+            font-family: "Cormorant Garamond", serif;
+            font-size: 25px;
+            font-weight: 400;
         }
 
-
-        .scroll-label {
-
+        .scroll-note {
             position: absolute;
-
-            bottom: 32px;
-
+            bottom: 35px;
             left: 50%;
-
             transform: translateX(-50%);
 
             font-size: 10px;
-
-            letter-spacing: 0.18em;
-
+            letter-spacing: 2px;
             text-transform: uppercase;
-
-            color: var(--muted);
-
+            white-space: nowrap;
         }
 
 
-        /* =========================================
+        /* =========================
            INTRO
-        ========================================= */
+        ========================= */
 
         .intro {
-
-            padding: 150px 24px;
-
+            padding: 130px 8%;
             text-align: center;
-
-            background: var(--ivory);
-
+            background: var(--ivory-light);
         }
 
-
-        .content-narrow {
-
-            max-width: 760px;
-
-            margin: 0 auto;
-
-        }
-
-
-        .eyebrow {
-
-            margin-bottom: 25px;
+        .section-label {
+            margin-bottom: 24px;
 
             font-size: 10px;
-
-            letter-spacing: 0.22em;
-
+            font-weight: 500;
+            letter-spacing: 3px;
             text-transform: uppercase;
-
-            color: var(--muted);
-
+            color: var(--sage);
         }
-
 
         .intro h2 {
+            max-width: 800px;
+            margin: 0 auto;
 
-            font-size: clamp(52px, 7vw, 82px);
-
-            color: var(--forest);
-
-            margin-bottom: 35px;
-
+            font-family: "Cormorant Garamond", serif;
+            font-size: clamp(38px, 5vw, 58px);
+            font-weight: 400;
+            line-height: 1.15;
+            color: var(--forest-dark);
         }
-
 
         .intro p {
+            max-width: 600px;
+            margin: 28px auto 0;
 
-            max-width: 650px;
+            font-size: 15px;
+            color: var(--muted);
+        }
 
+
+        /* =========================
+           DETAILS
+        ========================= */
+
+        .details-section {
+            padding: 110px 8%;
+            background: var(--white);
+        }
+
+        .details-header {
+            text-align: center;
+            margin-bottom: 65px;
+        }
+
+        .details-header h2 {
+            font-family: "Cormorant Garamond", serif;
+            font-size: 50px;
+            font-weight: 400;
+            color: var(--forest-dark);
+        }
+
+        .details-grid {
+            max-width: 1000px;
             margin: 0 auto;
 
-            font-size: 17px;
-
-        }
-
-
-        /* =========================================
-           DATE CARD
-        ========================================= */
-
-        .date-section {
-
-            padding: 0 24px 150px;
-
-            background: var(--ivory);
-
-        }
-
-
-        .date-card {
-
-            max-width: 1100px;
-
-            margin: auto;
-
-            padding: 70px 50px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
 
             border-top: 1px solid var(--border);
-
             border-bottom: 1px solid var(--border);
+        }
 
-            display: grid;
-
-            grid-template-columns: 1fr 1fr 1fr;
-
+        .detail {
+            padding: 45px 30px;
             text-align: center;
-
         }
 
-
-        .date-item {
-
-            padding: 10px 30px;
-
-            border-right: 1px solid var(--border);
-
+        .detail + .detail {
+            border-left: 1px solid var(--border);
         }
 
-
-        .date-item:last-child {
-            border-right: none;
-        }
-
-
-        .date-label {
-
+        .detail-number {
             margin-bottom: 12px;
 
-            font-size: 10px;
-
-            letter-spacing: 0.2em;
-
-            text-transform: uppercase;
-
-            color: var(--muted);
-
-        }
-
-
-        .date-value {
-
             font-family: "Cormorant Garamond", serif;
-
-            font-size: 35px;
-
-            color: var(--forest);
-
-        }
-
-
-        /* =========================================
-           VENUES
-        ========================================= */
-
-        .venue-section {
-
-            background: var(--forest);
-
-            color: white;
-
-        }
-
-
-        .venue-block {
-
-            min-height: 600px;
-
-            display: grid;
-
-            grid-template-columns: 1fr 1fr;
-
-        }
-
-
-        .venue-block.reverse {
-
-            grid-template-columns: 1fr 1fr;
-
-        }
-
-
-        .venue-visual {
-
-            position: relative;
-
-            min-height: 500px;
-
-            background:
-                radial-gradient(
-                    circle at center,
-                    rgba(255,255,255,0.13),
-                    transparent 45%
-                ),
-                linear-gradient(
-                    145deg,
-                    #405248,
-                    #26382f
-                );
-
-            overflow: hidden;
-
-        }
-
-
-        .venue-block.reverse .venue-visual {
-            order: 2;
-        }
-
-
-        .venue-visual::before {
-
-            content: "";
-
-            position: absolute;
-
-            width: 390px;
-            height: 390px;
-
-            border: 1px solid rgba(255,255,255,0.22);
-
-            border-radius: 50%;
-
-            top: 50%;
-            left: 50%;
-
-            transform: translate(-50%, -50%);
-
-        }
-
-
-        .venue-visual::after {
-
-            content: "";
-
-            position: absolute;
-
-            width: 230px;
-            height: 230px;
-
-            border: 1px solid rgba(255,255,255,0.13);
-
-            border-radius: 50%;
-
-            top: 50%;
-            left: 50%;
-
-            transform: translate(-50%, -50%);
-
-        }
-
-
-        .venue-visual-label {
-
-            position: absolute;
-
-            top: 50%;
-            left: 50%;
-
-            transform: translate(-50%, -50%);
-
-            font-family: "Cormorant Garamond", serif;
-
             font-size: 18px;
-
-            letter-spacing: 0.2em;
-
-            text-transform: uppercase;
-
-            white-space: nowrap;
-
-            opacity: 0.65;
-
+            color: var(--sand);
         }
 
-
-        .venue-content {
-
-            padding: 90px;
-
-            display: flex;
-
-            justify-content: center;
-
-            flex-direction: column;
-
-        }
-
-
-        .venue-content .eyebrow {
-
-            color: rgba(255,255,255,0.5);
-
-        }
-
-
-        .venue-content h2 {
-
-            font-size: clamp(52px, 6vw, 78px);
-
-            margin-bottom: 30px;
-
-        }
-
-
-        .venue-name {
-
-            font-family: "Cormorant Garamond", serif;
-
-            font-size: 34px;
-
-            line-height: 1.2;
-
+        .detail h3 {
             margin-bottom: 8px;
 
-        }
-
-
-        .venue-location {
-
-            font-size: 14px;
-
-            opacity: 0.55;
-
-            margin-bottom: 35px;
-
-        }
-
-
-        .venue-description {
-
-            max-width: 470px;
-
-            font-size: 16px;
-
-            opacity: 0.82;
-
-        }
-
-
-        /* =========================================
-           SCHEDULE
-        ========================================= */
-
-        .schedule {
-
-            padding: 150px 24px;
-
-            background: var(--paper);
-
-        }
-
-
-        .schedule-inner {
-
-            max-width: 900px;
-
-            margin: auto;
-
-        }
-
-
-        .schedule-header {
-
-            text-align: center;
-
-            margin-bottom: 80px;
-
-        }
-
-
-        .schedule-header h2 {
-
-            font-size: clamp(52px, 7vw, 82px);
-
-            color: var(--forest);
-
-        }
-
-
-        .timeline {
-
-            border-top: 1px solid var(--border);
-
-        }
-
-
-        .timeline-item {
-
-            display: grid;
-
-            grid-template-columns: 150px 1fr;
-
-            gap: 40px;
-
-            padding: 32px 0;
-
-            border-bottom: 1px solid var(--border);
-
-        }
-
-
-        .timeline-time {
-
             font-family: "Cormorant Garamond", serif;
-
-            font-size: 26px;
-
-            color: var(--forest);
-
-        }
-
-
-        .timeline-title {
-
-            font-family: "Cormorant Garamond", serif;
-
             font-size: 28px;
-
-            color: var(--forest);
-
-            margin-bottom: 4px;
-
+            font-weight: 500;
+            color: var(--forest-dark);
         }
 
-
-        .timeline-description {
-
-            font-size: 14px;
-
+        .detail p {
+            font-size: 13px;
             color: var(--muted);
-
         }
 
 
-        /* =========================================
-           TRAVEL
-        ========================================= */
+        /* =========================
+           CEREMONY
+        ========================= */
 
-        .travel {
-
-            padding: 150px 24px;
-
-            background: var(--cream);
-
-            text-align: center;
-
-        }
-
-
-        .travel h2 {
-
-            font-size: clamp(52px, 7vw, 82px);
-
-            color: var(--forest);
-
-            margin-bottom: 30px;
-
-        }
-
-
-        .travel p {
-
-            max-width: 650px;
-
-            margin: 0 auto;
-
-            font-size: 17px;
-
-        }
-
-
-        /* =========================================
-           RSVP
-        ========================================= */
-
-        .rsvp {
-
-            padding: 150px 24px;
-
-            background: var(--ivory);
-
-            text-align: center;
-
-        }
-
-
-        .rsvp h2 {
-
-            font-size: clamp(52px, 7vw, 82px);
-
-            color: var(--forest);
-
-            margin-bottom: 30px;
-
-        }
-
-
-        .rsvp p {
-
-            max-width: 600px;
-
-            margin: 0 auto 40px;
-
-            font-size: 17px;
-
-        }
-
-
-        .rsvp-button {
-
-            display: inline-block;
-
-            padding: 15px 34px;
-
-            border: 1px solid var(--forest);
-
-            color: var(--forest);
-
-            text-decoration: none;
-
-            font-size: 11px;
-
-            letter-spacing: 0.18em;
-
-            text-transform: uppercase;
-
-            transition:
-                background 0.25s ease,
-                color 0.25s ease;
-
-        }
-
-
-        .rsvp-button:hover {
-
+        .ceremony {
             background: var(--forest);
-
-            color: white;
-
+            color: var(--white);
         }
 
-
-        /* =========================================
-           GIFTS
-        ========================================= */
-
-        .gifts {
-
-            padding: 140px 24px;
-
-            background: var(--paper);
-
-            text-align: center;
-
+        .ceremony-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 650px;
         }
 
-
-        .gifts h2 {
-
-            max-width: 700px;
-
-            margin: 0 auto 30px;
-
-            font-size: clamp(52px, 7vw, 82px);
-
-            color: var(--forest);
-
+        .ceremony-image {
+            position: relative;
+            min-height: 500px;
+            overflow: hidden;
         }
 
-
-        .gifts p {
-
-            max-width: 650px;
-
-            margin: 0 auto;
-
-            font-size: 17px;
-
+        .ceremony-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
-
-        /* =========================================
-           CLOSING
-        ========================================= */
-
-        .closing {
-
-            min-height: 80vh;
-
-            padding: 100px 24px;
-
+        .ceremony-content {
             display: flex;
-
-            align-items: center;
-
+            flex-direction: column;
             justify-content: center;
 
-            text-align: center;
-
-            background: var(--forest);
-
-            color: white;
-
+            padding: 80px 10%;
         }
 
+        .ceremony-content .section-label {
+            color: var(--sand-light);
+        }
 
-        .closing-monogram {
+        .ceremony-content h2 {
+            margin-bottom: 30px;
 
             font-family: "Cormorant Garamond", serif;
+            font-size: clamp(45px, 5vw, 65px);
+            font-weight: 400;
+            line-height: 1;
+        }
 
+        .location {
+            margin-bottom: 30px;
+        }
+
+        .location-name {
+            margin-bottom: 5px;
+
+            font-family: "Cormorant Garamond", serif;
             font-size: 28px;
+        }
 
-            letter-spacing: 0.1em;
+        .location-details {
+            font-size: 13px;
+            color: rgba(255,255,255,0.7);
+        }
 
-            margin-bottom: 45px;
-
-            opacity: 0.7;
-
+        .ceremony-content p {
+            max-width: 450px;
+            font-size: 14px;
+            color: rgba(255,255,255,0.78);
         }
 
 
-        .closing h2 {
+        /* =========================
+           RECEPTION
+        ========================= */
 
-            font-size: clamp(70px, 10vw, 130px);
+        .reception {
+            padding: 120px 8%;
+            background: var(--ivory);
+        }
 
-            letter-spacing: -0.04em;
+        .reception-card {
+            max-width: 1200px;
+            margin: 0 auto;
 
-            margin-bottom: 35px;
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
 
+            background: var(--white);
+        }
+
+        .reception-image {
+            min-height: 600px;
+            overflow: hidden;
+        }
+
+        .reception-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .reception-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            padding: 70px 10%;
+        }
+
+        .reception-content h2 {
+            margin-bottom: 30px;
+
+            font-family: "Cormorant Garamond", serif;
+            font-size: clamp(45px, 5vw, 65px);
+            font-weight: 400;
+            line-height: 1;
+            color: var(--forest-dark);
+        }
+
+        .venue-details {
+            margin-bottom: 30px;
+        }
+
+        .venue-details h3 {
+            margin-bottom: 6px;
+
+            font-family: "Cormorant Garamond", serif;
+            font-size: 28px;
+            font-weight: 500;
+        }
+
+        .venue-details p {
+            font-size: 13px;
+            color: var(--muted);
+        }
+
+        .reception-content > p {
+            font-size: 14px;
+            color: var(--muted);
         }
 
 
-        .closing-date {
+        /* =========================
+           GIFTS
+        ========================= */
+
+        .gifts {
+            padding: 120px 8%;
+            background: var(--ivory-light);
+            text-align: center;
+        }
+
+        .gifts-inner {
+            max-width: 650px;
+            margin: 0 auto;
+        }
+
+        .gifts h2 {
+            margin-bottom: 22px;
+
+            font-family: "Cormorant Garamond", serif;
+            font-size: 52px;
+            font-weight: 400;
+            color: var(--forest-dark);
+        }
+
+        .gifts p {
+            margin-bottom: 32px;
+
+            font-size: 14px;
+            color: var(--muted);
+        }
+
+        .gift-button {
+            display: inline-block;
+
+            padding: 15px 30px;
+
+            border: 1px solid var(--forest);
+            color: var(--forest);
 
             font-size: 11px;
-
-            letter-spacing: 0.2em;
-
+            font-weight: 500;
+            letter-spacing: 2px;
             text-transform: uppercase;
 
-            opacity: 0.55;
+            transition: all 0.25s ease;
+        }
 
+        .gift-button:hover {
+            background: var(--forest);
+            color: var(--white);
         }
 
 
-        /* =========================================
+        /* =========================
+           CLOSING
+        ========================= */
+
+        .closing {
+            padding: 150px 8%;
+            background: var(--forest);
+            color: var(--white);
+            text-align: center;
+        }
+
+        .closing-mark {
+            margin-bottom: 28px;
+
+            font-family: "Cormorant Garamond", serif;
+            font-size: 30px;
+            color: var(--sand-light);
+        }
+
+        .closing .names {
+            font-family: "Cormorant Garamond", serif;
+            font-size: clamp(50px, 7vw, 85px);
+            font-weight: 400;
+            line-height: 1;
+        }
+
+
+        /* =========================
            FOOTER
-        ========================================= */
+        ========================= */
 
         footer {
+            padding: 35px 5%;
+            background: var(--forest-dark);
+            color: rgba(255,255,255,0.6);
 
-            padding: 35px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
 
-            background: var(--forest);
+            font-size: 10px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
 
-            border-top: 1px solid rgba(255,255,255,0.15);
-
-            text-align: center;
-
-            color: rgba(255,255,255,0.4);
-
-            font-size: 11px;
-
-            letter-spacing: 0.08em;
-
+        .footer-monogram {
+            font-family: "Cormorant Garamond", serif;
+            font-size: 20px;
+            color: var(--white);
+            letter-spacing: 1px;
         }
 
 
-        /* =========================================
+        /* =========================
            MOBILE
-        ========================================= */
+        ========================= */
 
         @media (max-width: 800px) {
 
-
-            .hero {
-
-                min-height: 90vh;
-
+            nav {
+                padding: 22px 6%;
             }
 
-
-            .hero::before {
-
-                width: 500px;
-
-                height: 500px;
-
+            .nav-links {
+                gap: 18px;
             }
 
-
-            .hero::after {
-
-                width: 340px;
-
-                height: 340px;
-
+            .nav-links a {
+                font-size: 10px;
             }
 
+            .hero h1 {
+                font-size: clamp(55px, 16vw, 85px);
+            }
 
-            .date-card {
+            .intro {
+                padding: 95px 8%;
+            }
 
+            .details-section {
+                padding: 90px 7%;
+            }
+
+            .details-grid {
                 grid-template-columns: 1fr;
-
-                gap: 30px;
-
-                padding: 45px 10px;
-
             }
 
-
-            .date-item {
-
-                border-right: none;
-
-                border-bottom: 1px solid var(--border);
-
-                padding: 0 10px 30px;
-
+            .detail + .detail {
+                border-left: none;
+                border-top: 1px solid var(--border);
             }
 
-
-            .date-item:last-child {
-
-                border-bottom: none;
-
-                padding-bottom: 0;
-
-            }
-
-
-            .venue-block,
-            .venue-block.reverse {
-
+            .ceremony-grid {
                 grid-template-columns: 1fr;
-
             }
 
-
-            .venue-block.reverse .venue-visual {
-
-                order: 0;
-
+            .ceremony-image {
+                min-height: 420px;
             }
 
-
-            .venue-visual {
-
-                min-height: 350px;
-
+            .ceremony-content {
+                padding: 80px 9%;
             }
 
-
-            .venue-content {
-
-                padding: 75px 30px;
-
+            .reception {
+                padding: 90px 7%;
             }
 
-
-            .timeline-item {
-
-                grid-template-columns: 90px 1fr;
-
-                gap: 20px;
-
+            .reception-card {
+                grid-template-columns: 1fr;
             }
 
+            .reception-image {
+                min-height: 420px;
+            }
+
+            .reception-content {
+                padding: 70px 9%;
+            }
+
+            .gifts {
+                padding: 95px 8%;
+            }
+
+            .closing {
+                padding: 110px 8%;
+            }
+
+            footer {
+                padding: 28px 6%;
+            }
         }
 
 
-        @media (max-width: 500px) {
+        @media (max-width: 480px) {
 
-
-            .nav {
-
-                padding: 22px 24px;
-
+            .monogram {
+                font-size: 23px;
             }
 
-
-            .hero {
-
-                padding-left: 18px;
-
-                padding-right: 18px;
-
+            .nav-links a:not(.nav-gifts) {
+                display: none;
             }
 
-
-            .hero h1 {
-
-                font-size: 64px;
-
+            .hero-content {
+                padding-top: 100px;
             }
-
 
             .hero-date {
-
-                font-size: 10px;
-
-                letter-spacing: 0.15em;
-
+                font-size: 21px;
             }
 
-
-            .intro,
-            .schedule,
-            .travel,
-            .rsvp,
-            .gifts {
-
-                padding-top: 100px;
-
-                padding-bottom: 100px;
-
+            .details-header h2,
+            .gifts h2 {
+                font-size: 43px;
             }
 
-
-            .venue-content {
-
-                padding: 65px 24px;
-
+            .detail {
+                padding: 35px 20px;
             }
 
-
-            .venue-name {
-
-                font-size: 30px;
-
+            .ceremony-content h2,
+            .reception-content h2 {
+                font-size: 48px;
             }
 
-
-            .timeline-item {
-
-                grid-template-columns: 1fr;
-
-                gap: 4px;
-
-                padding: 25px 0;
-
+            .reception-content {
+                padding: 60px 8%;
             }
 
-
-            .timeline-time {
-
-                font-size: 22px;
-
+            footer {
+                flex-direction: column;
+                gap: 8px;
+                text-align: center;
             }
-
-
         }
 
     </style>
-
 </head>
 
 
 <body>
 
 
-    <!-- =========================================
+    <!-- =========================
          NAVIGATION
-    ========================================== -->
+    ========================== -->
 
-    <nav class="nav">
+    <nav>
 
-        <div
-            id="monogram"
-            class="monogram"
-        >
-            A &amp; B
+        <div class="monogram" id="nav-monogram">
+            &amp;
+        </div>
+
+        <div class="nav-links">
+            <a href="#details">Details</a>
+            <a href="#ceremony">Ceremony</a>
+            <a href="#reception">Reception</a>
+            <a href="gifts/" class="nav-gifts">Gifts</a>
         </div>
 
     </nav>
 
 
-    <!-- =========================================
+    <!-- =========================
          HERO
-    ========================================== -->
+    ========================== -->
 
     <section class="hero">
 
+        <img
+            class="hero-image"
+            src="../assets/wedding/hero.jpg"
+            alt=""
+        >
+
         <div class="hero-content">
 
-            <div class="hero-kicker">
-                We're getting married
+            <div class="eyebrow">
+                We are getting married
             </div>
-
 
             <h1>
-
-                <span id="name1">
-                    Partner 1
-                </span>
-
-                <span class="hero-ampersand">
-                    &amp;
-                </span>
-
-                <span id="name2">
-                    Partner 2
-                </span>
-
+                <span id="hero-name1"></span>
+                <br>
+                <span>&amp;</span>
+                <br>
+                <span id="hero-name2"></span>
             </h1>
 
-
-            <div
-                id="hero-date"
-                class="hero-date"
-            >
-                Wedding date · City
-            </div>
+            <div class="hero-date" id="hero-date"></div>
 
         </div>
 
-
-        <div class="scroll-label">
-            Scroll to explore
+        <div class="scroll-note">
+            Scroll to discover
         </div>
 
     </section>
 
 
-    <!-- =========================================
+    <!-- =========================
          INTRO
-    ========================================== -->
+    ========================== -->
 
     <section class="intro">
 
-        <div class="content-narrow">
+        <div class="section-label">
+            Our day
+        </div>
 
-            <div class="eyebrow">
-                Our wedding
+        <h2>
+            We would love to celebrate this special day with you.
+        </h2>
+
+        <p id="intro-location"></p>
+
+    </section>
+
+
+    <!-- =========================
+         DETAILS
+    ========================== -->
+
+    <section class="details-section" id="details">
+
+        <div class="details-header">
+
+            <div class="section-label">
+                The details
+            </div>
+
+            <h2>Save the date</h2>
+
+        </div>
+
+        <div class="details-grid">
+
+            <div class="detail">
+
+                <div class="detail-number">
+                    01
+                </div>
+
+                <h3 id="detail-date"></h3>
+
+                <p>Wedding day</p>
+
             </div>
 
 
-            <h2>
-                A day to celebrate together
-            </h2>
+            <div class="detail">
+
+                <div class="detail-number">
+                    02
+                </div>
+
+                <h3 id="detail-city"></h3>
+
+                <p>Location</p>
+
+            </div>
 
 
-            <p>
+            <div class="detail">
 
-                We are getting married in
-                <span id="intro-city">
-                    the city
-                </span>,
+                <div class="detail-number">
+                    03
+                </div>
 
-                and we would love for you to join us
-                as we celebrate this special day
-                surrounded by family and friends.
+                <h3>Our celebration</h3>
 
-            </p>
+                <p>Details to follow</p>
+
+            </div>
 
         </div>
 
     </section>
 
 
-    <!-- =========================================
-         DATE
-    ========================================== -->
-
-    <section class="date-section">
-
-        <div class="date-card">
-
-
-            <div class="date-item">
-
-                <div class="date-label">
-                    Date
-                </div>
-
-                <div
-                    id="details-date"
-                    class="date-value"
-                >
-                    Wedding date
-                </div>
-
-            </div>
-
-
-            <div class="date-item">
-
-                <div class="date-label">
-                    City
-                </div>
-
-                <div
-                    id="details-city"
-                    class="date-value"
-                >
-                    City
-                </div>
-
-            </div>
-
-
-            <div class="date-item">
-
-                <div class="date-label">
-                    Celebration
-                </div>
-
-                <div class="date-value">
-                    Wedding
-                </div>
-
-            </div>
-
-
-        </div>
-
-    </section>
-
-
-    <!-- =========================================
+    <!-- =========================
          CEREMONY
-    ========================================== -->
+    ========================== -->
 
-    <section class="venue-section">
+    <section class="ceremony" id="ceremony">
 
+        <div class="ceremony-grid">
 
-        <div class="venue-block">
+            <div class="ceremony-image">
 
-
-            <div class="venue-visual">
-
-                <div class="venue-visual-label">
-                    Ceremony
-                </div>
+                <img
+                    src="../assets/wedding/church.jpg"
+                    alt=""
+                >
 
             </div>
 
 
-            <div class="venue-content">
+            <div class="ceremony-content">
 
-                <div class="eyebrow">
+                <div class="section-label">
                     The ceremony
                 </div>
 
-
                 <h2>
-                    We say yes
+                    Saying<br>
+                    "I do"
                 </h2>
 
+                <div class="location">
 
-                <div
-                    id="church-name"
-                    class="venue-name"
-                >
-                    Ceremony venue
-                </div>
+                    <div
+                        class="location-name"
+                        id="ceremony-name"
+                    ></div>
 
-
-                <div class="venue-location">
-
-                    <span id="church-city">
-                        City
-                    </span>
+                    <div
+                        class="location-details"
+                        id="ceremony-city"
+                    ></div>
 
                 </div>
 
-
-                <p class="venue-description">
-
-                    The ceremony will take place at
-                    <span id="church-description">
-                        the ceremony venue
-                    </span>.
-
-                    We cannot wait to share this moment
-                    with the people closest to us.
-
+                <p>
+                    We will begin our day here before continuing
+                    the celebration with our family and friends.
                 </p>
 
             </div>
 
-
         </div>
 
-
-        <!-- =====================================
-             RECEPTION
-        ====================================== -->
-
-        <div class="venue-block reverse">
+    </section>
 
 
-            <div class="venue-visual">
+    <!-- =========================
+         RECEPTION
+    ========================== -->
 
-                <div class="venue-visual-label">
-                    Reception
-                </div>
+    <section class="reception" id="reception">
+
+        <div class="reception-card">
+
+            <div class="reception-image">
+
+                <img
+                    src="../assets/wedding/venue.jpg"
+                    alt=""
+                >
 
             </div>
 
 
-            <div class="venue-content">
+            <div class="reception-content">
 
-                <div class="eyebrow">
-                    The celebration
+                <div class="section-label">
+                    The reception
                 </div>
-
 
                 <h2>
-                    Then we celebrate
+                    Let the<br>
+                    celebration begin
                 </h2>
 
+                <div class="venue-details">
 
-                <div
-                    id="venue-name"
-                    class="venue-name"
-                >
-                    Reception venue
-                </div>
+                    <h3 id="venue-name"></h3>
 
-
-                <div class="venue-location">
-
-                    <span id="venue-city">
-                        City
-                    </span>
+                    <p id="venue-city"></p>
 
                 </div>
 
-
-                <p class="venue-description">
-
-                    After the ceremony, we will continue
-                    the celebration at
-                    <span id="venue-description">
-                        the reception venue
-                    </span>,
-
-                    with dinner, drinks and plenty of time
-                    to celebrate together.
-
+                <p>
+                    After the ceremony, we will continue the
+                    celebration together over dinner, drinks
+                    and a few unforgettable moments.
                 </p>
 
             </div>
 
-
-        </div>
-
-
-    </section>
-
-
-    <!-- =========================================
-         SCHEDULE
-    ========================================== -->
-
-    <section class="schedule">
-
-        <div class="schedule-inner">
-
-
-            <div class="schedule-header">
-
-                <div class="eyebrow">
-                    The day
-                </div>
-
-                <h2>
-                    Schedule
-                </h2>
-
-            </div>
-
-
-            <div class="timeline">
-
-
-                <div class="timeline-item">
-
-                    <div class="timeline-time">
-                        16:00
-                    </div>
-
-                    <div>
-
-                        <div class="timeline-title">
-                            Ceremony
-                        </div>
-
-                        <div class="timeline-description">
-
-                            Join us as we exchange our vows.
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-                <div class="timeline-item">
-
-                    <div class="timeline-time">
-                        17:30
-                    </div>
-
-                    <div>
-
-                        <div class="timeline-title">
-                            Aperitivo
-                        </div>
-
-                        <div class="timeline-description">
-
-                            Drinks and time together after
-                            the ceremony.
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-                <div class="timeline-item">
-
-                    <div class="timeline-time">
-                        19:30
-                    </div>
-
-                    <div>
-
-                        <div class="timeline-title">
-                            Dinner
-                        </div>
-
-                        <div class="timeline-description">
-
-                            An evening of food, conversation
-                            and celebration.
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-                <div class="timeline-item">
-
-                    <div class="timeline-time">
-                        22:00
-                    </div>
-
-                    <div>
-
-                        <div class="timeline-title">
-                            Party
-                        </div>
-
-                        <div class="timeline-description">
-
-                            Music, dancing and a few more
-                            memories to make.
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-            </div>
-
-
         </div>
 
     </section>
 
 
-    <!-- =========================================
-         TRAVEL
-    ========================================== -->
+    <!-- =========================
+         GIFTS
+    ========================== -->
 
-    <section class="travel">
+    <section class="gifts">
 
-        <div class="content-narrow">
+        <div class="gifts-inner">
 
-            <div class="eyebrow">
-                Getting there
+            <div class="section-label">
+                Our honeymoon
             </div>
-
 
             <h2>
-                Travel &amp; stay
+                A gift towards our next adventure
             </h2>
 
-
             <p>
-
-                We know that travelling for a wedding
-                takes some planning.
-
-                We will share useful information about
-                transport, accommodation and everything
-                you need to know before the big day.
-
+                If you would like to give us a gift, we have
+                created a page dedicated to our honeymoon.
             </p>
-
-        </div>
-
-    </section>
-
-
-    <!-- =========================================
-         RSVP
-    ========================================== -->
-
-    <section class="rsvp">
-
-        <div class="content-narrow">
-
-            <div class="eyebrow">
-                RSVP
-            </div>
-
-
-            <h2>
-                Will you join us?
-            </h2>
-
-
-            <p>
-
-                Please let us know if you can celebrate
-                with us.
-
-                We will be very happy to have you there.
-
-            </p>
-
 
             <a
-                href="#"
-                class="rsvp-button"
-                onclick="return false;"
+                href="gifts/"
+                class="gift-button"
             >
-                RSVP coming soon
+                Discover our honeymoon
             </a>
 
         </div>
@@ -1628,267 +931,139 @@
     </section>
 
 
-    <!-- =========================================
-         GIFTS
-    ========================================== -->
-
-    <section class="gifts">
-
-        <div class="content-narrow">
-
-            <div class="eyebrow">
-                Gifts
-            </div>
-
-
-            <h2>
-                Your presence is enough
-            </h2>
-
-
-            <p>
-
-                Having you with us on our wedding day
-                is the greatest gift we could ask for.
-
-                If you would nevertheless like to give
-                something, we will share more information
-                here.
-
-            </p>
-
-        </div>
-
-    </section>
-
-
-    <!-- =========================================
+    <!-- =========================
          CLOSING
-    ========================================== -->
+    ========================== -->
 
     <section class="closing">
 
-        <div>
+        <div class="closing-mark">
+            ✦
+        </div>
 
+        <div class="names">
 
-            <div
-                id="closing-monogram"
-                class="closing-monogram"
-            >
-                A &amp; B
-            </div>
-
-
-            <h2>
-
-                See you in
-                <span id="closing-city">
-                    the city
-                </span>.
-
-            </h2>
-
-
-            <div
-                id="closing-date"
-                class="closing-date"
-            >
-                Wedding date
-            </div>
-
+            <span id="closing-name1"></span>
+            <span>&amp;</span>
+            <span id="closing-name2"></span>
 
         </div>
 
     </section>
 
 
-    <!-- =========================================
+    <!-- =========================
          FOOTER
-    ========================================== -->
+    ========================== -->
 
     <footer>
 
-        <div id="footer-monogram">
-            A &amp; B
+        <div class="footer-monogram" id="footer-monogram">
+            &amp;
         </div>
+
+        <div id="footer-date"></div>
 
     </footer>
 
 
-    <!-- =========================================
-         URL PERSONALISATION
-    ========================================== -->
+    <!-- =========================
+         URL PARAMETERS
+    ========================== -->
 
     <script>
 
+        const params = new URLSearchParams(window.location.search);
 
-        /*
-         * READ THE URL
-         *
-         * This is deliberately kept simple.
-         * These are the same parameters already
-         * proven to work in the diagnostic page.
-         */
-
-        const params =
-            new URLSearchParams(
-                window.location.search
-            );
+        const name1 = params.get("name1");
+        const name2 = params.get("name2");
+        const date = params.get("date");
+        const city = params.get("city");
+        const church = params.get("church");
+        const venue = params.get("venue");
 
 
-        const name1 =
-            params.get("name1") || "Partner 1";
+        /* Names */
+
+        document.getElementById("hero-name1").textContent =
+            name1 || "";
+
+        document.getElementById("hero-name2").textContent =
+            name2 || "";
+
+        document.getElementById("closing-name1").textContent =
+            name1 || "";
+
+        document.getElementById("closing-name2").textContent =
+            name2 || "";
 
 
-        const name2 =
-            params.get("name2") || "Partner 2";
+        /* Monograms */
+
+        if (name1 && name2) {
+
+            const monogram =
+                name1.charAt(0).toUpperCase() +
+                name2.charAt(0).toUpperCase();
+
+            document.getElementById("nav-monogram").textContent =
+                monogram;
+
+            document.getElementById("footer-monogram").textContent =
+                monogram;
+        }
 
 
-        const date =
-            params.get("date") || "Wedding date";
+        /* Date */
+
+        document.getElementById("hero-date").textContent =
+            date || "";
+
+        document.getElementById("detail-date").textContent =
+            date || "";
+
+        document.getElementById("footer-date").textContent =
+            date || "";
 
 
-        const city =
-            params.get("city") || "City";
+        /* City */
+
+        document.getElementById("detail-city").textContent =
+            city || "";
+
+        document.getElementById("intro-location").textContent =
+            city
+                ? "We will celebrate our wedding in " + city + "."
+                : "";
 
 
-        const church =
-            params.get("church") || "Ceremony venue";
+        /* Ceremony */
+
+        document.getElementById("ceremony-name").textContent =
+            church || "";
+
+        document.getElementById("ceremony-city").textContent =
+            city || "";
 
 
-        const venue =
-            params.get("venue") || "Reception venue";
+        /* Reception */
+
+        document.getElementById("venue-name").textContent =
+            venue || "";
+
+        document.getElementById("venue-city").textContent =
+            city || "";
 
 
-        /*
-         * MONOGRAM
-         */
+        /* Page title */
 
-        const monogram =
-            `${name1.charAt(0).toUpperCase()} & ${name2.charAt(0).toUpperCase()}`;
+        if (name1 && name2) {
 
-
-        document
-            .getElementById("monogram")
-            .textContent = monogram;
-
-
-        document
-            .getElementById("closing-monogram")
-            .textContent = monogram;
-
-
-        document
-            .getElementById("footer-monogram")
-            .textContent = monogram;
-
-
-        /*
-         * HERO
-         */
-
-        document
-            .getElementById("name1")
-            .textContent = name1;
-
-
-        document
-            .getElementById("name2")
-            .textContent = name2;
-
-
-        document
-            .getElementById("hero-date")
-            .textContent =
-            `${date} · ${city}`;
-
-
-        /*
-         * INTRO
-         */
-
-        document
-            .getElementById("intro-city")
-            .textContent = city;
-
-
-        /*
-         * DATE SECTION
-         */
-
-        document
-            .getElementById("details-date")
-            .textContent = date;
-
-
-        document
-            .getElementById("details-city")
-            .textContent = city;
-
-
-        /*
-         * CEREMONY
-         */
-
-        document
-            .getElementById("church-name")
-            .textContent = church;
-
-
-        document
-            .getElementById("church-city")
-            .textContent = city;
-
-
-        document
-            .getElementById("church-description")
-            .textContent = church;
-
-
-        /*
-         * RECEPTION
-         */
-
-        document
-            .getElementById("venue-name")
-            .textContent = venue;
-
-
-        document
-            .getElementById("venue-city")
-            .textContent = city;
-
-
-        document
-            .getElementById("venue-description")
-            .textContent = venue;
-
-
-        /*
-         * CLOSING
-         */
-
-        document
-            .getElementById("closing-city")
-            .textContent = city;
-
-
-        document
-            .getElementById("closing-date")
-            .textContent = date;
-
-
-        /*
-         * BROWSER TAB TITLE
-         */
-
-        document.title =
-            `${name1} & ${name2} · ${date}`;
-
+            document.title =
+                name1 + " & " + name2;
+        }
 
     </script>
 
-
 </body>
-
 </html>
