@@ -402,7 +402,7 @@
       margin-top: 2px;
     }
 
-    /* GIFTS */
+    /* HONEYMOON */
 
     .gifts {
       background: #ebe7dc;
@@ -440,12 +440,6 @@
       font-size: 11px;
       letter-spacing: 0.13em;
       text-transform: uppercase;
-      transition: background 0.2s ease, transform 0.2s ease;
-    }
-
-    .gift-button:hover {
-      background: var(--forest-dark);
-      transform: translateY(-2px);
     }
 
     /* CLOSING */
@@ -696,7 +690,7 @@
         <a href="#details">The day</a>
         <a href="#ceremony">Ceremony</a>
         <a href="#reception">Reception</a>
-        <a href="../gifts/" class="nav-gifts">Honeymoon gifts</a>
+        <a href="#gifts" class="nav-gifts">Gifts</a>
       </div>
 
     </nav>
@@ -744,8 +738,8 @@
       </h2>
 
       <p>
-        After years together, countless meals, too many bottles of wine
-        and a life built between places, we are getting married in Rome.
+        After years together and countless memories, we are getting
+        married in <span id="intro-city">the city we love</span>.
         We would love to have you there to celebrate this day with us.
       </p>
 
@@ -763,7 +757,7 @@
         </div>
 
         <h2 id="details-date">
-          Saturday · 4 September 2027
+          4 September 2027
         </h2>
 
       </div>
@@ -781,11 +775,13 @@
           </h3>
 
           <p>
-            Our religious ceremony will take place in the heart of Rome,
+            Our ceremony will take place in
+            <span id="details-city">the city</span>,
             surrounded by the people who mean the most to us.
           </p>
 
         </div>
+
 
         <div class="detail">
 
@@ -798,11 +794,12 @@
           </h3>
 
           <p>
-            After the ceremony, we will continue the evening with dinner,
+            After the ceremony, we will continue the day with dinner,
             drinks, music and plenty of time together.
           </p>
 
         </div>
+
 
         <div class="detail">
 
@@ -815,8 +812,8 @@
           </h3>
 
           <p>
-            One of our favourite cities, and the place where we want
-            to celebrate the beginning of this next chapter.
+            The place where we want to celebrate the beginning
+            of this next chapter together.
           </p>
 
         </div>
@@ -841,14 +838,13 @@
           </div>
 
           <h2 id="church-name">
-            San Pietro<br>
-            in Montorio
+            Ceremony venue
           </h2>
 
           <p>
-            We will exchange our vows at the beautiful church of
-            San Pietro in Montorio, overlooking Rome from the
-            slopes of the Gianicolo.
+            We will exchange our vows at
+            <span id="ceremony-description-church">the ceremony venue</span>,
+            surrounded by the people who mean the most to us.
           </p>
 
           <p>
@@ -859,11 +855,11 @@
           <div class="location">
 
             <strong id="church-location">
-              San Pietro in Montorio
+              Ceremony venue
             </strong>
 
             <span id="church-city">
-              Piazza di San Pietro in Montorio · Rome
+              City
             </span>
 
           </div>
@@ -888,13 +884,12 @@
           </div>
 
           <h2 id="venue-name">
-            Villa Giovanelli<br>
-            Fogaccia
+            Reception venue
           </h2>
 
           <p>
             After the ceremony, we will head to
-            <span id="venue-name-text">Villa Giovanelli Fogaccia</span>
+            <span id="venue-name-text">the reception venue</span>
             for dinner and an evening of celebration together.
           </p>
 
@@ -903,7 +898,7 @@
             <div>
 
               <strong id="venue-date">
-                4 September
+                Wedding date
               </strong>
 
               <span>
@@ -915,11 +910,11 @@
             <div>
 
               <strong id="venue-city">
-                Rome
+                City
               </strong>
 
               <span id="venue-name-small">
-                Villa Giovanelli Fogaccia
+                Reception venue
               </span>
 
             </div>
@@ -933,9 +928,9 @@
     </section>
 
 
-    <!-- HONEYMOON GIFTS -->
+    <!-- GIFTS -->
 
-    <section class="gifts">
+    <section class="gifts" id="gifts">
 
       <div class="gifts-inner">
 
@@ -944,19 +939,18 @@
         </div>
 
         <h2>
-          Come with us to Rwanda.
+          Help us make the honeymoon unforgettable.
         </h2>
 
         <p>
-          We are planning a honeymoon filled with mountains, wildlife,
-          safari and, hopefully, gorillas. Instead of traditional gifts,
-          we have put together a few pieces of the trip that you can
-          help us experience.
+          Instead of traditional gifts, we have put together a few ideas
+          for our honeymoon and the experiences we hope to share together.
+          More details about our plans will be available soon.
         </p>
 
-        <a href="../gifts/" class="gift-button">
-          Explore our honeymoon
-        </a>
+        <span class="gift-button">
+          More details coming soon
+        </span>
 
       </div>
 
@@ -1001,9 +995,9 @@
       </div>
 
       <div>
-        <a href="../gifts/">
-          Honeymoon gifts
-        </a>
+        <span>
+          Wedding website
+        </span>
       </div>
 
     </footer>
@@ -1043,7 +1037,7 @@
     } else {
 
       /*
-       * Basic helper to create a monogram from the two names.
+       * Create the couple's monogram.
        */
 
       const monogram =
@@ -1051,7 +1045,7 @@
 
 
       /*
-       * Couple names
+       * Couple names.
        */
 
       document.getElementById("couple-names").innerHTML =
@@ -1062,7 +1056,7 @@
 
 
       /*
-       * Monograms
+       * Monograms.
        */
 
       document.getElementById("nav-monogram").textContent =
@@ -1076,7 +1070,7 @@
 
 
       /*
-       * Date and city
+       * Date and city.
        */
 
       document.getElementById("hero-date").textContent =
@@ -1088,6 +1082,12 @@
       document.getElementById("city-name").textContent =
         city;
 
+      document.getElementById("intro-city").textContent =
+        city;
+
+      document.getElementById("details-city").textContent =
+        city;
+
       document.getElementById("closing-city").textContent =
         city;
 
@@ -1096,10 +1096,13 @@
 
 
       /*
-       * Ceremony
+       * Ceremony.
        */
 
       document.getElementById("church-name").textContent =
+        church;
+
+      document.getElementById("ceremony-description-church").textContent =
         church;
 
       document.getElementById("church-location").textContent =
@@ -1110,7 +1113,7 @@
 
 
       /*
-       * Reception
+       * Reception.
        */
 
       document.getElementById("venue-name").textContent =
@@ -1130,7 +1133,7 @@
 
 
       /*
-       * Browser title and description
+       * Browser title and description.
        */
 
       document.title =
