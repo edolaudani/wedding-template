@@ -22,8 +22,10 @@
     <style>
         :root {
             --ivory: #f7f4ee;
+            --cream: #eee8dc;
             --forest: #26382f;
             --sand: #d8cdbd;
+            --stone: #c9c0b2;
             --white: #ffffff;
             --text: #2d332f;
             --muted: #6d746e;
@@ -60,14 +62,9 @@
             text-decoration: none;
         }
 
-        img {
-            display: block;
-            max-width: 100%;
-        }
-
-        /* --------------------------------
+        /* =================================
            ERROR PAGE
-        -------------------------------- */
+        ================================= */
 
         .error-page {
             min-height: 100vh;
@@ -102,9 +99,9 @@
             color: var(--white);
         }
 
-        /* --------------------------------
+        /* =================================
            NAVIGATION
-        -------------------------------- */
+        ================================= */
 
         .nav {
             position: absolute;
@@ -118,55 +115,86 @@
         }
 
         .nav-monogram {
-            color: var(--white);
+            color: var(--forest);
             font-family: "Cormorant Garamond", serif;
             font-size: 25px;
             letter-spacing: 0.05em;
         }
 
-        /* --------------------------------
+        /* =================================
            HERO
-        -------------------------------- */
+        ================================= */
 
         .hero {
             min-height: 100vh;
             position: relative;
             display: flex;
-            align-items: flex-end;
+            align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 80px 24px;
-            background-image:
-                linear-gradient(
-                    to bottom,
-                    rgba(0, 0, 0, 0.08),
-                    rgba(0, 0, 0, 0.45)
+            padding: 100px 24px;
+            background:
+                radial-gradient(
+                    circle at 50% 38%,
+                    rgba(255, 255, 255, 0.9) 0%,
+                    rgba(255, 255, 255, 0.35) 35%,
+                    transparent 65%
                 ),
-                url("../assets/wedding/hero.jpg");
-            background-size: cover;
-            background-position: center;
-            color: var(--white);
+                linear-gradient(
+                    135deg,
+                    #e9e1d5 0%,
+                    #f7f4ee 48%,
+                    #dcd3c5 100%
+                );
+            color: var(--forest);
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            border: 1px solid rgba(38, 56, 47, 0.12);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            width: 430px;
+            height: 430px;
+            border: 1px solid rgba(38, 56, 47, 0.08);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
         }
 
         .hero-content {
+            position: relative;
+            z-index: 2;
             max-width: 900px;
         }
 
         .hero h1 {
             font-size: clamp(64px, 11vw, 145px);
             letter-spacing: -0.03em;
-            margin-bottom: 20px;
+            margin-bottom: 28px;
         }
 
         .hero-date {
-            font-size: 14px;
+            font-size: 13px;
             letter-spacing: 0.16em;
             text-transform: uppercase;
         }
 
-        /* --------------------------------
+        /* =================================
            GENERAL SECTIONS
-        -------------------------------- */
+        ================================= */
 
         .section {
             padding: 120px 24px;
@@ -195,9 +223,9 @@
             font-size: 17px;
         }
 
-        /* --------------------------------
+        /* =================================
            INTRO
-        -------------------------------- */
+        ================================= */
 
         .intro {
             background: var(--ivory);
@@ -214,9 +242,9 @@
             max-width: 800px;
         }
 
-        /* --------------------------------
+        /* =================================
            DETAILS
-        -------------------------------- */
+        ================================= */
 
         .details {
             background: var(--forest);
@@ -255,9 +283,9 @@
             font-size: 34px;
         }
 
-        /* --------------------------------
+        /* =================================
            CEREMONY
-        -------------------------------- */
+        ================================= */
 
         .ceremony {
             background: var(--white);
@@ -271,9 +299,39 @@
 
         .ceremony-image {
             min-height: 500px;
-            background-image: url("../assets/wedding/church.jpg");
-            background-size: cover;
-            background-position: center;
+            position: relative;
+            overflow: hidden;
+            background:
+                linear-gradient(
+                    145deg,
+                    #d8d0c3 0%,
+                    #eee9e0 50%,
+                    #c7bdae 100%
+                );
+        }
+
+        .ceremony-image::before {
+            content: "";
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border: 1px solid rgba(38, 56, 47, 0.18);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .ceremony-image::after {
+            content: "CEREMONY";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: "Cormorant Garamond", serif;
+            font-size: 20px;
+            letter-spacing: 0.2em;
+            color: rgba(38, 56, 47, 0.55);
         }
 
         .ceremony-content {
@@ -298,9 +356,9 @@
             margin-bottom: 30px;
         }
 
-        /* --------------------------------
+        /* =================================
            RECEPTION
-        -------------------------------- */
+        ================================= */
 
         .reception {
             background: var(--ivory);
@@ -322,15 +380,45 @@
 
         .reception-image {
             min-height: 500px;
-            background-image: url("../assets/wedding/venue.jpg");
-            background-size: cover;
-            background-position: center;
+            position: relative;
+            overflow: hidden;
             order: 2;
+            background:
+                linear-gradient(
+                    135deg,
+                    #c9c0b2 0%,
+                    #e5ddd0 48%,
+                    #d1c5b5 100%
+                );
         }
 
-        /* --------------------------------
+        .reception-image::before {
+            content: "";
+            position: absolute;
+            width: 340px;
+            height: 340px;
+            border: 1px solid rgba(38, 56, 47, 0.15);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .reception-image::after {
+            content: "RECEPTION";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: "Cormorant Garamond", serif;
+            font-size: 20px;
+            letter-spacing: 0.2em;
+            color: rgba(38, 56, 47, 0.55);
+        }
+
+        /* =================================
            GIFTS
-        -------------------------------- */
+        ================================= */
 
         .gifts {
             background: var(--white);
@@ -344,6 +432,7 @@
         }
 
         .gifts h2 {
+            max-width: 750px;
             margin-bottom: 25px;
         }
 
@@ -351,9 +440,9 @@
             margin-bottom: 15px;
         }
 
-        /* --------------------------------
+        /* =================================
            CLOSING
-        -------------------------------- */
+        ================================= */
 
         .closing {
             min-height: 75vh;
@@ -361,7 +450,13 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            background: var(--forest);
+            background:
+                radial-gradient(
+                    circle at center,
+                    rgba(255, 255, 255, 0.08),
+                    transparent 55%
+                ),
+                var(--forest);
             color: var(--white);
             padding: 100px 24px;
         }
@@ -385,9 +480,9 @@
             opacity: 0.7;
         }
 
-        /* --------------------------------
+        /* =================================
            FOOTER
-        -------------------------------- */
+        ================================= */
 
         footer {
             padding: 35px 24px;
@@ -399,14 +494,24 @@
             letter-spacing: 0.05em;
         }
 
-        /* --------------------------------
+        /* =================================
            RESPONSIVE
-        -------------------------------- */
+        ================================= */
 
         @media (max-width: 800px) {
 
             .nav {
                 padding: 22px 24px;
+            }
+
+            .hero::before {
+                width: 430px;
+                height: 430px;
+            }
+
+            .hero::after {
+                width: 310px;
+                height: 310px;
             }
 
             .section {
@@ -471,9 +576,7 @@
 
 <body>
 
-    <!-- =====================================
-         ERROR PAGE
-    ====================================== -->
+    <!-- ERROR PAGE -->
 
     <main id="error-page" class="error-page" hidden>
 
@@ -490,21 +593,21 @@
     </main>
 
 
-    <!-- =====================================
-         WEDDING WEBSITE
-    ====================================== -->
+    <!-- WEDDING WEBSITE -->
 
     <div id="wedding-page" hidden>
 
         <!-- NAVIGATION -->
 
         <nav class="nav">
+
             <div
                 id="nav-monogram"
                 class="nav-monogram"
             >
-                A & B
+                A &amp; B
             </div>
+
         </nav>
 
 
@@ -515,10 +618,15 @@
             <div class="hero-content">
 
                 <h1 id="couple-names">
+
                     <span id="name1"></span>
+
                     <br>
+
                     &amp;
+
                     <span id="name2"></span>
+
                 </h1>
 
                 <div
@@ -544,8 +652,7 @@
                 </div>
 
                 <h2>
-                    A day to celebrate
-                    together
+                    A day to celebrate together
                 </h2>
 
                 <p>
@@ -772,7 +879,7 @@
                     id="closing-monogram"
                     class="closing-monogram"
                 >
-                    A & B
+                    A &amp; B
                 </div>
 
                 <h2>
@@ -786,7 +893,7 @@
                     id="closing-names"
                     class="closing-city"
                 >
-                    Partner 1 & Partner 2
+                    Partner 1 &amp; Partner 2
                 </div>
 
             </div>
@@ -799,7 +906,7 @@
         <footer>
 
             <div id="footer-monogram">
-                A & B
+                A &amp; B
             </div>
 
             <div id="footer-date-city">
@@ -811,16 +918,13 @@
     </div>
 
 
-    <!-- =====================================
-         PERSONALISATION SCRIPT
-    ====================================== -->
+    <!-- PERSONALISATION SCRIPT -->
 
     <script>
 
         const params = new URLSearchParams(
             window.location.search
         );
-
 
         const name1 = (params.get("name1") || "").trim();
         const name2 = (params.get("name2") || "").trim();
@@ -847,17 +951,7 @@
 
         } else {
 
-            /* --------------------------------
-               MONOGRAM
-            -------------------------------- */
-
-            const monogram =
-                `${name1.charAt(0).toUpperCase()} & ${name2.charAt(0).toUpperCase()}`;
-
-
-            /* --------------------------------
-               COUPLE NAMES
-            -------------------------------- */
+            /* COUPLE NAMES */
 
             document
                 .getElementById("name1")
@@ -873,9 +967,10 @@
                 .textContent = `${name1} & ${name2}`;
 
 
-            /* --------------------------------
-               MONOGRAMS
-            -------------------------------- */
+            /* MONOGRAMS */
+
+            const monogram =
+                `${name1.charAt(0).toUpperCase()} & ${name2.charAt(0).toUpperCase()}`;
 
             document
                 .getElementById("nav-monogram")
@@ -890,9 +985,7 @@
                 .textContent = monogram;
 
 
-            /* --------------------------------
-               DATE + CITY
-            -------------------------------- */
+            /* DATE + CITY */
 
             document
                 .getElementById("hero-date")
@@ -919,9 +1012,7 @@
                 .textContent = `${date} · ${city}`;
 
 
-            /* --------------------------------
-               CEREMONY
-            -------------------------------- */
+            /* CEREMONY */
 
             document
                 .getElementById("church-name")
@@ -940,9 +1031,7 @@
                 .textContent = city;
 
 
-            /* --------------------------------
-               RECEPTION
-            -------------------------------- */
+            /* RECEPTION */
 
             document
                 .getElementById("venue-name")
@@ -965,17 +1054,13 @@
                 .textContent = date;
 
 
-            /* --------------------------------
-               PAGE TITLE
-            -------------------------------- */
+            /* PAGE TITLE */
 
             document.title =
                 `${name1} & ${name2} · ${date}`;
 
 
-            /* --------------------------------
-               META DESCRIPTION
-            -------------------------------- */
+            /* META DESCRIPTION */
 
             const description =
                 document.querySelector(
@@ -992,9 +1077,7 @@
             }
 
 
-            /* --------------------------------
-               SHOW WEBSITE
-            -------------------------------- */
+            /* SHOW WEBSITE */
 
             document
                 .getElementById("wedding-page")
