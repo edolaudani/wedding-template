@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Your Wedding Website</title>
+</head>
+
+<body>
+
+    <h1>Create Your Wedding Website</h1>
+
+    <form id="wedding-form">
+
+        <div>
+            <label for="name1">Partner 1</label>
+            <input
+                type="text"
+                id="name1"
+                name="name1"
+                required
+            >
+        </div>
+
+        <div>
+            <label for="name2">Partner 2</label>
+            <input
+                type="text"
+                id="name2"
+                name="name2"
+                required
+            >
+        </div>
+
+        <div>
+            <label for="date">Wedding date</label>
+            <input
+                type="text"
+                id="date"
+                name="date"
+                placeholder="e.g. 12 June 2027"
+                required
+            >
+        </div>
+
+        <div>
+            <label for="city">City</label>
+            <input
+                type="text"
+                id="city"
+                name="city"
+                placeholder="e.g. Rome"
+                required
+            >
+        </div>
+
+        <div>
+            <label for="church">Ceremony venue</label>
+            <input
+                type="text"
+                id="church"
+                name="church"
+                placeholder="e.g. San Pietro in Montorio"
+                required
+            >
+        </div>
+
+        <div>
+            <label for="venue">Reception venue</label>
+            <input
+                type="text"
+                id="venue"
+                name="venue"
+                placeholder="e.g. Villa Giovanelli Fogaccia"
+                required
+            >
+        </div>
+
+        <button type="submit">Create Website</button>
+
+    </form>
+
+    <script>
+        document.getElementById("wedding-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const form = event.target;
+
+            const params = new URLSearchParams({
+                name1: form.name1.value.trim(),
+                name2: form.name2.value.trim(),
+                date: form.date.value.trim(),
+                city: form.city.value.trim(),
+                church: form.church.value.trim(),
+                venue: form.venue.value.trim()
+            });
+
+            window.location.href = "wedding/?" + params.toString();
+        });
+    </script>
+
+</body>
+</html>
