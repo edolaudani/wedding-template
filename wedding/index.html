@@ -1007,153 +1007,158 @@
 
   <script>
 
-    const params = new URLSearchParams(window.location.search);
+    <script>
 
-    const name1 = params.get("name1");
-    const name2 = params.get("name2");
-    const date = params.get("date");
-    const city = params.get("city");
-    const church = params.get("church");
-    const venue = params.get("venue");
+  const params = new URLSearchParams(window.location.search);
+
+  const name1 = params.get("name1")?.trim();
+  const name2 = params.get("name2")?.trim();
+  const date = params.get("date")?.trim();
+  const city = params.get("city")?.trim();
+  const church = params.get("church")?.trim();
+  const venue = params.get("venue")?.trim();
+
+
+  /*
+   * Check that all required parameters are present.
+   */
+
+  const allParametersPresent = [
+    name1,
+    name2,
+    date,
+    city,
+    church,
+    venue
+  ].every(value => value);
+
+
+  if (!allParametersPresent) {
+
+    document.getElementById("error-page").hidden = false;
+
+  } else {
+
+    /*
+     * Create the couple's monogram.
+     */
+
+    const monogram =
+      `${name1.charAt(0).toUpperCase()} & ${name2.charAt(0).toUpperCase()}`;
 
 
     /*
-     * Check that all required parameters are present.
+     * Couple names.
      */
 
-    const allParametersPresent =
-      name1 &&
-      name2 &&
-      date &&
-      city &&
-      church &&
+    document.getElementById("couple-names").innerHTML =
+      `${name1}<br>& ${name2}`;
+
+    document.getElementById("closing-names").textContent =
+      `${name1} & ${name2}`;
+
+
+    /*
+     * Monograms.
+     */
+
+    document.getElementById("nav-monogram").textContent =
+      monogram;
+
+    document.getElementById("closing-monogram").textContent =
+      monogram;
+
+    document.getElementById("footer-monogram").textContent =
+      monogram;
+
+
+    /*
+     * Date and city.
+     */
+
+    document.getElementById("hero-date").textContent =
+      `${date} · ${city}`;
+
+    document.getElementById("details-date").textContent =
+      date;
+
+    document.getElementById("city-name").textContent =
+      city;
+
+    document.getElementById("intro-city").textContent =
+      city;
+
+    document.getElementById("details-city").textContent =
+      city;
+
+    document.getElementById("closing-city").textContent =
+      city;
+
+    document.getElementById("footer-date-city").textContent =
+      `${date} · ${city}`;
+
+
+    /*
+     * Ceremony.
+     */
+
+    document.getElementById("church-name").textContent =
+      church;
+
+    document.getElementById("ceremony-description-church").textContent =
+      church;
+
+    document.getElementById("church-location").textContent =
+      church;
+
+    document.getElementById("church-city").textContent =
+      city;
+
+
+    /*
+     * Reception.
+     */
+
+    document.getElementById("venue-name").textContent =
       venue;
 
+    document.getElementById("venue-name-text").textContent =
+      venue;
 
-    if (!allParametersPresent) {
+    document.getElementById("venue-name-small").textContent =
+      venue;
 
-      document.getElementById("error-page").hidden = false;
+    document.getElementById("venue-city").textContent =
+      city;
 
-    } else {
-
-      /*
-       * Create the couple's monogram.
-       */
-
-      const monogram =
-        `${name1.charAt(0).toUpperCase()} & ${name2.charAt(0).toUpperCase()}`;
+    document.getElementById("venue-date").textContent =
+      date;
 
 
-      /*
-       * Couple names.
-       */
+    /*
+     * Browser title and description.
+     */
 
-      document.getElementById("couple-names").innerHTML =
-        `${name1}<br>& ${name2}`;
+    document.title =
+      `${name1} & ${name2} · ${date}`;
 
-      document.getElementById("closing-names").textContent =
-        `${name1} & ${name2}`;
-
-
-      /*
-       * Monograms.
-       */
-
-      document.getElementById("nav-monogram").textContent =
-        monogram;
-
-      document.getElementById("closing-monogram").textContent =
-        monogram;
-
-      document.getElementById("footer-monogram").textContent =
-        monogram;
+    document
+      .querySelector('meta[name="description"]')
+      .setAttribute(
+        "content",
+        `${name1} & ${name2} are getting married in ${city} on ${date}.`
+      );
 
 
-      /*
-       * Date and city.
-       */
+    /*
+     * Display the personalised wedding page.
+     */
 
-      document.getElementById("hero-date").textContent =
-        `${date} · ${city}`;
+    document.getElementById("wedding-page").hidden = false;
 
-      document.getElementById("details-date").textContent =
-        date;
+  }
 
-      document.getElementById("city-name").textContent =
-        city;
-
-      document.getElementById("intro-city").textContent =
-        city;
-
-      document.getElementById("details-city").textContent =
-        city;
-
-      document.getElementById("closing-city").textContent =
-        city;
-
-      document.getElementById("footer-date-city").textContent =
-        `${date} · ${city}`;
-
-
-      /*
-       * Ceremony.
-       */
-
-      document.getElementById("church-name").textContent =
-        church;
-
-      document.getElementById("ceremony-description-church").textContent =
-        church;
-
-      document.getElementById("church-location").textContent =
-        church;
-
-      document.getElementById("church-city").textContent =
-        city;
-
-
-      /*
-       * Reception.
-       */
-
-      document.getElementById("venue-name").textContent =
-        venue;
-
-      document.getElementById("venue-name-text").textContent =
-        venue;
-
-      document.getElementById("venue-name-small").textContent =
-        venue;
-
-      document.getElementById("venue-city").textContent =
-        city;
-
-      document.getElementById("venue-date").textContent =
-        date;
-
-
-      /*
-       * Browser title and description.
-       */
-
-      document.title =
-        `${name1} & ${name2} · ${date}`;
-
-      document
-        .querySelector('meta[name="description"]')
-        .setAttribute(
-          "content",
-          `${name1} & ${name2} are getting married in ${city} on ${date}.`
-        );
-
-
-      /*
-       * Display the personalised wedding page.
-       */
-
-      document.getElementById("wedding-page").hidden = false;
-
-    }
+</script>
 
   </script>
 
