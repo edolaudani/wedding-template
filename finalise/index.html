@@ -1,11 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Finalise Your Wedding Website</title>
+  <title>Let's Build Your Wedding Website</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,701 +17,942 @@
       --forest-dark: #23372d;
       --sage: #69776b;
       --sand: #c0a77a;
-      --white: #ffffff;
+      --white: #fff;
       --text: #304036;
       --muted: #6f776f;
-      --border: rgba(48, 72, 58, 0.14);
+      --border: rgba(48, 72, 58, .15);
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
       background: var(--ivory);
       color: var(--text);
       font-family: "DM Sans", sans-serif;
-      line-height: 1.6;
+      font-size: 14px;
+      line-height: 1.65;
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
+    button, input, textarea, select { font: inherit; }
+    button { cursor: pointer; }
+    a { color: inherit; text-decoration: none; }
 
     header {
       height: 72px;
-      background: var(--sage);
+      padding: 0 5%;
       display: flex;
       align-items: center;
-      padding: 0 48px;
+      background: var(--sage);
     }
 
     .brand {
       color: var(--ivory-light);
-      font-family: "Cormorant Garamond", serif;
-      font-size: 25px;
-      font-weight: 600;
-      letter-spacing: 0.02em;
+      font: 600 25px "Cormorant Garamond", serif;
+      letter-spacing: .02em;
     }
 
     main {
-      max-width: 850px;
+      width: min(100% - 40px, 760px);
       margin: 0 auto;
-      padding: 76px 32px 100px;
+      padding: 54px 0 85px;
     }
 
-    .intro {
-      max-width: 650px;
-      margin-bottom: 52px;
-    }
+    .intro { text-align: center; margin-bottom: 35px; }
 
-    .eyebrow,
-    .section-label {
+    .eyebrow, .section-label {
       color: var(--sage);
-      font-size: 11px;
+      font-size: 10px;
       font-weight: 600;
-      letter-spacing: 0.18em;
+      letter-spacing: .17em;
       text-transform: uppercase;
     }
 
-    .eyebrow {
-      margin-bottom: 18px;
-    }
+    .eyebrow { margin-bottom: 12px; }
 
-    h1,
-    h2,
-    h3 {
+    h1, h2, h3 {
       color: var(--forest-dark);
       font-family: "Cormorant Garamond", serif;
       font-weight: 500;
-    }
-
-    h1 {
-      max-width: 650px;
-      margin-bottom: 22px;
-      font-size: clamp(48px, 7vw, 72px);
-      line-height: 0.98;
-      letter-spacing: -0.025em;
-    }
-
-    .intro p {
-      max-width: 580px;
-      color: var(--muted);
-      font-size: 15px;
-      font-weight: 300;
-      line-height: 1.8;
-    }
-
-    .progress-note {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-top: 28px;
-      color: var(--muted);
-      font-size: 12px;
-    }
-
-    .progress-line {
-      width: 90px;
-      height: 2px;
-      background: var(--border);
-    }
-
-    .progress-line span {
-      display: block;
-      width: 20%;
-      height: 100%;
-      background: var(--sand);
-    }
-
-    form {
-      display: flex;
-      flex-direction: column;
-      gap: 34px;
-    }
-
-    .question-section {
-      padding: 30px;
-      border: 1px solid var(--border);
-      background: var(--ivory-light);
-    }
-
-    .section-label {
-      margin-bottom: 10px;
-    }
-
-    .question-section h2 {
-      margin-bottom: 8px;
-      font-size: 34px;
       line-height: 1.1;
     }
 
-    .section-description {
-      margin-bottom: 28px;
+    h1 { font-size: clamp(43px, 7vw, 62px); letter-spacing: -.025em; }
+    .intro p { max-width: 500px; margin: 15px auto 0; color: var(--muted); font-weight: 300; }
+
+    .wizard {
+      padding: 30px;
+      border: 1px solid var(--border);
+      background: var(--ivory-light);
+      box-shadow: 0 12px 40px rgba(35, 55, 45, .035);
+    }
+
+    .progress-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      margin-bottom: 12px;
       color: var(--muted);
-      font-size: 13px;
-      font-weight: 300;
-      line-height: 1.7;
+      font-size: 11px;
     }
 
-    .form-group {
-      margin-bottom: 23px;
+    .progress-track {
+      height: 4px;
+      margin-bottom: 34px;
+      overflow: hidden;
+      background: #e8e3d9;
     }
 
-    .form-group:last-child {
-      margin-bottom: 0;
+    .progress-bar {
+      width: 16.666%;
+      height: 100%;
+      background: var(--sage);
+      transition: width .25s ease;
     }
 
-    label,
-    .question-label {
+    .step { display: none; }
+    .step.active { display: block; animation: appear .25s ease; }
+
+    @keyframes appear {
+      from { opacity: .45; transform: translateY(5px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .step h2 { margin: 7px 0 10px; font-size: 39px; }
+    .step-description { margin-bottom: 27px; color: var(--muted); font-weight: 300; }
+
+    .form-group { margin-bottom: 21px; min-width: 0; }
+
+    label, .question-label {
       display: block;
-      margin-bottom: 8px;
+      margin-bottom: 7px;
       color: var(--forest);
       font-size: 12px;
       font-weight: 500;
     }
 
-    .optional {
-      color: var(--muted);
-      font-size: 11px;
-      font-weight: 300;
-    }
+    .optional { color: var(--muted); font-size: 10px; font-weight: 300; }
 
     input[type="text"],
     input[type="email"],
-    input[type="url"],
     input[type="date"],
-    select,
-    textarea {
+    textarea,
+    select {
       width: 100%;
-      min-height: 48px;
-      padding: 12px 14px;
+      min-height: 47px;
+      padding: 11px 13px;
       border: 1px solid var(--border);
       border-radius: 0;
+      outline: none;
       background: var(--white);
       color: var(--text);
-      font-family: "DM Sans", sans-serif;
       font-size: 13px;
-      outline: none;
     }
 
-    textarea {
-      min-height: 100px;
-      resize: vertical;
-    }
+    textarea { min-height: 100px; resize: vertical; }
 
-    input:focus,
-    select:focus,
-    textarea:focus {
+    input:focus, textarea:focus, select:focus {
       border-color: var(--sage);
-      box-shadow: 0 0 0 2px rgba(105, 119, 107, 0.08);
+      box-shadow: 0 0 0 2px rgba(105, 119, 107, .08);
     }
 
     .fields-row {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 18px;
+      gap: 16px;
     }
 
-    .choice-list {
-      display: grid;
-      gap: 12px;
-    }
-
-    .choice {
-      display: flex;
-      align-items: flex-start;
-      gap: 11px;
-      padding: 13px 14px;
-      border: 1px solid var(--border);
-      background: var(--white);
-      cursor: pointer;
-    }
-
-    .choice input {
-      margin-top: 4px;
-      accent-color: var(--forest);
-      flex-shrink: 0;
-    }
-
-    .choice span {
-      color: var(--text);
-      font-size: 12px;
-      line-height: 1.6;
-    }
-
-    .choice strong {
-      display: block;
-      margin-bottom: 2px;
-      color: var(--forest);
-      font-weight: 500;
-    }
-
-    .form-footer {
-      padding-top: 8px;
-    }
-
-    .submit-button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-      min-height: 54px;
-      padding: 14px 22px;
-      border: none;
-      background: var(--forest);
-      color: var(--white);
-      font-family: "DM Sans", sans-serif;
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      cursor: pointer;
-    }
-
-    .submit-button:hover {
-      background: var(--forest-dark);
-    }
-
-    .form-note {
-      margin-top: 14px;
+    .helper {
+      margin-top: 6px;
       color: var(--muted);
       font-size: 11px;
       font-weight: 300;
-      text-align: center;
     }
 
-    .back-link {
-      display: inline-block;
-      margin-top: 28px;
-      color: var(--sage);
+    .divider {
+      height: 1px;
+      margin: 27px 0;
+      background: var(--border);
+    }
+
+    .choice-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .choice-card { position: relative; display: block; cursor: pointer; }
+
+    .choice-card input {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      accent-color: var(--forest);
+    }
+
+    .choice-body {
+      display: block;
+      height: 100%;
+      min-height: 105px;
+      padding: 17px;
+      border: 1px solid var(--border);
+      background: var(--white);
+      transition: border-color .2s, background .2s;
+    }
+
+    .choice-card input:checked + .choice-body {
+      border-color: var(--sage);
+      background: #f0f1eb;
+      box-shadow: inset 0 0 0 1px var(--sage);
+    }
+
+    .choice-title {
+      display: block;
+      padding-right: 18px;
+      margin-bottom: 5px;
+      color: var(--forest);
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .choice-description {
+      display: block;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 300;
+      line-height: 1.6;
+    }
+
+    .schedule-list { display: grid; gap: 12px; }
+
+    .schedule-row {
+      display: grid;
+      grid-template-columns: 115px minmax(0, 1fr) 36px;
+      gap: 10px;
+      align-items: start;
+      padding: 13px;
+      border: 1px solid var(--border);
+      background: var(--white);
+    }
+
+    .schedule-row input { min-width: 0; }
+
+    .schedule-row input[type="text"] {
+      width: 100%;
+      min-height: 43px;
+      padding: 9px;
+      border: 1px solid var(--border);
+      border-radius: 0;
+      outline: none;
       font-size: 12px;
     }
 
-    .back-link:hover {
-      color: var(--forest-dark);
+    .remove-event {
+      width: 34px;
+      height: 43px;
+      border: 1px solid var(--border);
+      background: var(--ivory-light);
+      color: var(--muted);
+      font-size: 18px;
+    }
+
+    .remove-event:hover { color: #8b4840; }
+
+    .add-event {
+      margin-top: 14px;
+      padding: 10px 14px;
+      border: 1px solid var(--sage);
+      background: transparent;
+      color: var(--forest);
+      font-size: 12px;
+    }
+
+    .add-event:hover { background: #eff0e9; }
+
+    .step-nav {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 32px;
+      padding-top: 22px;
+      border-top: 1px solid var(--border);
+    }
+
+    .nav-button {
+      min-height: 47px;
+      padding: 12px 21px;
+      border: 1px solid var(--forest);
+      background: var(--forest);
+      color: white;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .07em;
+    }
+
+    .nav-button:hover { background: var(--forest-dark); }
+
+    .nav-button.secondary {
+      background: transparent;
+      color: var(--forest);
+    }
+
+    .nav-button.secondary:hover { background: #f0eee6; }
+    .nav-button:disabled { opacity: .4; cursor: not-allowed; }
+
+    .step-error {
+      display: none;
+      margin-top: 13px;
+      color: #8b4840;
+      font-size: 12px;
+    }
+
+    .review-list { display: grid; gap: 12px; }
+
+    .review-item {
+      padding: 15px;
+      border: 1px solid var(--border);
+      background: var(--white);
+    }
+
+    .review-item h3 { margin-bottom: 5px; font-size: 23px; }
+    .review-item p { color: var(--muted); font-size: 12px; overflow-wrap: anywhere; }
+
+    .review-edit {
+      margin-top: 8px;
+      padding: 0;
+      border: none;
+      background: transparent;
+      color: var(--sage);
+      font-size: 11px;
+      text-decoration: underline;
+    }
+
+    .notice {
+      margin-top: 18px;
+      padding: 12px 14px;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 300;
     }
 
     footer {
-      padding: 32px 20px;
+      padding: 30px 20px;
       background: var(--forest-dark);
+      color: rgba(255, 255, 255, .65);
       text-align: center;
-    }
-
-    .footer-text {
-      color: rgba(255, 255, 255, 0.65);
       font-size: 11px;
       font-weight: 300;
-      letter-spacing: 0.04em;
     }
 
-    @media (max-width: 600px) {
-      header {
-        height: 64px;
-        padding: 0 22px;
-      }
-
-      main {
-        padding: 48px 20px 65px;
-      }
-
-      h1 {
-        font-size: 49px;
-      }
-
-      .question-section {
-        padding: 23px 18px;
-      }
-
-      .question-section h2 {
-        font-size: 30px;
-      }
-
-      .fields-row {
-        grid-template-columns: 1fr;
-        gap: 0;
-      }
+    @media (max-width: 560px) {
+      header { height: 64px; padding: 0 22px; }
+      main { width: min(100% - 26px, 760px); padding: 38px 0 55px; }
+      .wizard { padding: 21px 17px; }
+      .step h2 { font-size: 34px; }
+      .fields-row, .choice-grid { grid-template-columns: 1fr; gap: 0; }
+      .choice-grid { gap: 10px; }
+      .schedule-row { grid-template-columns: 86px minmax(0, 1fr) 30px; gap: 6px; padding: 8px; }
+      .remove-event { width: 30px; }
+      .nav-button { padding: 11px 14px; }
     }
   </style>
 </head>
 
 <body>
-
   <header>
     <a href="../" class="brand">Weddings</a>
   </header>
 
   <main>
     <section class="intro">
-      <div class="eyebrow">The next step</div>
-
-      <h1>Let's make your wedding website yours.</h1>
-
+      <div class="eyebrow">Your wedding, your story</div>
+      <h1>Let's build your website.</h1>
       <p>
-        Your preview is just the beginning. Tell us a little more
-        about your plans and what you would like your website to
-        include. We will use your answers to understand what you need
-        for your wedding day.
+        A few easy steps to turn your preview into a wedding website
+        that tells your story and gives your guests everything they need.
       </p>
-
-      <div class="progress-note">
-        <div class="progress-line"><span></span></div>
-        <span>Questionnaire · First draft</span>
-      </div>
     </section>
 
-    <form id="finalise-form">
-
-      <!-- SECTION 1 -->
-
-      <section class="question-section">
-        <div class="section-label">01 · Your details</div>
-
-        <h2>Tell us about yourselves.</h2>
-
-        <p class="section-description">
-          Let us confirm the basics and understand how to contact you.
-        </p>
-
-        <div class="fields-row">
-          <div class="form-group">
-            <label for="name1">First name *</label>
-            <input type="text" id="name1" name="name1" required>
-          </div>
-
-          <div class="form-group">
-            <label for="name2">Second name *</label>
-            <input type="text" id="name2" name="name2" required>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="email">Email address *</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            placeholder="you@example.com"
-            autocomplete="email"
-            required
-          >
-        </div>
-
-        <div class="form-group">
-          <label for="contact-name">
-            Who should we contact?
-            <span class="optional">Optional</span>
-          </label>
-          <input
-            type="text"
-            id="contact-name"
-            name="contact_name"
-            placeholder="Your preferred contact person"
-          >
-        </div>
-      </section>
-
-      <!-- SECTION 2 -->
-
-      <section class="question-section">
-        <div class="section-label">02 · Your wedding</div>
-
-        <h2>Tell us about the day.</h2>
-
-        <p class="section-description">
-          These details help us prepare the information your guests
-          will need.
-        </p>
-
-        <div class="form-group">
-          <label for="date">Wedding date *</label>
-          <input type="date" id="date" name="date" required>
-        </div>
-
-        <div class="form-group">
-          <label for="city">Wedding city *</label>
-          <input type="text" id="city" name="city" required>
-        </div>
-
-        <div class="form-group">
-          <label for="ceremony">
-            Ceremony venue
-            <span class="optional">Optional if not yet confirmed</span>
-          </label>
-          <input type="text" id="ceremony" name="ceremony">
-        </div>
-
-        <div class="form-group">
-          <label for="reception">
-            Reception venue
-            <span class="optional">Optional if not yet confirmed</span>
-          </label>
-          <input type="text" id="reception" name="reception">
-        </div>
-
-        <div class="form-group">
-          <label for="website-language">Website language</label>
-          <select id="website-language" name="website_language">
-            <option value="English">English</option>
-            <option value="Italian">Italian</option>
-            <option value="French">French</option>
-            <option value="German">German</option>
-            <option value="Other">Other / multiple languages</option>
-          </select>
-        </div>
-      </section>
-
-      <!-- SECTION 3 -->
-
-      <section class="question-section">
-        <div class="section-label">03 · Your guests</div>
-
-        <h2>What should they know?</h2>
-
-        <p class="section-description">
-          Select the sections you would like to include. We can confirm
-          the details together later.
-        </p>
-
-        <div class="form-group">
-          <div class="question-label">Which sections would be useful?</div>
-
-          <div class="choice-list">
-            <label class="choice">
-              <input type="checkbox" name="sections" value="Schedule">
-              <span>
-                <strong>Wedding day schedule</strong>
-                Ceremony, reception, dinner and dancing.
-              </span>
-            </label>
-
-            <label class="choice">
-              <input type="checkbox" name="sections" value="Travel">
-              <span>
-                <strong>Travel and directions</strong>
-                Venue addresses, maps and transport details.
-              </span>
-            </label>
-
-            <label class="choice">
-              <input type="checkbox" name="sections" value="Accommodation">
-              <span>
-                <strong>Accommodation</strong>
-                Hotel recommendations and booking information.
-              </span>
-            </label>
-
-            <label class="choice">
-              <input type="checkbox" name="sections" value="Dress code">
-              <span>
-                <strong>Dress code</strong>
-                What guests should wear.
-              </span>
-            </label>
-
-            <label class="choice">
-              <input type="checkbox" name="sections" value="FAQ">
-              <span>
-                <strong>Frequently asked questions</strong>
-                Answers to the questions guests are likely to ask.
-              </span>
-            </label>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="extra-info">
-            Anything else your guests should know?
-            <span class="optional">Optional</span>
-          </label>
-          <textarea
-            id="extra-info"
-            name="extra_info"
-            placeholder="Share any details or special requests..."
-          ></textarea>
-        </div>
-      </section>
-
-      <!-- SECTION 4 -->
-
-      <section class="question-section">
-        <div class="section-label">04 · RSVP and gifts</div>
-
-        <h2>Make it personal.</h2>
-
-        <p class="section-description">
-          Let us know whether you would like your website to include
-          ways for guests to respond and celebrate with you.
-        </p>
-
-        <div class="form-group">
-          <div class="question-label">Would you like an RSVP section?</div>
-
-          <div class="choice-list">
-            <label class="choice">
-              <input type="radio" name="rsvp" value="Yes">
-              <span>
-                <strong>Yes, please</strong>
-                Guests can confirm whether they will attend.
-              </span>
-            </label>
-
-            <label class="choice">
-              <input type="radio" name="rsvp" value="No">
-              <span>
-                <strong>No, thank you</strong>
-                We will manage responses another way.
-              </span>
-            </label>
-
-            <label class="choice">
-              <input type="radio" name="rsvp" value="Undecided">
-              <span>
-                <strong>Not decided yet</strong>
-                I would like to discuss the options.
-              </span>
-            </label>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <div class="question-label">Would you like a gifts or honeymoon page?</div>
-
-          <div class="choice-list">
-            <label class="choice">
-              <input type="radio" name="gifts" value="Honeymoon">
-              <span>
-                <strong>Honeymoon contributions</strong>
-                Share our honeymoon plans and experiences.
-              </span>
-            </label>
-
-            <label class="choice">
-              <input type="radio" name="gifts" value="Gift list">
-              <span>
-                <strong>Gift list</strong>
-                Share gift suggestions with our guests.
-              </span>
-            </label>
-
-            <label class="choice">
-              <input type="radio" name="gifts" value="None">
-              <span>
-                <strong>No gifts page</strong>
-                We would prefer to leave this out.
-              </span>
-            </label>
-
-            <label class="choice">
-              <input type="radio" name="gifts" value="Undecided">
-              <span>
-                <strong>Not decided yet</strong>
-                I would like to discuss the options.
-              </span>
-            </label>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="honeymoon">
-            Honeymoon destination or gift page details
-            <span class="optional">Optional</span>
-          </label>
-          <input
-            type="text"
-            id="honeymoon"
-            name="honeymoon"
-            placeholder="Destination, ideas or other preferences"
-          >
-        </div>
-      </section>
-
-      <!-- SECTION 5 -->
-
-      <section class="question-section">
-        <div class="section-label">05 · Final touches</div>
-
-        <h2>How do you picture your website?</h2>
-
-        <p class="section-description">
-          This helps us understand the look and feel you have in mind.
-        </p>
-
-        <div class="form-group">
-          <label for="style">Preferred style</label>
-          <select id="style" name="style">
-            <option value="">Choose an option</option>
-            <option value="Elegant and timeless">Elegant and timeless</option>
-            <option value="Romantic and soft">Romantic and soft</option>
-            <option value="Modern and minimal">Modern and minimal</option>
-            <option value="Colourful and playful">Colourful and playful</option>
-            <option value="Use the current preview style">Keep the current preview style</option>
-            <option value="Other">Other / not sure yet</option>
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label for="photos">
-            Do you have photographs ready?
-          </label>
-          <select id="photos" name="photos">
-            <option value="">Choose an option</option>
-            <option value="Yes">Yes, we have photos ready</option>
-            <option value="Some">We have a few</option>
-            <option value="Not yet">Not yet</option>
-            <option value="Need help">We would like advice</option>
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label for="website-notes">
-            Anything else you would like us to know?
-            <span class="optional">Optional</span>
-          </label>
-          <textarea
-            id="website-notes"
-            name="website_notes"
-            placeholder="Your ideas, questions or anything important to you..."
-          ></textarea>
-        </div>
-      </section>
-
-      <div class="form-footer">
-        <button type="submit" class="submit-button">
-          Submit your answers
-        </button>
-
-        <p class="form-note">
-          This is a questionnaire preview. Your answers will not yet be
-          sent or stored.
-        </p>
-
-        <a class="back-link" href="../wedding/">
-          ← Back to the wedding website preview
-        </a>
+    <div class="wizard">
+      <div class="progress-top">
+        <span id="step-caption">STEP 1 OF 6</span>
+        <span id="progress-caption">Let's get started</span>
       </div>
 
-    </form>
+      <div class="progress-track">
+        <div class="progress-bar" id="progress-bar"></div>
+      </div>
+
+      <form id="finalise-form">
+
+        <!-- STEP 1: YOUR STORY -->
+        <section class="step active" data-title="Your story">
+          <div class="section-label">01 · The two of you</div>
+          <h2>First, tell us your story.</h2>
+          <p class="step-description">
+            Every couple has a story. Share a few details so your website
+            feels like it belongs to you.
+          </p>
+
+          <div class="fields-row">
+            <div class="form-group">
+              <label for="name1">First partner's name *</label>
+              <input id="name1" name="name1" type="text" required>
+            </div>
+            <div class="form-group">
+              <label for="name2">Second partner's name *</label>
+              <input id="name2" name="name2" type="text" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Your email address *</label>
+            <input id="email" name="email" type="email" placeholder="you@example.com" required>
+            <p class="helper">Where we can contact you about your website.</p>
+          </div>
+
+          <div class="divider"></div>
+
+          <div class="form-group">
+            <label for="story">How did you meet? <span class="optional">Optional</span></label>
+            <textarea id="story" name="story" placeholder="Tell us how your story began..."></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="proposal">Tell us about the proposal <span class="optional">Optional</span></label>
+            <textarea id="proposal" name="proposal" placeholder="Was it a surprise? A special place? A funny story?"></textarea>
+          </div>
+
+          <div class="fields-row">
+            <div class="form-group">
+              <label for="about1">A little about the first partner <span class="optional">Optional</span></label>
+              <textarea id="about1" name="about1" placeholder="Interests, personality, favourite things..."></textarea>
+            </div>
+            <div class="form-group">
+              <label for="about2">A little about the second partner <span class="optional">Optional</span></label>
+              <textarea id="about2" name="about2" placeholder="Interests, personality, favourite things..."></textarea>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="couple-intro">What would you like guests to know about you as a couple? <span class="optional">Optional</span></label>
+            <textarea id="couple-intro" name="couple_intro" placeholder="Your life together, shared passions, what makes you you..."></textarea>
+          </div>
+        </section>
+
+        <!-- STEP 2: WEDDING DETAILS -->
+        <section class="step" data-title="Wedding details">
+          <div class="section-label">02 · The big day</div>
+          <h2>Where and when is it happening?</h2>
+          <p class="step-description">
+            Let's get the essential details right. You can leave venue
+            details blank if you are still deciding.
+          </p>
+
+          <div class="form-group">
+            <label for="date">Wedding date *</label>
+            <input id="date" name="date" type="date" required>
+          </div>
+
+          <div class="form-group">
+            <label for="city">City or destination *</label>
+            <input id="city" name="city" type="text" placeholder="Rome" required>
+          </div>
+
+          <div class="form-group">
+            <label for="ceremony">Ceremony venue <span class="optional">Optional</span></label>
+            <input id="ceremony" name="ceremony" type="text" placeholder="Venue name and address, if known">
+          </div>
+
+          <div class="form-group">
+            <label for="ceremony-type">What kind of ceremony will it be? <span class="optional">Optional</span></label>
+            <select id="ceremony-type" name="ceremony_type">
+              <option value="">Choose an option</option>
+              <option>Religious ceremony</option>
+              <option>Civil ceremony</option>
+              <option>Symbolic ceremony</option>
+              <option>Other</option>
+              <option>Not decided yet</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="reception">Reception venue <span class="optional">Optional</span></label>
+            <input id="reception" name="reception" type="text" placeholder="Venue name and address, if known">
+          </div>
+
+          <div class="form-group">
+            <label for="guest-count">Approximately how many guests are you expecting? <span class="optional">Optional</span></label>
+            <select id="guest-count" name="guest_count">
+              <option value="">Choose a range</option>
+              <option>Fewer than 30</option>
+              <option>30–60</option>
+              <option>61–100</option>
+              <option>101–150</option>
+              <option>More than 150</option>
+              <option>Not sure yet</option>
+            </select>
+          </div>
+        </section>
+
+        <!-- STEP 3: FEATURES -->
+        <section class="step" data-title="Your website">
+          <div class="section-label">03 · Choose your sections</div>
+          <h2>What would your guests find useful?</h2>
+          <p class="step-description">
+            Choose what to include. These answers help us understand what
+            you want your wedding website to do.
+          </p>
+
+          <div class="question-label">Would you like an RSVP section?</div>
+          <div class="choice-grid">
+            <label class="choice-card">
+              <input type="radio" name="rsvp" value="Yes" required>
+              <span class="choice-body">
+                <span class="choice-title">Yes, please</span>
+                <span class="choice-description">Let guests confirm whether they will attend.</span>
+              </span>
+            </label>
+            <label class="choice-card">
+              <input type="radio" name="rsvp" value="No">
+              <span class="choice-body">
+                <span class="choice-title">No, thank you</span>
+                <span class="choice-description">We'll manage guest responses another way.</span>
+              </span>
+            </label>
+          </div>
+
+          <div class="question-label">Would you like an accommodation section?</div>
+          <div class="choice-grid">
+            <label class="choice-card">
+              <input type="radio" name="accommodation" value="Yes" required>
+              <span class="choice-body">
+                <span class="choice-title">Yes, please</span>
+                <span class="choice-description">Share hotel suggestions and booking information.</span>
+              </span>
+            </label>
+            <label class="choice-card">
+              <input type="radio" name="accommodation" value="No">
+              <span class="choice-body">
+                <span class="choice-title">No, thank you</span>
+                <span class="choice-description">Guests can arrange their own accommodation.</span>
+              </span>
+            </label>
+          </div>
+
+          <div class="question-label">Would you like a gifts or honeymoon page?</div>
+          <div class="choice-grid">
+            <label class="choice-card">
+              <input type="radio" name="gifts" value="Honeymoon" required>
+              <span class="choice-body">
+                <span class="choice-title">Honeymoon page</span>
+                <span class="choice-description">Share your plans and honeymoon contributions.</span>
+              </span>
+            </label>
+            <label class="choice-card">
+              <input type="radio" name="gifts" value="Gift list">
+              <span class="choice-body">
+                <span class="choice-title">Gift list</span>
+                <span class="choice-description">Share gift ideas with your guests.</span>
+              </span>
+            </label>
+            <label class="choice-card">
+              <input type="radio" name="gifts" value="None">
+              <span class="choice-body">
+                <span class="choice-title">No gifts page</span>
+                <span class="choice-description">Keep the website focused on the wedding day.</span>
+              </span>
+            </label>
+            <label class="choice-card">
+              <input type="radio" name="gifts" value="Undecided">
+              <span class="choice-body">
+                <span class="choice-title">Not sure yet</span>
+                <span class="choice-description">I'd like to decide later.</span>
+              </span>
+            </label>
+          </div>
+
+          <div class="form-group">
+            <label for="gift-details">Any details about the gifts or honeymoon page? <span class="optional">Optional</span></label>
+            <textarea id="gift-details" name="gift_details" placeholder="Destination, gift ideas or anything you have in mind..."></textarea>
+          </div>
+        </section>
+
+        <!-- STEP 4: SCHEDULE -->
+        <section class="step" data-title="Your schedule">
+          <div class="section-label">04 · How the day unfolds</div>
+          <h2>Let's plan the timeline.</h2>
+          <p class="step-description">
+            Add the main moments of your wedding day. Exact times can be
+            confirmed later. Leave an event blank if you have not planned it yet.
+          </p>
+
+          <div class="form-group">
+            <label for="schedule-date">Which day does this schedule cover? <span class="optional">Optional</span></label>
+            <select id="schedule-date" name="schedule_date">
+              <option>Wedding day</option>
+              <option>Day before the wedding</option>
+              <option>Day after the wedding</option>
+              <option>Multiple days</option>
+            </select>
+          </div>
+
+          <div class="schedule-list" id="schedule-list">
+            <div class="schedule-row">
+              <input type="text" name="schedule_time[]" placeholder="e.g. 14:30" aria-label="Event time">
+              <input type="text" name="schedule_event[]" placeholder="e.g. Ceremony begins" aria-label="Event description">
+              <button type="button" class="remove-event" aria-label="Remove event">×</button>
+            </div>
+            <div class="schedule-row">
+              <input type="text" name="schedule_time[]" placeholder="e.g. 16:00" aria-label="Event time">
+              <input type="text" name="schedule_event[]" placeholder="e.g. Drinks and photographs" aria-label="Event description">
+              <button type="button" class="remove-event" aria-label="Remove event">×</button>
+            </div>
+            <div class="schedule-row">
+              <input type="text" name="schedule_time[]" placeholder="e.g. 18:30" aria-label="Event time">
+              <input type="text" name="schedule_event[]" placeholder="e.g. Dinner" aria-label="Event description">
+              <button type="button" class="remove-event" aria-label="Remove event">×</button>
+            </div>
+            <div class="schedule-row">
+              <input type="text" name="schedule_time[]" placeholder="e.g. 21:00" aria-label="Event time">
+              <input type="text" name="schedule_event[]" placeholder="e.g. Music and dancing" aria-label="Event description">
+              <button type="button" class="remove-event" aria-label="Remove event">×</button>
+            </div>
+          </div>
+
+          <button type="button" class="add-event" id="add-event">+ Add another moment</button>
+
+          <p class="helper">
+            Examples: guest arrival, ceremony, aperitif, dinner, speeches,
+            first dance, cake cutting or transport.
+          </p>
+
+          <div class="form-group" style="margin-top:25px">
+            <label for="schedule-notes">Anything else about the timing? <span class="optional">Optional</span></label>
+            <textarea id="schedule-notes" name="schedule_notes" placeholder="For example, timings are approximate or some details are still to be confirmed."></textarea>
+          </div>
+        </section>
+
+        <!-- STEP 5: PRACTICAL DETAILS -->
+        <section class="step" data-title="Practical details">
+          <div class="section-label">05 · Helpful details</div>
+          <h2>Help your guests feel prepared.</h2>
+          <p class="step-description">
+            Share any practical information you already know. Anything
+            undecided can be added later.
+          </p>
+
+          <div class="form-group">
+            <label for="dress-code">Dress code <span class="optional">Optional</span></label>
+            <select id="dress-code" name="dress_code">
+              <option value="">Choose an option</option>
+              <option>Formal / black tie</option>
+              <option>Black tie optional</option>
+              <option>Cocktail attire</option>
+              <option>Smart casual</option>
+              <option>Festive / colourful</option>
+              <option>No specific dress code</option>
+              <option>Other / not decided</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="transport">Transport and parking <span class="optional">Optional</span></label>
+            <textarea id="transport" name="transport" placeholder="Parking, shuttle buses, public transport, taxis or directions..."></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="food">Food and dietary information <span class="optional">Optional</span></label>
+            <textarea id="food" name="food" placeholder="Menu information, allergies, dietary requirements or how guests should share them..."></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="faq">Questions guests might ask <span class="optional">Optional</span></label>
+            <textarea id="faq" name="faq" placeholder="Children, plus-ones, arrival times, local tips or anything else..."></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="other-info">Anything else we should include? <span class="optional">Optional</span></label>
+            <textarea id="other-info" name="other_info" placeholder="Any other information, ideas or requests..."></textarea>
+          </div>
+        </section>
+
+        <!-- STEP 6: REVIEW -->
+        <section class="step" data-title="Review your answers">
+          <div class="section-label">06 · Almost there</div>
+          <h2>Looking good?</h2>
+          <p class="step-description">
+            Here is a summary of your answers. You can go back to any
+            section to make changes.
+          </p>
+
+          <div class="review-list" id="review-list"></div>
+
+          <div class="notice">
+            Your answers are currently collected in this page only.
+            Submitting will not send or save them until a form service
+            is connected.
+          </div>
+        </section>
+
+        <div class="step-error" id="step-error" role="alert">
+          Please complete the required fields before continuing.
+        </div>
+
+        <div class="step-nav">
+          <button type="button" class="nav-button secondary" id="back-button">
+            ← Back
+          </button>
+          <button type="button" class="nav-button" id="next-button">
+            Next step →
+          </button>
+          <button type="submit" class="nav-button" id="submit-button" hidden>
+            Finish questionnaire
+          </button>
+        </div>
+      </form>
+    </div>
   </main>
 
-  <footer>
-    <p class="footer-text">
-      Your wedding website, without the unnecessary expense.
-    </p>
-  </footer>
+  <footer>Your wedding website, without the unnecessary expense.</footer>
 
   <script>
-    // Pre-fill the questionnaire using details from the wedding preview URL.
-    const params = new URLSearchParams(window.location.search);
+    const form = document.getElementById("finalise-form");
+    const steps = Array.from(document.querySelectorAll(".step"));
+    const progressBar = document.getElementById("progress-bar");
+    const stepCaption = document.getElementById("step-caption");
+    const progressCaption = document.getElementById("progress-caption");
+    const backButton = document.getElementById("back-button");
+    const nextButton = document.getElementById("next-button");
+    const submitButton = document.getElementById("submit-button");
+    const stepError = document.getElementById("step-error");
+    const reviewList = document.getElementById("review-list");
 
-    const fields = {
+    const stepNames = [
+      "Let's get started",
+      "The big day",
+      "Make it yours",
+      "Plan the moments",
+      "The finishing touches",
+      "One last look"
+    ];
+
+    let currentStep = 0;
+
+    function showStep(index) {
+      currentStep = index;
+
+      steps.forEach((step, i) => {
+        step.classList.toggle("active", i === index);
+      });
+
+      stepCaption.textContent = `STEP ${index + 1} OF ${steps.length}`;
+      progressCaption.textContent = stepNames[index];
+      progressBar.style.width = `${((index + 1) / steps.length) * 100}%`;
+
+      backButton.hidden = index === 0;
+      nextButton.hidden = index === steps.length - 1;
+      submitButton.hidden = index !== steps.length - 1;
+
+      stepError.style.display = "none";
+
+      if (index === steps.length - 1) {
+        buildReview();
+      }
+
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function validateCurrentStep() {
+      const current = steps[currentStep];
+      const requiredFields = Array.from(
+        current.querySelectorAll("input[required], select[required], textarea[required]")
+      );
+
+      for (const field of requiredFields) {
+        if (!field.checkValidity()) {
+          field.reportValidity();
+          return false;
+        }
+      }
+
+      // Also validate required radio groups within the current step.
+      const requiredRadioNames = new Set(
+        Array.from(current.querySelectorAll('input[type="radio"][required]'))
+          .map(input => input.name)
+      );
+
+      for (const name of requiredRadioNames) {
+        if (!current.querySelector(`input[name="${name}"]:checked`)) {
+          stepError.textContent = "Please choose an option before continuing.";
+          stepError.style.display = "block";
+          return false;
+        }
+      }
+
+      return true;
+    }
+
+    nextButton.addEventListener("click", () => {
+      if (!validateCurrentStep()) {
+        stepError.style.display = "block";
+        return;
+      }
+
+      showStep(Math.min(currentStep + 1, steps.length - 1));
+    });
+
+    backButton.addEventListener("click", () => {
+      showStep(Math.max(currentStep - 1, 0));
+    });
+
+    // Add and remove schedule entries.
+    const scheduleList = document.getElementById("schedule-list");
+    const addEventButton = document.getElementById("add-event");
+
+    function updateRemoveButtons() {
+      const rows = scheduleList.querySelectorAll(".schedule-row");
+      rows.forEach(row => {
+        row.querySelector(".remove-event").disabled = rows.length === 1;
+      });
+    }
+
+    addEventButton.addEventListener("click", () => {
+      const row = document.createElement("div");
+      row.className = "schedule-row";
+      row.innerHTML = `
+        <input type="text" name="schedule_time[]" placeholder="e.g. 20:00" aria-label="Event time">
+        <input type="text" name="schedule_event[]" placeholder="What happens next?" aria-label="Event description">
+        <button type="button" class="remove-event" aria-label="Remove event">×</button>
+      `;
+
+      scheduleList.appendChild(row);
+      updateRemoveButtons();
+      row.querySelector('input[name="schedule_time[]"]').focus();
+    });
+
+    scheduleList.addEventListener("click", event => {
+      const button = event.target.closest(".remove-event");
+      if (!button || scheduleList.querySelectorAll(".schedule-row").length === 1) return;
+
+      button.closest(".schedule-row").remove();
+      updateRemoveButtons();
+    });
+
+    // Summarise answers on the review step.
+    function getValue(name) {
+      const checked = form.querySelector(`input[name="${name}"]:checked`);
+      if (checked) return checked.value;
+
+      const field = form.elements.namedItem(name);
+      if (!field || typeof field.value !== "string") return "";
+
+      return field.value.trim();
+    }
+
+    function addReview(title, lines) {
+      const item = document.createElement("div");
+      item.className = "review-item";
+
+      const heading = document.createElement("h3");
+      heading.textContent = title;
+      item.appendChild(heading);
+
+      const paragraph = document.createElement("p");
+      paragraph.textContent = lines.filter(Boolean).join("\n") || "No details added yet.";
+      paragraph.style.whiteSpace = "pre-line";
+      item.appendChild(paragraph);
+
+      const edit = document.createElement("button");
+      edit.type = "button";
+      edit.className = "review-edit";
+      edit.textContent = "Edit this section";
+      edit.addEventListener("click", () => showStep(steps.indexOf(
+        item.dataset.step ? document.querySelector(item.dataset.step) : steps[0]
+      )));
+      item.appendChild(edit);
+
+      reviewList.appendChild(item);
+      return item;
+    }
+
+    function buildReview() {
+      reviewList.innerHTML = "";
+
+      const sections = [
+        {
+          title: "Your story",
+          step: 0,
+          lines: [
+            [getValue("name1"), getValue("name2")].filter(Boolean).join(" & "),
+            getValue("email"),
+            getValue("story") ? "How you met: " + getValue("story") : "",
+            getValue("proposal") ? "Proposal: " + getValue("proposal") : "",
+            getValue("about1") ? "About partner one: " + getValue("about1") : "",
+            getValue("about2") ? "About partner two: " + getValue("about2") : "",
+            getValue("couple_intro") ? "About you as a couple: " + getValue("couple_intro") : ""
+          ]
+        },
+        {
+          title: "Wedding details",
+          step: 1,
+          lines: [
+            getValue("date"),
+            getValue("city"),
+            getValue("ceremony") ? "Ceremony: " + getValue("ceremony") : "",
+            getValue("reception") ? "Reception: " + getValue("reception") : "",
+            getValue("ceremony_type") ? "Ceremony type: " + getValue("ceremony_type") : "",
+            getValue("guest_count") ? "Guest count: " + getValue("guest_count") : ""
+          ]
+        },
+        {
+          title: "Website sections",
+          step: 2,
+          lines: [
+            "RSVP: " + (getValue("rsvp") || "Not selected"),
+            "Accommodation: " + (getValue("accommodation") || "Not selected"),
+            "Gifts: " + (getValue("gifts") || "Not selected"),
+            getValue("gift_details")
+          ]
+        },
+        {
+          title: "Wedding schedule",
+          step: 3,
+          lines: [
+            ...Array.from(scheduleList.querySelectorAll(".schedule-row"))
+              .map(row => {
+                const time = row.querySelector('input[name="schedule_time[]"]').value.trim();
+                const event = row.querySelector('input[name="schedule_event[]"]').value.trim();
+                return time || event ? `${time || "Time TBD"} — ${event || "Event TBD"}` : "";
+              })
+              .filter(Boolean),
+            getValue("schedule_notes")
+          ]
+        },
+        {
+          title: "Practical details",
+          step: 4,
+          lines: [
+            getValue("dress_code") ? "Dress code: " + getValue("dress_code") : "",
+            getValue("transport") ? "Transport: " + getValue("transport") : "",
+            getValue("food") ? "Food: " + getValue("food") : "",
+            getValue("faq") ? "Guest questions: " + getValue("faq") : "",
+            getValue("other_info")
+          ]
+        }
+      ];
+
+      sections.forEach(section => {
+        const item = addReview(section.title, section.lines);
+        item.dataset.step = `.step:nth-of-type(${section.step + 1})`;
+        item.querySelector(".review-edit").onclick = () => showStep(section.step);
+      });
+    }
+
+    // Pre-fill fields when wedding details are passed in the URL.
+    const params = new URLSearchParams(window.location.search);
+    const prefill = {
       name1: "name1",
       name2: "name2",
       date: "date",
@@ -722,24 +961,31 @@
       reception: "venue"
     };
 
-    Object.entries(fields).forEach(([fieldId, paramName]) => {
-      const value = params.get(paramName);
-      const field = document.getElementById(fieldId);
+    Object.entries(prefill).forEach(([id, key]) => {
+      const value = params.get(key);
+      const field = document.getElementById(id);
 
       if (value && field) {
+        // If date is provided in a human-readable format, leave it empty
+        // rather than incorrectly putting an invalid value into a date input.
+        if (field.type === "date" && !/^\d{4}-\d{2}-\d{2}$/.test(value)) return;
         field.value = value;
       }
     });
 
-    // Submission is intentionally disabled until a form service is connected.
-    document.getElementById("finalise-form").addEventListener("submit", function(event) {
+    // Submissions are not connected to storage yet.
+    form.addEventListener("submit", event => {
       event.preventDefault();
 
+      if (!validateCurrentStep()) return;
+
       alert(
-        "The questionnaire is ready, but submissions have not been connected yet. Your answers have not been sent or saved."
+        "Your questionnaire is ready, but submission is not connected yet. Your answers have not been sent or saved."
       );
     });
-  </script>
 
+    updateRemoveButtons();
+    showStep(0);
+  </script>
 </body>
 </html>
