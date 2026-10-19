@@ -1,0 +1,745 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Finalise Your Wedding Website</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --ivory: #f7f4ed;
+      --ivory-light: #fbfaf6;
+      --forest: #30483a;
+      --forest-dark: #23372d;
+      --sage: #69776b;
+      --sand: #c0a77a;
+      --white: #ffffff;
+      --text: #304036;
+      --muted: #6f776f;
+      --border: rgba(48, 72, 58, 0.14);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--ivory);
+      color: var(--text);
+      font-family: "DM Sans", sans-serif;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    header {
+      height: 72px;
+      background: var(--sage);
+      display: flex;
+      align-items: center;
+      padding: 0 48px;
+    }
+
+    .brand {
+      color: var(--ivory-light);
+      font-family: "Cormorant Garamond", serif;
+      font-size: 25px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+
+    main {
+      max-width: 850px;
+      margin: 0 auto;
+      padding: 76px 32px 100px;
+    }
+
+    .intro {
+      max-width: 650px;
+      margin-bottom: 52px;
+    }
+
+    .eyebrow,
+    .section-label {
+      color: var(--sage);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow {
+      margin-bottom: 18px;
+    }
+
+    h1,
+    h2,
+    h3 {
+      color: var(--forest-dark);
+      font-family: "Cormorant Garamond", serif;
+      font-weight: 500;
+    }
+
+    h1 {
+      max-width: 650px;
+      margin-bottom: 22px;
+      font-size: clamp(48px, 7vw, 72px);
+      line-height: 0.98;
+      letter-spacing: -0.025em;
+    }
+
+    .intro p {
+      max-width: 580px;
+      color: var(--muted);
+      font-size: 15px;
+      font-weight: 300;
+      line-height: 1.8;
+    }
+
+    .progress-note {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 28px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .progress-line {
+      width: 90px;
+      height: 2px;
+      background: var(--border);
+    }
+
+    .progress-line span {
+      display: block;
+      width: 20%;
+      height: 100%;
+      background: var(--sand);
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 34px;
+    }
+
+    .question-section {
+      padding: 30px;
+      border: 1px solid var(--border);
+      background: var(--ivory-light);
+    }
+
+    .section-label {
+      margin-bottom: 10px;
+    }
+
+    .question-section h2 {
+      margin-bottom: 8px;
+      font-size: 34px;
+      line-height: 1.1;
+    }
+
+    .section-description {
+      margin-bottom: 28px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 300;
+      line-height: 1.7;
+    }
+
+    .form-group {
+      margin-bottom: 23px;
+    }
+
+    .form-group:last-child {
+      margin-bottom: 0;
+    }
+
+    label,
+    .question-label {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--forest);
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    .optional {
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 300;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="url"],
+    input[type="date"],
+    select,
+    textarea {
+      width: 100%;
+      min-height: 48px;
+      padding: 12px 14px;
+      border: 1px solid var(--border);
+      border-radius: 0;
+      background: var(--white);
+      color: var(--text);
+      font-family: "DM Sans", sans-serif;
+      font-size: 13px;
+      outline: none;
+    }
+
+    textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: var(--sage);
+      box-shadow: 0 0 0 2px rgba(105, 119, 107, 0.08);
+    }
+
+    .fields-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .choice-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .choice {
+      display: flex;
+      align-items: flex-start;
+      gap: 11px;
+      padding: 13px 14px;
+      border: 1px solid var(--border);
+      background: var(--white);
+      cursor: pointer;
+    }
+
+    .choice input {
+      margin-top: 4px;
+      accent-color: var(--forest);
+      flex-shrink: 0;
+    }
+
+    .choice span {
+      color: var(--text);
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    .choice strong {
+      display: block;
+      margin-bottom: 2px;
+      color: var(--forest);
+      font-weight: 500;
+    }
+
+    .form-footer {
+      padding-top: 8px;
+    }
+
+    .submit-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      min-height: 54px;
+      padding: 14px 22px;
+      border: none;
+      background: var(--forest);
+      color: var(--white);
+      font-family: "DM Sans", sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+
+    .submit-button:hover {
+      background: var(--forest-dark);
+    }
+
+    .form-note {
+      margin-top: 14px;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 300;
+      text-align: center;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-top: 28px;
+      color: var(--sage);
+      font-size: 12px;
+    }
+
+    .back-link:hover {
+      color: var(--forest-dark);
+    }
+
+    footer {
+      padding: 32px 20px;
+      background: var(--forest-dark);
+      text-align: center;
+    }
+
+    .footer-text {
+      color: rgba(255, 255, 255, 0.65);
+      font-size: 11px;
+      font-weight: 300;
+      letter-spacing: 0.04em;
+    }
+
+    @media (max-width: 600px) {
+      header {
+        height: 64px;
+        padding: 0 22px;
+      }
+
+      main {
+        padding: 48px 20px 65px;
+      }
+
+      h1 {
+        font-size: 49px;
+      }
+
+      .question-section {
+        padding: 23px 18px;
+      }
+
+      .question-section h2 {
+        font-size: 30px;
+      }
+
+      .fields-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <a href="../" class="brand">Weddings</a>
+  </header>
+
+  <main>
+    <section class="intro">
+      <div class="eyebrow">The next step</div>
+
+      <h1>Let's make your wedding website yours.</h1>
+
+      <p>
+        Your preview is just the beginning. Tell us a little more
+        about your plans and what you would like your website to
+        include. We will use your answers to understand what you need
+        for your wedding day.
+      </p>
+
+      <div class="progress-note">
+        <div class="progress-line"><span></span></div>
+        <span>Questionnaire · First draft</span>
+      </div>
+    </section>
+
+    <form id="finalise-form">
+
+      <!-- SECTION 1 -->
+
+      <section class="question-section">
+        <div class="section-label">01 · Your details</div>
+
+        <h2>Tell us about yourselves.</h2>
+
+        <p class="section-description">
+          Let us confirm the basics and understand how to contact you.
+        </p>
+
+        <div class="fields-row">
+          <div class="form-group">
+            <label for="name1">First name *</label>
+            <input type="text" id="name1" name="name1" required>
+          </div>
+
+          <div class="form-group">
+            <label for="name2">Second name *</label>
+            <input type="text" id="name2" name="name2" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email address *</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="you@example.com"
+            autocomplete="email"
+            required
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="contact-name">
+            Who should we contact?
+            <span class="optional">Optional</span>
+          </label>
+          <input
+            type="text"
+            id="contact-name"
+            name="contact_name"
+            placeholder="Your preferred contact person"
+          >
+        </div>
+      </section>
+
+      <!-- SECTION 2 -->
+
+      <section class="question-section">
+        <div class="section-label">02 · Your wedding</div>
+
+        <h2>Tell us about the day.</h2>
+
+        <p class="section-description">
+          These details help us prepare the information your guests
+          will need.
+        </p>
+
+        <div class="form-group">
+          <label for="date">Wedding date *</label>
+          <input type="date" id="date" name="date" required>
+        </div>
+
+        <div class="form-group">
+          <label for="city">Wedding city *</label>
+          <input type="text" id="city" name="city" required>
+        </div>
+
+        <div class="form-group">
+          <label for="ceremony">
+            Ceremony venue
+            <span class="optional">Optional if not yet confirmed</span>
+          </label>
+          <input type="text" id="ceremony" name="ceremony">
+        </div>
+
+        <div class="form-group">
+          <label for="reception">
+            Reception venue
+            <span class="optional">Optional if not yet confirmed</span>
+          </label>
+          <input type="text" id="reception" name="reception">
+        </div>
+
+        <div class="form-group">
+          <label for="website-language">Website language</label>
+          <select id="website-language" name="website_language">
+            <option value="English">English</option>
+            <option value="Italian">Italian</option>
+            <option value="French">French</option>
+            <option value="German">German</option>
+            <option value="Other">Other / multiple languages</option>
+          </select>
+        </div>
+      </section>
+
+      <!-- SECTION 3 -->
+
+      <section class="question-section">
+        <div class="section-label">03 · Your guests</div>
+
+        <h2>What should they know?</h2>
+
+        <p class="section-description">
+          Select the sections you would like to include. We can confirm
+          the details together later.
+        </p>
+
+        <div class="form-group">
+          <div class="question-label">Which sections would be useful?</div>
+
+          <div class="choice-list">
+            <label class="choice">
+              <input type="checkbox" name="sections" value="Schedule">
+              <span>
+                <strong>Wedding day schedule</strong>
+                Ceremony, reception, dinner and dancing.
+              </span>
+            </label>
+
+            <label class="choice">
+              <input type="checkbox" name="sections" value="Travel">
+              <span>
+                <strong>Travel and directions</strong>
+                Venue addresses, maps and transport details.
+              </span>
+            </label>
+
+            <label class="choice">
+              <input type="checkbox" name="sections" value="Accommodation">
+              <span>
+                <strong>Accommodation</strong>
+                Hotel recommendations and booking information.
+              </span>
+            </label>
+
+            <label class="choice">
+              <input type="checkbox" name="sections" value="Dress code">
+              <span>
+                <strong>Dress code</strong>
+                What guests should wear.
+              </span>
+            </label>
+
+            <label class="choice">
+              <input type="checkbox" name="sections" value="FAQ">
+              <span>
+                <strong>Frequently asked questions</strong>
+                Answers to the questions guests are likely to ask.
+              </span>
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="extra-info">
+            Anything else your guests should know?
+            <span class="optional">Optional</span>
+          </label>
+          <textarea
+            id="extra-info"
+            name="extra_info"
+            placeholder="Share any details or special requests..."
+          ></textarea>
+        </div>
+      </section>
+
+      <!-- SECTION 4 -->
+
+      <section class="question-section">
+        <div class="section-label">04 · RSVP and gifts</div>
+
+        <h2>Make it personal.</h2>
+
+        <p class="section-description">
+          Let us know whether you would like your website to include
+          ways for guests to respond and celebrate with you.
+        </p>
+
+        <div class="form-group">
+          <div class="question-label">Would you like an RSVP section?</div>
+
+          <div class="choice-list">
+            <label class="choice">
+              <input type="radio" name="rsvp" value="Yes">
+              <span>
+                <strong>Yes, please</strong>
+                Guests can confirm whether they will attend.
+              </span>
+            </label>
+
+            <label class="choice">
+              <input type="radio" name="rsvp" value="No">
+              <span>
+                <strong>No, thank you</strong>
+                We will manage responses another way.
+              </span>
+            </label>
+
+            <label class="choice">
+              <input type="radio" name="rsvp" value="Undecided">
+              <span>
+                <strong>Not decided yet</strong>
+                I would like to discuss the options.
+              </span>
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="question-label">Would you like a gifts or honeymoon page?</div>
+
+          <div class="choice-list">
+            <label class="choice">
+              <input type="radio" name="gifts" value="Honeymoon">
+              <span>
+                <strong>Honeymoon contributions</strong>
+                Share our honeymoon plans and experiences.
+              </span>
+            </label>
+
+            <label class="choice">
+              <input type="radio" name="gifts" value="Gift list">
+              <span>
+                <strong>Gift list</strong>
+                Share gift suggestions with our guests.
+              </span>
+            </label>
+
+            <label class="choice">
+              <input type="radio" name="gifts" value="None">
+              <span>
+                <strong>No gifts page</strong>
+                We would prefer to leave this out.
+              </span>
+            </label>
+
+            <label class="choice">
+              <input type="radio" name="gifts" value="Undecided">
+              <span>
+                <strong>Not decided yet</strong>
+                I would like to discuss the options.
+              </span>
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="honeymoon">
+            Honeymoon destination or gift page details
+            <span class="optional">Optional</span>
+          </label>
+          <input
+            type="text"
+            id="honeymoon"
+            name="honeymoon"
+            placeholder="Destination, ideas or other preferences"
+          >
+        </div>
+      </section>
+
+      <!-- SECTION 5 -->
+
+      <section class="question-section">
+        <div class="section-label">05 · Final touches</div>
+
+        <h2>How do you picture your website?</h2>
+
+        <p class="section-description">
+          This helps us understand the look and feel you have in mind.
+        </p>
+
+        <div class="form-group">
+          <label for="style">Preferred style</label>
+          <select id="style" name="style">
+            <option value="">Choose an option</option>
+            <option value="Elegant and timeless">Elegant and timeless</option>
+            <option value="Romantic and soft">Romantic and soft</option>
+            <option value="Modern and minimal">Modern and minimal</option>
+            <option value="Colourful and playful">Colourful and playful</option>
+            <option value="Use the current preview style">Keep the current preview style</option>
+            <option value="Other">Other / not sure yet</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="photos">
+            Do you have photographs ready?
+          </label>
+          <select id="photos" name="photos">
+            <option value="">Choose an option</option>
+            <option value="Yes">Yes, we have photos ready</option>
+            <option value="Some">We have a few</option>
+            <option value="Not yet">Not yet</option>
+            <option value="Need help">We would like advice</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="website-notes">
+            Anything else you would like us to know?
+            <span class="optional">Optional</span>
+          </label>
+          <textarea
+            id="website-notes"
+            name="website_notes"
+            placeholder="Your ideas, questions or anything important to you..."
+          ></textarea>
+        </div>
+      </section>
+
+      <div class="form-footer">
+        <button type="submit" class="submit-button">
+          Submit your answers
+        </button>
+
+        <p class="form-note">
+          This is a questionnaire preview. Your answers will not yet be
+          sent or stored.
+        </p>
+
+        <a class="back-link" href="../wedding/">
+          ← Back to the wedding website preview
+        </a>
+      </div>
+
+    </form>
+  </main>
+
+  <footer>
+    <p class="footer-text">
+      Your wedding website, without the unnecessary expense.
+    </p>
+  </footer>
+
+  <script>
+    // Pre-fill the questionnaire using details from the wedding preview URL.
+    const params = new URLSearchParams(window.location.search);
+
+    const fields = {
+      name1: "name1",
+      name2: "name2",
+      date: "date",
+      city: "city",
+      ceremony: "church",
+      reception: "venue"
+    };
+
+    Object.entries(fields).forEach(([fieldId, paramName]) => {
+      const value = params.get(paramName);
+      const field = document.getElementById(fieldId);
+
+      if (value && field) {
+        field.value = value;
+      }
+    });
+
+    // Submission is intentionally disabled until a form service is connected.
+    document.getElementById("finalise-form").addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      alert(
+        "The questionnaire is ready, but submissions have not been connected yet. Your answers have not been sent or saved."
+      );
+    });
+  </script>
+
+</body>
+</html>
