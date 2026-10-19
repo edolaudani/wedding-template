@@ -1,9 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Choose your wedding website package and pay securely online.">
+  <meta name="description" content="Create your personalised wedding website. Delivered within 24–48 hours after payment confirmation.">
   <title>Your Wedding Website | Packages</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -21,9 +22,7 @@
       --white: #ffffff;
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
@@ -47,9 +46,7 @@
       text-transform: uppercase;
     }
 
-    h1,
-    h2,
-    h3 {
+    h1, h2, h3 {
       font-family: "Cormorant Garamond", serif;
       font-weight: 500;
       line-height: 1.1;
@@ -62,9 +59,36 @@
     }
 
     .intro {
-      max-width: 610px;
+      max-width: 650px;
       color: var(--muted);
       font-size: 15px;
+    }
+
+    .delivery-note {
+      display: flex;
+      align-items: flex-start;
+      gap: 13px;
+      max-width: 650px;
+      margin-top: 24px;
+      padding: 17px 19px;
+      background: var(--sage);
+      border-radius: 10px;
+    }
+
+    .delivery-note .symbol {
+      color: var(--forest);
+      font-size: 21px;
+    }
+
+    .delivery-note strong {
+      display: block;
+      font-size: 14px;
+    }
+
+    .delivery-note p {
+      margin: 3px 0 0;
+      color: var(--muted);
+      font-size: 13px;
     }
 
     .layout {
@@ -96,8 +120,7 @@
       gap: 12px;
     }
 
-    .included h3,
-    .addon h3 {
+    .included h3, .addon h3 {
       font-size: 25px;
       margin: 0 0 8px;
     }
@@ -119,9 +142,7 @@
       font-size: 14px;
     }
 
-    .included li {
-      margin: 7px 0;
-    }
+    .included li { margin: 7px 0; }
 
     .check {
       color: var(--forest);
@@ -147,13 +168,9 @@
       opacity: 0.65;
     }
 
-    .addon-content {
-      flex: 1;
-    }
+    .addon-content { flex: 1; }
 
-    .addon h3 {
-      font-size: 24px;
-    }
+    .addon h3 { font-size: 24px; }
 
     .addon p {
       margin: 0;
@@ -192,9 +209,7 @@
       font-size: 14px;
     }
 
-    .summary-row span:first-child {
-      color: var(--muted);
-    }
+    .summary-row span:first-child { color: var(--muted); }
 
     .total {
       border-top: 1px solid var(--line);
@@ -226,9 +241,7 @@
       transition: background 0.2s ease;
     }
 
-    .payment-button:hover {
-      background: #1d3529;
-    }
+    .payment-button:hover { background: #1d3529; }
 
     .secure {
       display: flex;
@@ -261,129 +274,220 @@
       text-decoration: none;
     }
 
-    .back:hover {
-      text-decoration: underline;
+    .back:hover { text-decoration: underline; }
+
+    /* Message displayed after clicking the SumUp link */
+    .confirmation {
+      display: none;
+      margin-top: 32px;
+      padding: 30px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: var(--white);
+      text-align: center;
+    }
+
+    .confirmation-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 54px;
+      height: 54px;
+      margin: 0 auto 18px;
+      border-radius: 50%;
+      background: var(--sage);
+      color: var(--forest);
+      font-size: 25px;
+    }
+
+    .confirmation h2 {
+      margin: 0 0 12px;
+      font-size: 36px;
+    }
+
+    .confirmation p {
+      max-width: 580px;
+      margin: 10px auto;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .confirmation .next-step {
+      margin-top: 22px;
+      padding: 16px;
+      border-radius: 10px;
+      background: var(--cream);
+      color: var(--ink);
     }
 
     @media (max-width: 700px) {
-      .layout {
-        grid-template-columns: 1fr;
-      }
-
-      .page {
-        padding-top: 32px;
-      }
-
-      .card {
-        padding: 21px;
-      }
+      .layout { grid-template-columns: 1fr; }
+      .page { padding-top: 32px; }
+      .card { padding: 21px; }
+      .confirmation { padding: 24px 18px; }
     }
   </style>
 </head>
 
 <body>
   <main class="page">
-    <div class="eyebrow">Your wedding website</div>
+    <div id="packageContent">
+      <div class="eyebrow">Your wedding website</div>
 
-    <h1>A beautiful home for your wedding.</h1>
+      <h1>A beautiful home for your wedding.</h1>
 
-    <p class="intro">
-      Your questionnaire is complete. Your website will bring together
-      the details of your celebration in one beautiful place.
-      Review what is included and continue to payment when you are ready.
-    </p>
+      <p class="intro">
+        Your questionnaire is complete. Your website will bring together
+        the details of your celebration in one beautiful place.
+        Review your package below and continue to payment when you are ready.
+      </p>
 
-    <div class="layout">
-      <section class="card">
-        <div class="eyebrow">Your package</div>
-
-        <div class="included">
-          <div class="included-heading">
-            <h3>Wedding website</h3>
-            <div class="price">€19.99</div>
-          </div>
-
+      <div class="delivery-note">
+        <div class="symbol" aria-hidden="true">✧</div>
+        <div>
+          <strong>Your website, ready in 24–48 hours</strong>
           <p>
-            A personalised website designed around your story and your day.
+            Once your payment is confirmed, we will finalise your personalised
+            wedding website and send it to you by email within 24–48 hours.
           </p>
-
-          <ul>
-            <li><span class="check">✓</span>Homepage with your wedding introduction</li>
-            <li><span class="check">✓</span>Ceremony details and location</li>
-            <li><span class="check">✓</span>Our story pages</li>
-          </ul>
         </div>
+      </div>
 
-        <div class="section-label">Optional pages</div>
+      <div class="layout">
+        <section class="card">
+          <div class="eyebrow">Your package</div>
 
-        <div class="addon">
-          <div class="addon-content">
-            <h3>RSVP page</h3>
+          <div class="included">
+            <div class="included-heading">
+              <h3>Wedding website</h3>
+              <div class="price">€19.99</div>
+            </div>
+
             <p>
-              Let your guests respond to your invitation online.
+              A personalised website designed around your story and your day.
             </p>
-            <span class="coming-soon">Available soon</span>
+
+            <ul>
+              <li><span class="check">✓</span>Homepage with your wedding introduction</li>
+              <li><span class="check">✓</span>Ceremony details and location</li>
+              <li><span class="check">✓</span>Our story pages</li>
+            </ul>
           </div>
-          <div class="addon-price">+€14.99</div>
-        </div>
 
-        <div class="addon">
-          <div class="addon-content">
-            <h3>Gifts page</h3>
-            <p>
-              Share your gift list or honeymoon contribution details.
-            </p>
-            <span class="coming-soon">Available soon</span>
+          <div class="section-label">Optional pages</div>
+
+          <div class="addon">
+            <div class="addon-content">
+              <h3>RSVP page</h3>
+              <p>Let your guests respond to your invitation online.</p>
+              <span class="coming-soon">Available soon</span>
+            </div>
+            <div class="addon-price">+€14.99</div>
           </div>
-          <div class="addon-price">+€19.99</div>
-        </div>
-      </section>
 
-      <aside class="card">
-        <div class="eyebrow">Ready when you are</div>
-        <h2 class="summary-title">Order summary</h2>
+          <div class="addon">
+            <div class="addon-content">
+              <h3>Gifts page</h3>
+              <p>Share your gift list or honeymoon contribution details.</p>
+              <span class="coming-soon">Available soon</span>
+            </div>
+            <div class="addon-price">+€19.99</div>
+          </div>
+        </section>
 
-        <div class="summary-row">
-          <span>Wedding website</span>
-          <span>€19.99</span>
-        </div>
+        <aside class="card">
+          <div class="eyebrow">Ready when you are</div>
+          <h2 class="summary-title">Order summary</h2>
 
-        <div class="summary-row total">
-          <span>Total</span>
-          <strong>€19.99</strong>
-        </div>
+          <div class="summary-row">
+            <span>Wedding website</span>
+            <span>€19.99</span>
+          </div>
 
-        <!-- Replace the placeholder below with your reusable SumUp link. -->
-        <a
-          class="payment-button"
-          href="https://pay.sumup.com/b2c/QFYNY7UY"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <span>Pay securely by card</span>
-          <span>€19.99 →</span>
-        </a>
+          <div class="summary-row total">
+            <span>Total</span>
+            <strong>€19.99</strong>
+          </div>
 
-        <div class="secure">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-               stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
-               aria-hidden="true">
-            <rect x="4" y="10" width="16" height="11" rx="2"></rect>
-            <path d="M8 10V7a4 4 0 0 1 8 0v3"></path>
-          </svg>
-          Secure card payment powered by SumUp
-        </div>
+          <!-- Replace this URL with your reusable SumUp payment link. -->
+          <a
+            id="paymentLink"
+            class="payment-button"
+            href="https://pay.sumup.com/b2c/QFYNY7UY"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span>Pay securely by card</span>
+            <span>€19.99 →</span>
+          </a>
 
-        <p class="fine-print">
-          You will be redirected to SumUp to complete your payment.
-          Your card details are entered on SumUp's checkout page.
-        </p>
-      </aside>
+          <div class="secure">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
+                 aria-hidden="true">
+              <rect x="4" y="10" width="16" height="11" rx="2"></rect>
+              <path d="M8 10V7a4 4 0 0 1 8 0v3"></path>
+            </svg>
+            Secure card payment powered by SumUp
+          </div>
+
+          <p class="fine-print">
+            You will be redirected to SumUp to complete your payment.
+            Your card details are entered on SumUp's checkout page.
+          </p>
+        </aside>
+      </div>
+
+      <a class="back" href="../finalise/">
+        ← Back to your questionnaire
+      </a>
     </div>
 
-    <a class="back" href="../finalise/">
-      ← Back to your questionnaire
-    </a>
+    <section
+      id="paymentNextSteps"
+      class="confirmation"
+      aria-live="polite"
+      tabindex="-1"
+    >
+      <div class="confirmation-icon" aria-hidden="true">✓</div>
+      <div class="eyebrow">Your next steps</div>
+      <h2>You're nearly there.</h2>
+
+      <p>
+        Your questionnaire details have been saved. Once you have completed
+        your payment on SumUp and it has been confirmed, we will contact you
+        by email.
+      </p>
+
+      <p class="next-step">
+        <strong>What happens next?</strong><br>
+        After your payment is confirmed, we will finalise your wedding website
+        and send it to you by email within 24–48 hours.
+      </p>
+
+      <p>
+        You can close this page once you have completed the payment on SumUp.
+        There is nothing else you need to do for now.
+      </p>
+    </section>
   </main>
+
+  <script>
+    const paymentLink = document.getElementById("paymentLink");
+    const packageContent = document.getElementById("packageContent");
+    const paymentNextSteps = document.getElementById("paymentNextSteps");
+
+    paymentLink.addEventListener("click", () => {
+      /*
+       * This records that the customer clicked the payment link.
+       * It does not verify whether the payment succeeded.
+       * The payment opens in a separate tab, leaving this page available.
+       */
+      packageContent.style.display = "none";
+      paymentNextSteps.style.display = "block";
+      paymentNextSteps.focus();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  </script>
 </body>
 </html>
