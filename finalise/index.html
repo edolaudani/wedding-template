@@ -973,16 +973,147 @@
       }
     });
 
-    // Submissions are not connected to storage yet.
-    form.addEventListener("submit", event => {
+
+    // Submit the questionnaire to Cloudflare, then redirect after saving.
+    const WORKER_URL =
+      "https://wedding-website-submissions.e-laudani27.workers.dev/submit";
+
+    // This will be the package-selection page. Update the path if needed.
+    const SUCCESS_REDIRECT = "../packages/";
+
+    form.addEventListener("submit", async event => {
       event.preventDefault();
 
       if (!validateCurrentStep()) return;
 
-      alert(
-        "Your questionnaire is ready, but submission is not connected yet. Your answers have not been sent or saved."
-      );
-    });
+      const originalButtonText = submitButton.textContent;
+      submitButton.disabled = true;
+      submitButton.textContent = "Saving your answers...";
+      stepError.style.display = "none";
+
+      // Collect the timeline into one readable text field.
+      const scheduleEvents = Array.from(
+        scheduleList.querySelectorAll(".schedule-row")
+      )
+        .map(row => {
+          const time = row.querySelector(
+            'input[name="schedule_time[]"]'
+          ).value.trim();
+
+          const description = row.querySelector(
+            'input[name="schedule_event[]"]'
+          ).value.trim();
+
+          return time || description
+            ? `${time || "Time to be confirmed"}: ${description || "Event to be confirmed"}`
+            : "";
+        })
+        .filter(Boolean);
+
+      const giftsChoice = getValue("gifts");
+
+      const practicalDetails = [
+        getValue("schedule_date")
+          ? "Schedule day: " + getValue("schedule_date")
+          : "",
+        getValue("schedule_notes")
+          ? "Schedule notes: " + getValue("schedule_notes")
+          : "",
+        giftsChoice ? "Gifts page preference: " + giftsChoice : "",
+        getValue("gift_details")
+          ? "Gifts details: " + getValue("gift_details")
+          : "",
+        getValue("ceremony_type")
+          ? "Ceremony type: " + getValue("ceremony_type")
+          : "",
+        getValue("guest_count")
+          ? "Expected guests: " + getValue("guest_count")
+          : "",
+        getValue("proposal")
+          ? "Proposal story: " + getValue("proposal")
+          : "",
+        getValue("couple_intro")
+          ? "About the couple: " + getValue("couple_intro")
+          : "",
+        getValue("dress_code")
+          ? "Dress code: " + getValue("dress_code")
+          : "",
+        getValue("transport")
+          ? "Transport and parking: " + getValue("transport")
+          : "",
+        getValue("food")
+          ? "Food and dietary information: " + getValue("food")
+          : "",
+        getValue("faq")
+          ? "Guest questions: " + getValue("faq")
+          : "",
+        getValue("other_info")
+          ? "Other information: " + getValue("other_info")
+          : ""
+      ].filter(Boolean);
+
+      const payload = {
+        name1: getValue("name1"),
+        name2: getValue("name2"),
+        email: getValue("email"),
+        weddingDate: getValue("date"),
+        city: getValue("city"),
+        ceremonyVenue: [
+          getValue("ceremony"),
+          getValue("ceremony_type")
+            ? "Ceremony type: " + getValue("ceremony_type")
+            : ""
+        ].filter(Boolean).join("\n"),
+        receptionVenue: getValue("reception"),
+        partner1Story: getValue("about1"),
+        partner2Story: getValue("about2"),
+        howWeMet: getValue("story"),
+        rsvpSection: getValue("rsvp") === "Yes",
+        accommodationSection: getValue("accommodation") === "Yes",
+        giftsSection: ["Honeymoon", "Gift list"].includes(giftsChoice),
+        weddingSchedule: [
+          ...scheduleEvents,
+          ...practicalDetails
+        ].join("\n")
+      };
+
+      try {
+        const response = await fetch(WORKER_URL, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(payload)
+        });
+
+        let result;
+        try {
+          result = await response.json();
+        } catch {
+          throw new Error("The server returned an unexpected response.");
+        }
+
+        if (!response.ok || !result.success) {
+          throw new Error(
+            result.error || "Your answers could not be saved. Please try again."
+          );
+        }
+
+        // Only redirect after the Worker confirms the Notion save.
+        window.location.href = SUCCESS_REDIRECT;
+
+          } catch (error) {
+            console.error("Questionnaire submission failed:", error);
+    
+            stepError.textContent =
+              error.message ||
+              "We could not save your answers. Please check your connection and try again.";
+    
+            stepError.style.display = "block";
+            submitButton.disabled = false;
+            submitButton.textContent = originalButtonText;
+          }
+        });
 
     updateRemoveButtons();
     showStep(0);
