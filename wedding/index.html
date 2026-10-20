@@ -1705,7 +1705,7 @@
         the experiences we hope to enjoy along the way.
       </p>
 
-      <a href="gifts/" class="gift-button">
+      <a href="gifts/" class="gift-button" id="gifts-cta">
         Explore our honeymoon
       </a>
 
@@ -1845,13 +1845,24 @@
 
   ["name1", "name2", "date", "city", "church", "venue"].forEach(function(key) {
     const value = params.get(key);
+  
     if (value !== null && value !== "") {
       weddingParams.set(key, value);
     }
   });
-
+  
+  // Pass wedding details to the honeymoon gifts page.
+  document.getElementById("nav-gifts").href =
+    "gifts/?" + weddingParams.toString();
+  
+  // Pass wedding details to the RSVP page.
+  document.getElementById("nav-rsvp").href =
+    "rsvp/?" + weddingParams.toString();
+  
+  // Keep the existing personalisation link working.
   personalizeLink.href = "../finalise/?" + weddingParams.toString();
-
+  document.getElementById("gifts-cta").href =
+    "gifts/?" + weddingParams.toString();
 
 
   /* =========================
