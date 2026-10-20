@@ -361,7 +361,7 @@
 
 <body>
   <header>
-    <a href="../" class="brand">Weddings</a>
+    <a href="../wedding/" class="brand" id="back-to-preview">Back to website preview</a>
   </header>
 
   <main>
@@ -1160,6 +1160,12 @@
 
     updateRemoveButtons();
     showStep(0);
+
+    const previewLink = document.getElementById("back-to-preview");
+    const params = new URLSearchParams(window.location.search);
+    
+    previewLink.href = "../wedding/?" + params.toString();
+    
   </script>
 </body>
 </html>
