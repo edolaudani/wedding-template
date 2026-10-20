@@ -161,6 +161,19 @@
       gap: 16px;
     }
 
+    .back-link {
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      color: #555;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .back-link:hover {
+      color: #222;
+    }
+
     .helper {
       margin-top: 6px;
       color: var(--muted);
@@ -361,7 +374,9 @@
 
 <body>
   <header>
-    <a href="../wedding/" class="brand" id="back-to-preview">Back to website preview</a>
+    <a href="../wedding/" class="back-link" id="back-to-preview">
+      ← Back to wedding website
+    </a>
   </header>
 
   <main>
