@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A Japan honeymoon gift page wedding website template.">
+  <title>Our Japan Honeymoon | Wedding Website</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --ivory: #f7f4ed;
+      --ivory-light: #fbfaf6;
+      --forest: #30483a;
+      --forest-dark: #23372d;
+      --sage: #69776b;
+      --sand: #c0a77a;
+      --sand-light: #d8c7a6;
+      --white: #ffffff;
+      --text: #304036;
+      --muted: #6f776f;
+      --border: rgba(48, 72, 58, 0.14);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--ivory);
+      color: var(--text);
+      font-family: "DM Sans", sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    button, input { font: inherit; }
+
+    nav {
+      position: absolute;
+      top: 0; left: 0; width: 100%;
+      z-index: 20;
+      padding: 28px 5vw;
+      display: flex; justify-content: space-between; align-items: center;
+      color: white;
+    }
+    .monogram {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 25px; letter-spacing: .08em;
+    }
+    .nav-links {
+      display: flex; align-items: center; gap: 28px;
+      font-size: 11px; letter-spacing: .12em; text-transform: uppercase;
+    }
+    .nav-links a { opacity: .92; transition: opacity .2s ease; }
+    .nav-links a:hover { opacity: 1; }
+    .nav-home {
+      border: 1px solid rgba(255,255,255,.55);
+      padding: 9px 16px; border-radius: 30px;
+    }
+
+    .hero {
+      min-height: 88vh;
+      position: relative;
+      display: flex; align-items: flex-end;
+      overflow: hidden; color: white;
+      background:
+        linear-gradient(to bottom, rgba(25,38,30,.20), rgba(25,38,30,.15) 35%, rgba(25,38,30,.72)),
+        url("https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=2200&q=85") center 48% / cover no-repeat;
+    }
+    .hero-content { width: 100%; padding: 0 7vw 10vh; position: relative; z-index: 2; }
+    .eyebrow {
+      text-transform: uppercase; letter-spacing: .22em; font-size: 11px;
+      margin-bottom: 20px; opacity: .92;
+    }
+    .hero h1 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(64px, 11vw, 138px);
+      font-weight: 400; line-height: .82; letter-spacing: -.035em;
+      max-width: 1000px;
+    }
+    .hero-subtitle {
+      margin-top: 28px; display: flex; align-items: center; gap: 16px;
+      font-family: "Cormorant Garamond", serif; font-size: clamp(21px, 3vw, 29px);
+    }
+    .hero-subtitle::before { content: ""; width: 42px; height: 1px; background: rgba(255,255,255,.75); }
+    .scroll-note {
+      position: absolute; bottom: 30px; right: 5vw;
+      font-size: 10px; text-transform: uppercase; letter-spacing: .18em;
+      opacity: .75; writing-mode: vertical-rl;
+    }
+
+    .intro {
+      padding: 120px 7vw 125px; text-align: center;
+      max-width: 1100px; margin: auto;
+    }
+    .section-label {
+      text-transform: uppercase; letter-spacing: .2em; font-size: 10px;
+      color: var(--sage); margin-bottom: 20px;
+    }
+    .intro h2, .section-heading h2, .closing h2 {
+      font-family: "Cormorant Garamond", serif; font-weight: 400;
+      color: var(--forest); line-height: 1.02;
+    }
+    .intro h2 { font-size: clamp(43px, 5.5vw, 68px); margin-bottom: 26px; }
+    .intro p { max-width: 720px; margin: 0 auto; color: var(--muted); font-size: 15px; }
+    .intro .intro-note {
+      margin-top: 24px; font-size: 11px; letter-spacing: .05em;
+      color: var(--sage);
+    }
+
+    .journey {
+      background: var(--forest); color: white; padding: 105px 7vw 115px;
+    }
+    .section-heading { text-align: center; max-width: 760px; margin: 0 auto 58px; }
+    .section-heading .section-label { color: var(--sand-light); }
+    .section-heading h2 { color: white; font-size: clamp(42px, 5vw, 62px); margin-bottom: 20px; }
+    .section-heading p { color: rgba(255,255,255,.74); font-size: 14px; max-width: 650px; margin: auto; }
+
+    .route-grid {
+      max-width: 1120px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
+      background: rgba(255,255,255,.16);
+    }
+    .route-card { background: var(--forest); padding: 36px 28px 40px; text-align: center; }
+    .route-number {
+      font-family: "Cormorant Garamond", serif; color: var(--sand-light);
+      font-size: 18px; margin-bottom: 10px;
+    }
+    .route-card h3 {
+      font-family: "Cormorant Garamond", serif; font-size: 32px;
+      font-weight: 400; margin-bottom: 10px;
+    }
+    .route-card p { color: rgba(255,255,255,.72); font-size: 13px; line-height: 1.8; }
+
+    .experiences { padding: 115px 7vw 125px; }
+    .experiences .section-heading h2 { color: var(--forest); }
+    .experiences .section-heading p { color: var(--muted); }
+    .experiences .section-heading .section-label { color: var(--sage); }
+
+    .gift-grid {
+      max-width: 1180px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px;
+    }
+    .gift-card { background: var(--ivory-light); border: 1px solid var(--border); }
+    .gift-image {
+      width: 100%; aspect-ratio: 4 / 3; object-fit: cover;
+      background: #e7e1d5;
+    }
+    .gift-content { padding: 26px 25px 28px; }
+    .gift-meta {
+      display: flex; justify-content: space-between; align-items: center;
+      gap: 12px; margin-bottom: 12px;
+      color: var(--sage); font-size: 10px; letter-spacing: .12em; text-transform: uppercase;
+    }
+    .gift-price { color: var(--sand); font-size: 12px; white-space: nowrap; }
+    .gift-card h3 {
+      font-family: "Cormorant Garamond", serif; color: var(--forest);
+      font-size: 31px; font-weight: 500; line-height: 1.05; margin-bottom: 12px;
+    }
+    .gift-card p { color: var(--muted); font-size: 13px; line-height: 1.8; min-height: 70px; }
+    .gift-button {
+      display: inline-flex; align-items: center; justify-content: center;
+      margin-top: 22px; padding: 12px 17px;
+      border: 1px solid var(--forest); background: transparent; color: var(--forest);
+      font-size: 10px; letter-spacing: .13em; text-transform: uppercase;
+      cursor: pointer; transition: background .2s ease, color .2s ease;
+    }
+    .gift-button:hover { background: var(--forest); color: white; }
+
+    .gift-note {
+      max-width: 760px; margin: 55px auto 0; text-align: center;
+      color: var(--muted); font-size: 12px;
+    }
+
+    .interlude {
+      min-height: 570px; display: flex; align-items: center;
+      background:
+        linear-gradient(90deg, rgba(25,38,30,.72), rgba(25,38,30,.18)),
+        url("https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=2000&q=85") center 55% / cover no-repeat;
+      color: white; padding: 90px 9vw;
+    }
+    .interlude-content { max-width: 610px; }
+    .interlude .section-label { color: var(--sand-light); }
+    .interlude h2 {
+      font-family: "Cormorant Garamond", serif; font-size: clamp(43px, 6vw, 72px);
+      line-height: .98; font-weight: 400; margin-bottom: 24px;
+    }
+    .interlude p { color: rgba(255,255,255,.82); font-size: 14px; max-width: 520px; }
+
+    .closing { padding: 120px 7vw; text-align: center; }
+    .closing-mark { font-family: "Cormorant Garamond", serif; color: var(--sand); font-size: 34px; margin-bottom: 20px; }
+    .closing h2 { font-size: clamp(42px, 5vw, 64px); margin-bottom: 22px; }
+    .closing p { max-width: 600px; margin: auto; color: var(--muted); font-size: 14px; }
+    .back-button {
+      display: inline-block; margin-top: 30px; padding: 13px 23px;
+      background: var(--forest); color: white; font-size: 10px;
+      letter-spacing: .13em; text-transform: uppercase;
+    }
+    footer {
+      padding: 30px 5vw; border-top: 1px solid var(--border);
+      display: flex; justify-content: space-between; align-items: center; gap: 18px;
+      color: var(--muted); font-size: 11px;
+    }
+    .footer-monogram { font-family: "Cormorant Garamond", serif; font-size: 22px; color: var(--forest); }
+
+    /* Gift contribution modal */
+    .gift-modal-overlay {
+      position: fixed; inset: 0; z-index: 150;
+      background: rgba(35,55,45,.55); display: flex; align-items: center; justify-content: center;
+      padding: 20px; opacity: 0; visibility: hidden; transition: opacity .25s ease, visibility .25s ease;
+    }
+    .gift-modal-overlay.active { opacity: 1; visibility: visible; }
+    .gift-modal {
+      width: 460px; max-width: 100%; max-height: 90vh; overflow-y: auto;
+      position: relative; background: var(--ivory-light); padding: 38px 35px;
+      box-shadow: 0 18px 55px rgba(0,0,0,.2); transform: translateY(12px);
+      transition: transform .25s ease;
+    }
+    .gift-modal-overlay.active .gift-modal { transform: translateY(0); }
+    .modal-close {
+      position: absolute; top: 10px; right: 15px; border: 0; background: transparent;
+      color: var(--muted); font-size: 26px; cursor: pointer;
+    }
+    .gift-modal .section-label { margin-bottom: 10px; }
+    .gift-modal h2 {
+      font-family: "Cormorant Garamond", serif; font-size: 39px; line-height: 1.05;
+      font-weight: 500; color: var(--forest); margin-bottom: 12px;
+    }
+    .gift-modal p { font-size: 13px; color: var(--muted); margin-bottom: 20px; }
+    .amount-options { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin: 20px 0 15px; }
+    .amount-option {
+      border: 1px solid var(--border); background: white; padding: 11px 5px;
+      color: var(--forest); cursor: pointer; font-size: 13px;
+    }
+    .amount-option.active, .amount-option:hover { background: var(--forest); color: white; }
+    .custom-amount-label { display: block; color: var(--forest); font-size: 11px; margin-bottom: 7px; }
+    .custom-amount {
+      width: 100%; height: 46px; border: 1px solid var(--border); background: white;
+      padding: 0 12px; color: var(--text); outline: none;
+    }
+    .modal-submit {
+      display: block; width: 100%; margin-top: 15px; padding: 15px 18px;
+      background: var(--forest); color: white; border: 0; text-align: center;
+      font-size: 10px; font-weight: 600; letter-spacing: .13em; text-transform: uppercase; cursor: pointer;
+    }
+    .modal-footnote { margin-top: 12px !important; font-size: 10px !important; }
+
+    /* Website purchase popup, matching the main wedding preview */
+    .lead-trigger {
+      position: fixed; right: 28px; bottom: 28px; z-index: 100;
+      width: 150px; height: 50px; border: 0; border-radius: 30px;
+      background: var(--forest); color: white; cursor: pointer;
+      box-shadow: 0 8px 24px rgba(35,55,45,.18);
+      transition: transform .25s ease, background .25s ease, box-shadow .25s ease;
+    }
+    .lead-trigger span {
+      display: block; font-family: "Cormorant Garamond", serif;
+      font-size: 16px; font-weight: 500; line-height: 1; white-space: nowrap;
+    }
+    .lead-trigger:hover { background: var(--forest-dark); transform: translateY(-2px); box-shadow: 0 10px 28px rgba(35,55,45,.23); }
+    .lead-overlay {
+      position: fixed; inset: 0; z-index: 200; background: rgba(35,55,45,.28);
+      display: flex; align-items: flex-end; justify-content: flex-end; padding: 24px;
+      opacity: 0; visibility: hidden; transition: opacity .25s ease, visibility .25s ease;
+    }
+    .lead-overlay.active { opacity: 1; visibility: visible; }
+    .lead-popup {
+      width: 390px; max-width: 100%; background: var(--ivory-light);
+      padding: 38px 36px 35px; position: relative;
+      box-shadow: 0 18px 55px rgba(35,55,45,.20);
+      transform: translateY(20px); transition: transform .3s ease;
+    }
+    .lead-overlay.active .lead-popup { transform: translateY(0); }
+    .lead-close {
+      position: absolute; top: 14px; right: 16px; width: 30px; height: 30px;
+      border: none; background: transparent; color: var(--muted); font-size: 20px;
+      font-weight: 300; cursor: pointer; line-height: 1;
+    }
+    .lead-popup h2 {
+      color: var(--forest); font-family: "Cormorant Garamond", serif;
+      font-size: 38px; font-weight: 500; line-height: 1.02; margin-bottom: 15px;
+    }
+    .lead-popup p { color: var(--muted); font-size: 13px; line-height: 1.7; margin-bottom: 24px; }
+    .lead-popup-actions { display: flex; flex-direction: column; gap: 12px; margin-top: 24px; }
+    .lead-popup-actions a {
+      display: flex; align-items: center; justify-content: center; box-sizing: border-box;
+      width: 100%; min-height: 50px; padding: 12px 20px; text-align: center;
+      font-size: 10px; font-weight: 600; line-height: 1.4; letter-spacing: .15em; text-transform: uppercase;
+    }
+    .lead-submit { background: var(--forest); color: white; transition: background .2s ease, transform .2s ease; }
+    .lead-submit:hover { background: var(--forest-dark); transform: translateY(-1px); }
+    .lead-secondary { border: 1px solid var(--forest); color: var(--forest); background: transparent; }
+    .lead-secondary:hover { opacity: .75; }
+
+    @media (max-width: 900px) {
+      .gift-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .route-grid { grid-template-columns: repeat(2, 1fr); }
+      .hero { min-height: 82vh; }
+    }
+    @media (max-width: 650px) {
+      nav { padding: 22px 6vw; }
+      .nav-links { gap: 12px; }
+      .nav-links a:not(.nav-home) { display: none; }
+      .hero { min-height: 78vh; background-position: 56% center; }
+      .hero-content { padding: 0 7vw 12vh; }
+      .hero h1 { font-size: clamp(58px, 17vw, 94px); }
+      .hero-subtitle { font-size: 21px; }
+      .scroll-note { display: none; }
+      .intro { padding: 85px 7vw; }
+      .journey, .experiences { padding: 82px 6vw 90px; }
+      .route-grid { grid-template-columns: 1fr; }
+      .route-card { padding: 30px 25px; }
+      .gift-grid { grid-template-columns: 1fr; gap: 22px; }
+      .gift-content { padding: 24px; }
+      .gift-card p { min-height: 0; }
+      .interlude { min-height: 480px; padding: 75px 7vw; }
+      .closing { padding: 90px 7vw; }
+      footer { flex-direction: column; text-align: center; }
+      .lead-trigger { width: 132px; height: 46px; right: 18px; bottom: 18px; }
+      .lead-overlay { align-items: flex-end; justify-content: center; padding: 14px; }
+      .lead-popup { width: 100%; padding: 34px 25px 28px; }
+      .lead-popup h2 { font-size: 34px; }
+      .gift-modal { padding: 36px 24px 28px; }
+      .gift-modal h2 { font-size: 34px; }
+      .amount-options { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+
+<body>
+  <nav>
+    <a href="../" class="monogram" id="nav-monogram">A &amp; B</a>
+    <div class="nav-links">
+      <a href="#journey">Our journey</a>
+      <a href="#experiences">Gift experiences</a>
+      <a href="../" class="nav-home">Wedding home</a>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="hero-content">
+      <div class="eyebrow">Our next chapter begins here</div>
+      <h1>Our Japan<br>Honeymoon</h1>
+      <div class="hero-subtitle">A little gift towards a big adventure</div>
+    </div>
+    <div class="scroll-note">Scroll to discover</div>
+  </header>
+
+  <main>
+    <section class="intro">
+      <div class="section-label">Arigatō · Thank you</div>
+      <h2>From neon-lit streets<br>to quiet mountain mornings.</h2>
+      <p>
+        We dream of discovering Japan together: wandering through Kyoto's peaceful lanes,
+        tasting our way through Tokyo, watching the Shinkansen race across the countryside,
+        and finding a little stillness in a traditional ryokan. If you would like to give us
+        a wedding gift, you can be part of one of these unforgettable experiences.
+      </p>
+      <p class="intro-note">Every contribution, large or small, helps make this journey our own.</p>
+    </section>
+
+    <section class="journey" id="journey">
+      <div class="section-heading">
+        <div class="section-label">A journey of contrasts</div>
+        <h2>One country, a thousand memories.</h2>
+        <p>We want to experience the many sides of Japan, from its lively cities and ancient temples to its beautiful landscapes and moments of calm.</p>
+      </div>
+      <div class="route-grid">
+        <article class="route-card">
+          <div class="route-number">01</div>
+          <h3>Tokyo</h3>
+          <p>Bright city lights, tiny ramen counters, hidden neighbourhoods and the thrill of getting happily lost together.</p>
+        </article>
+        <article class="route-card">
+          <div class="route-number">02</div>
+          <h3>Kyoto</h3>
+          <p>Wooden streets, lantern-lit evenings, temple gardens and early walks beneath the torii gates of Fushimi Inari.</p>
+        </article>
+        <article class="route-card">
+          <div class="route-number">03</div>
+          <h3>Mount Fuji</h3>
+          <p>A chance to slow down, admire the mountain from the lakeside and take in one of Japan's iconic views.</p>
+        </article>
+        <article class="route-card">
+          <div class="route-number">04</div>
+          <h3>Hakone</h3>
+          <p>A restorative stop for hot springs, mountain scenery and a night in a traditional Japanese inn.</p>
+        </article>
+        <article class="route-card">
+          <div class="route-number">05</div>
+          <h3>By Shinkansen</h3>
+          <p>Watching the landscape unfold from a train window, with a bento box in hand and nowhere else to be.</p>
+        </article>
+        <article class="route-card">
+          <div class="route-number">06</div>
+          <h3>Little discoveries</h3>
+          <p>Tea ceremonies, local markets, seasonal sweets and the unexpected moments that become our favourite stories.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="experiences" id="experiences">
+      <div class="section-heading">
+        <div class="section-label">Help us make it happen</div>
+        <h2>Give an experience, not a thing.</h2>
+        <p>Choose a little part of the adventure you would like to contribute to. The amounts below are suggested gifts, and every contribution will go towards our honeymoon fund.</p>
+      </div>
+
+      <div class="gift-grid">
+        <article class="gift-card">
+          <img class="gift-image" src="https://images.unsplash.com/photo-1540959733332-eab4deabee?auto=format&fit=crop&w=900&q=80" alt="Tokyo skyline glowing at dusk" loading="lazy">
+          <div class="gift-content">
+            <div class="gift-meta"><span>City adventures</span><span class="gift-price">€100</span></div>
+            <h3>A Night in Tokyo</h3>
+            <p>Help us explore Tokyo after dark, from the crossing at Shibuya to a cosy restaurant tucked away down a side street.</p>
+            <button class="gift-button" type="button" data-gift="A Night in Tokyo" data-amount="100">Contribute to this gift</button>
+          </div>
+        </article>
+
+        <article class="gift-card">
+          <img class="gift-image" src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=900&q=80" alt="Traditional Japanese streets in Kyoto" loading="lazy">
+          <div class="gift-content">
+            <div class="gift-meta"><span>Culture &amp; history</span><span class="gift-price">€75</span></div>
+            <h3>A Day in Kyoto</h3>
+            <p>A day for wandering historic lanes, visiting beautiful temples and discovering quiet corners away from the crowds.</p>
+            <button class="gift-button" type="button" data-gift="A Day in Kyoto" data-amount="75">Contribute to this gift</button>
+          </div>
+        </article>
+
+        <article class="gift-card">
+          <img class="gift-image" src="https://images.unsplash.com/photo-1490806843957-31f4c9a91c65?auto=format&fit=crop&w=900&q=80" alt="Mount Fuji rising above a Japanese lake" loading="lazy">
+          <div class="gift-content">
+            <div class="gift-meta"><span>Scenic escape</span><span class="gift-price">€125</span></div>
+            <h3>A View of Mount Fuji</h3>
+            <p>Help us make time for the countryside, a lakeside walk and the possibility of seeing Fuji reflected in still water.</p>
+            <button class="gift-button" type="button" data-gift="A View of Mount Fuji" data-amount="125">Contribute to this gift</button>
+          </div>
+        </article>
+
+        <article class="gift-card">
+          <img class="gift-image" src="https://images.unsplash.com/photo-1578469645742-46cae010e5d4?auto=format&fit=crop&w=900&q=80" alt="Japanese hot spring surrounded by nature" loading="lazy">
+          <div class="gift-content">
+            <div class="gift-meta"><span>Rest &amp; recharge</span><span class="gift-price">€150</span></div>
+            <h3>A Quiet Onsen Escape</h3>
+            <p>A chance to unwind in a traditional hot spring, surrounded by nature, and enjoy a slower pace for a little while.</p>
+            <button class="gift-button" type="button" data-gift="A Quiet Onsen Escape" data-amount="150">Contribute to this gift</button>
+          </div>
+        </article>
+
+        <article class="gift-card">
+          <img class="gift-image" src="https://images.unsplash.com/photo-1545569341-9eb8b30979d9?auto=format&fit=crop&w=900&q=80" alt="Traditional Japanese inn and garden" loading="lazy">
+          <div class="gift-content">
+            <div class="gift-meta"><span>A special stay</span><span class="gift-price">€200</span></div>
+            <h3>A Night in a Ryokan</h3>
+            <p>Contribute towards a traditional inn, thoughtful hospitality, a beautiful room and the chance to experience Japanese living.</p>
+            <button class="gift-button" type="button" data-gift="A Night in a Ryokan" data-amount="200">Contribute to this gift</button>
+          </div>
+        </article>
+
+        <article class="gift-card">
+          <img class="gift-image" src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=900&q=80" alt="A delicious meal shared at a restaurant" loading="lazy">
+          <div class="gift-content">
+            <div class="gift-meta"><span>Food &amp; discovery</span><span class="gift-price">€80</span></div>
+            <h3>A Taste of Japan</h3>
+            <p>From steaming bowls of ramen to sushi counters and little street-food discoveries, help us taste our way around Japan.</p>
+            <button class="gift-button" type="button" data-gift="A Taste of Japan" data-amount="80">Contribute to this gift</button>
+          </div>
+        </article>
+
+        <article class="gift-card">
+          <img class="gift-image" src="https://images.unsplash.com/photo-1528360983277-13d401cdc186?auto=format&fit=crop&w=900&q=80" alt="Red lanterns and Japanese architecture" loading="lazy">
+          <div class="gift-content">
+            <div class="gift-meta"><span>Local traditions</span><span class="gift-price">€50</span></div>
+            <h3>Tea for Two</h3>
+            <p>A quiet tea experience to learn about the rituals, flavours and care behind one of Japan's most treasured traditions.</p>
+            <button class="gift-button" type="button" data-gift="Tea for Two" data-amount="50">Contribute to this gift</button>
+          </div>
+        </article>
+
+        <article class="gift-card">
+          <img class="gift-image" src="https://images.unsplash.com/photo-1524413840807-0c3cb6fa808d?auto=format&fit=crop&w=900&q=80" alt="Japanese train travelling through the countryside" loading="lazy">
+          <div class="gift-content">
+            <div class="gift-meta"><span>Travel together</span><span class="gift-price">€150</span></div>
+            <h3>The Shinkansen Journey</h3>
+            <p>Help us travel between destinations on Japan's famous bullet train, turning the journey itself into part of the adventure.</p>
+            <button class="gift-button" type="button" data-gift="The Shinkansen Journey" data-amount="150">Contribute to this gift</button>
+          </div>
+        </article>
+
+        <article class="gift-card">
+          <img class="gift-image" src="https://images.unsplash.com/photo-1522383225653-ed111181a951?auto=format&fit=crop&w=900&q=80" alt="Cherry blossoms in spring" loading="lazy">
+          <div class="gift-content">
+            <div class="gift-meta"><span>Little moments</span><span class="gift-price">€60</span></div>
+            <h3>Beneath the Blossoms</h3>
+            <p>A stroll beneath seasonal blossoms, a few photographs and a moment to remember this chapter of our lives.</p>
+            <button class="gift-button" type="button" data-gift="Beneath the Blossoms" data-amount="60">Contribute to this gift</button>
+          </div>
+        </article>
+      </div>
+
+      <p class="gift-note">If you would prefer to contribute a different amount, you can choose a custom gift. Your presence and kind wishes mean just as much to us.</p>
+    </section>
+
+    <section class="interlude">
+      <div class="interlude-content">
+        <div class="section-label">旅 · The journey</div>
+        <h2>New places.<br>Shared memories.</h2>
+        <p>We hope to come home with full camera rolls, new favourite dishes, stories from every stop and memories we will be telling for years to come. Thank you for helping us begin this next chapter.</p>
+      </div>
+    </section>
+
+    <section class="closing">
+      <div class="closing-mark" id="closing-monogram">A &amp; B</div>
+      <h2>Thank you for being<br>part of our adventure.</h2>
+      <p>Your generosity will help make this trip unforgettable. We are so grateful to have you in our lives and to celebrate this moment with us.</p>
+      <a class="back-button" href="../">Back to our wedding website</a>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-monogram" id="footer-monogram">A &amp; B</div>
+    <div>Our Japan honeymoon · Wedding gifts</div>
+    <a href="../">Back to the wedding</a>
+  </footer>
+
+  <!-- Gift contribution modal. Configure the PayPal username in the script below before using payments. -->
+  <div class="gift-modal-overlay" id="gift-modal-overlay" aria-hidden="true">
+    <div class="gift-modal" role="dialog" aria-modal="true" aria-labelledby="gift-modal-title">
+      <button class="modal-close" id="gift-modal-close" type="button" aria-label="Close gift window">&times;</button>
+      <div class="section-label">A gift for our journey</div>
+      <h2 id="gift-modal-title">Make this memory possible.</h2>
+      <p id="gift-modal-description">Choose an amount to contribute to this experience.</p>
+      <div class="amount-options" aria-label="Suggested contribution amounts">
+        <button class="amount-option" type="button" data-amount-choice="50">€50</button>
+        <button class="amount-option" type="button" data-amount-choice="100">€100</button>
+        <button class="amount-option" type="button" data-amount-choice="150">€150</button>
+        <button class="amount-option" type="button" data-amount-choice="250">€250</button>
+      </div>
+      <label class="custom-amount-label" for="custom-amount">Or enter another amount (€)</label>
+      <input class="custom-amount" id="custom-amount" type="number" min="1" step="1" inputmode="numeric" placeholder="e.g. 75">
+      <button class="modal-submit" id="gift-contribute" type="button">Continue with gift</button>
+      <p class="modal-footnote">Payment details must be configured by the couple before this page is published.</p>
+    </div>
+  </div>
+
+  <!-- Same purchase / personalisation popup used on the main wedding preview -->
+  <button class="lead-trigger" id="lead-trigger" aria-label="Love your wedding website?" aria-expanded="false" type="button">
+    <span>Like your website?</span>
+  </button>
+
+  <div class="lead-overlay" id="lead-overlay" aria-hidden="true">
+    <div class="lead-popup" role="dialog" aria-modal="true" aria-labelledby="lead-title">
+      <button class="lead-close" id="lead-close" type="button" aria-label="Close popup">&times;</button>
+      <h2 id="lead-title">Love your wedding website?</h2>
+      <p>Make it yours, or get started with this design.</p>
+      <div class="lead-popup-actions">
+        <a class="lead-submit" id="purchase-website" href="../../packages/">Purchase this website now</a>
+        <a class="lead-secondary" id="continue-personalizing" href="../../finalise/">Continue personalizing</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Wedding details are passed through from the main preview when available.
+    const params = new URLSearchParams(window.location.search);
+    const name1 = params.get("name1");
+    const name2 = params.get("name2");
+
+    if (name1 && name2) {
+      const monogram = name1.charAt(0).toUpperCase() + " & " + name2.charAt(0).toUpperCase();
+      document.getElementById("nav-monogram").textContent = monogram;
+      document.getElementById("footer-monogram").textContent = monogram;
+      document.getElementById("closing-monogram").textContent = monogram;
+    }
+
+    // Keep the wedding details when visitors continue to purchase or personalise.
+    const purchaseLink = document.getElementById("purchase-website");
+    const personalizeLink = document.getElementById("continue-personalizing");
+    purchaseLink.href = "../../packages/?source=demo" +
+      (window.location.search ? "&" + window.location.search.slice(1) : "");
+
+    const weddingParams = new URLSearchParams();
+    ["name1", "name2", "date", "city", "church", "venue"].forEach(function(key) {
+      const value = params.get(key);
+      if (value !== null && value !== "") weddingParams.set(key, value);
+    });
+    personalizeLink.href = "../../finalise/?" + weddingParams.toString();
+
+    // Purchase / personalisation popup: click to open, close button, outside click, Escape, auto-open at 15 seconds.
+    const leadTrigger = document.getElementById("lead-trigger");
+    const leadOverlay = document.getElementById("lead-overlay");
+    const leadClose = document.getElementById("lead-close");
+
+    function openLeadPopup() {
+      leadOverlay.classList.add("active");
+      leadOverlay.setAttribute("aria-hidden", "false");
+      leadTrigger.setAttribute("aria-expanded", "true");
+      leadClose.focus();
+    }
+    function closeLeadPopup() {
+      leadOverlay.classList.remove("active");
+      leadOverlay.setAttribute("aria-hidden", "true");
+      leadTrigger.setAttribute("aria-expanded", "false");
+      leadTrigger.focus();
+    }
+
+    leadTrigger.addEventListener("click", openLeadPopup);
+    leadClose.addEventListener("click", closeLeadPopup);
+    leadOverlay.addEventListener("click", function(event) {
+      if (event.target === leadOverlay) closeLeadPopup();
+    });
+    document.addEventListener("keydown", function(event) {
+      if (event.key === "Escape" && leadOverlay.classList.contains("active")) closeLeadPopup();
+    });
+    setTimeout(function() {
+      if (!leadOverlay.classList.contains("active")) openLeadPopup();
+    }, 15000);
+
+    // Gift contribution modal. Set PAYPAL_USERNAME before enabling real payments.
+    const PAYPAL_USERNAME = "YOUR-PAYPAL-USERNAME";
+    const giftOverlay = document.getElementById("gift-modal-overlay");
+    const giftModalClose = document.getElementById("gift-modal-close");
+    const giftModalTitle = document.getElementById("gift-modal-title");
+    const giftModalDescription = document.getElementById("gift-modal-description");
+    const customAmount = document.getElementById("custom-amount");
+    const contributeButton = document.getElementById("gift-contribute");
+    const amountButtons = Array.from(document.querySelectorAll("[data-amount-choice]"));
+    let selectedGift = "Our Japan honeymoon";
+    let selectedAmount = 100;
+
+    function setAmount(amount) {
+      selectedAmount = Number(amount);
+      customAmount.value = "";
+      amountButtons.forEach(function(button) {
+        button.classList.toggle("active", Number(button.dataset.amountChoice) === selectedAmount);
+      });
+    }
+
+    function openGiftModal(giftName, amount) {
+      selectedGift = giftName;
+      giftModalTitle.textContent = giftName;
+      giftModalDescription.textContent = "Choose a contribution towards " + giftName + ". Every gift helps make our Japan honeymoon possible.";
+      setAmount(amount || 100);
+      giftOverlay.classList.add("active");
+      giftOverlay.setAttribute("aria-hidden", "false");
+      giftModalClose.focus();
+    }
+
+    function closeGiftModal() {
+      giftOverlay.classList.remove("active");
+      giftOverlay.setAttribute("aria-hidden", "true");
+    }
+
+    document.querySelectorAll("[data-gift]").forEach(function(button) {
+      button.addEventListener("click", function() {
+        openGiftModal(button.dataset.gift, Number(button.dataset.amount));
+      });
+    });
+
+    amountButtons.forEach(function(button) {
+      button.addEventListener("click", function() {
+        setAmount(button.dataset.amountChoice);
+      });
+    });
+
+    customAmount.addEventListener("input", function() {
+      if (customAmount.value !== "") {
+        selectedAmount = Number(customAmount.value);
+        amountButtons.forEach(function(button) { button.classList.remove("active"); });
+      }
+    });
+
+    contributeButton.addEventListener("click", function() {
+      const amount = customAmount.value !== "" ? Number(customAmount.value) : selectedAmount;
+      if (!Number.isFinite(amount) || amount < 1) {
+        customAmount.focus();
+        customAmount.setCustomValidity("Please enter a contribution of at least €1.");
+        customAmount.reportValidity();
+        return;
+      }
+      customAmount.setCustomValidity("");
+
+      if (!PAYPAL_USERNAME || PAYPAL_USERNAME === "YOUR-PAYPAL-USERNAME") {
+        alert("This is a template preview. To enable contributions, replace YOUR-PAYPAL-USERNAME in the page script with the couple's PayPal.Me username.");
+        return;
+      }
+      window.location.href = "https://paypal.me/" + encodeURIComponent(PAYPAL_USERNAME) + "/" + encodeURIComponent(String(Math.round(amount)));
+    });
+
+    giftModalClose.addEventListener("click", closeGiftModal);
+    giftOverlay.addEventListener("click", function(event) {
+      if (event.target === giftOverlay) closeGiftModal();
+    });
+    document.addEventListener("keydown", function(event) {
+      if (event.key === "Escape" && giftOverlay.classList.contains("active")) closeGiftModal();
+    });
+  </script>
+</body>
+</html>
