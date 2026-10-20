@@ -279,15 +279,34 @@
   </div>
 
   <script>
+
     // Personalise the demo with URL parameters when opened from the wedding preview.
     const urlParams = new URLSearchParams(window.location.search);
     const firstName = urlParams.get("name1");
     const secondName = urlParams.get("name2");
+
+    // Keep the current wedding details when navigating to another page.
+    const queryString = urlParams.toString();
+    const querySuffix = queryString ? "?" + queryString : "";
+
+    document.querySelectorAll('a[href="../"]').forEach(function(link) {
+      link.href = "../" + querySuffix;
+    });
+
+    document.querySelectorAll('a[href="../../finalise/"]').forEach(function(link) {
+      link.href = "../../finalise/" + querySuffix;
+    });
+
+    document.querySelectorAll('a[href="../../packages/"]').forEach(function(link) {
+      link.href = "../../packages/" + querySuffix;
+    });
+
     if (firstName && secondName) {
       const initials = firstName.charAt(0).toUpperCase() + " & " + secondName.charAt(0).toUpperCase();
       document.getElementById("top-monogram").textContent = initials;
       document.getElementById("footer-monogram").textContent = initials;
     }
+
 
     // Show the relevant follow-up fields based on the RSVP response.
     const yesRadio = document.getElementById("attending-yes");
