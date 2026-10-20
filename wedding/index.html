@@ -989,6 +989,37 @@
       text-align: center;
     }
 
+    
+    .lead-popup-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 24px;
+    }
+    
+    .lead-popup-actions a {
+      display: block;
+      box-sizing: border-box;
+      width: 100%;
+      text-align: center;
+      text-decoration: none;
+    }
+    
+    .lead-secondary {
+      padding: 14px 20px;
+      border: 1px solid currentColor;
+      border-radius: 4px;
+      color: inherit;
+      background: transparent;
+      font: inherit;
+      cursor: pointer;
+      transition: opacity 0.2s ease;
+    }
+    
+    .lead-secondary:hover {
+      opacity: 0.75;
+    }
+
 
     /* =========================
        POPUP SUCCESS
@@ -1744,52 +1775,31 @@
        LEAD GENERATION POPUP
   ========================= -->
   
-  <div
-    class="lead-overlay"
-    id="lead-overlay"
-    aria-hidden="true"
-  >
-    <div
-      class="lead-popup"
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="lead-title"
-    >
   
+  <div class="lead-overlay" id="lead-overlay" aria-hidden="true">
+    <div class="lead-popup" role="dialog" aria-modal="true" aria-labelledby="lead-title">
       <button
         class="lead-close"
         id="lead-close"
         type="button"
-        aria-label="Close"
-      >
-        ×
-      </button>
+        aria-label="Close popup"
+      >&times;</button>
   
-      <div class="lead-label">
-        Your wedding website
+      <h2 id="lead-title">Love your wedding website?</h2>
+      <p>Make it yours, or get started with this design.</p>
+  
+      <div class="lead-popup-actions">
+        <a class="lead-submit" id="purchase-website" href="../packages/">
+          Purchase this website now
+        </a>
+  
+        <a class="lead-secondary" id="continue-personalizing" href="../finalise/">
+          Continue personalizing
+        </a>
       </div>
-  
-      <h2 id="lead-title">
-        Love your wedding website?
-      </h2>
-  
-      <p>
-        Make it yours. Tell us a little more about your wedding
-        so we can help you finalise your website.
-      </p>
-  
-      <a
-        href="../finalise/"
-        class="lead-submit"
-      >
-        Finalise your website
-      </a>
-  
     </div>
   </div>
 
-
-  
 <script>
   /* =========================
      URL PARAMETERS
