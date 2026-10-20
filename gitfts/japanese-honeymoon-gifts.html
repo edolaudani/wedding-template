@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edoardo & Gaia | Our Honeymoon</title>
+  <meta name="description" content="An illustrative Japanese honeymoon gift experience for Edoardo and Gaia's wedding.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ivory: #f7f4ed;
+      --paper: #fbfaf6;
+      --forest: #30483a;
+      --forest-dark: #23372d;
+      --sage: #69776b;
+      --sand: #c0a77a;
+      --text: #30332f;
+      --muted: #72766f;
+      --line: rgba(48, 72, 58, 0.13);
+      --white: #ffffff;
+      --red: #a7463d;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--ivory); color: var(--text); font-family: "DM Sans", sans-serif; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    button, input { font: inherit; }
+    button { cursor: pointer; }
+    .nav { position: absolute; top: 0; left: 0; right: 0; z-index: 20; display: flex; justify-content: space-between; align-items: center; padding: 28px 38px; color: white; }
+    .nav-monogram { font-family: "Cormorant Garamond", serif; font-size: 24px; letter-spacing: .03em; }
+    .nav-link { color: rgba(255,255,255,.9); text-decoration: none; font-size: 11px; letter-spacing: .15em; text-transform: uppercase; border-bottom: 1px solid rgba(255,255,255,.6); padding-bottom: 3px; }
+    .hero { min-height: 94vh; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; background: linear-gradient(rgba(28,49,38,.35),rgba(28,49,38,.5)), url("https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=2200&q=85") center 48% / cover no-repeat; }
+    .hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to bottom,rgba(0,0,0,.02) 40%,rgba(0,0,0,.3) 100%); pointer-events: none; }
+    .hero-content { position: relative; z-index: 2; width: 100%; max-width: 900px; padding: 100px 24px 70px; text-align: center; color: white; animation: fadeUp 1s ease both; }
+    .hero-eyebrow { font-size: 10px; letter-spacing: .28em; text-transform: uppercase; opacity: .92; margin-bottom: 28px; }
+    .hero h1 { font-family: "Cormorant Garamond", serif; font-weight: 400; font-size: clamp(82px,14vw,155px); line-height: .78; letter-spacing: -.045em; }
+    .hero-subtitle { font-family: "Cormorant Garamond", serif; font-size: clamp(26px,4vw,40px); margin-top: 38px; }
+    .hero-meta { margin-top: 15px; font-size: 10px; letter-spacing: .2em; text-transform: uppercase; opacity: .9; }
+    .hero-divider { width: 48px; height: 1px; background: rgba(255,255,255,.75); margin: 32px auto 0; }
+    .hero-scroll { position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%); z-index: 3; color: rgba(255,255,255,.78); font-size: 9px; letter-spacing: .2em; text-transform: uppercase; white-space: nowrap; }
+    .illustrative-banner { background: #efe5d9; color: #634b3c; text-align: center; padding: 13px 20px; font-size: 11px; letter-spacing: .04em; }
+    .illustrative-banner strong { text-transform: uppercase; letter-spacing: .12em; font-size: 10px; margin-right: 7px; }
+    .intro { max-width: 780px; margin: auto; padding: 100px 25px 85px; text-align: center; }
+    .section-label { color: var(--sage); font-size: 10px; letter-spacing: .24em; text-transform: uppercase; margin-bottom: 20px; }
+    .intro h2 { color: var(--forest); font-family: "Cormorant Garamond", serif; font-weight: 500; font-size: clamp(42px,6vw,62px); line-height: .98; margin-bottom: 28px; }
+    .intro p { max-width: 630px; margin: auto; color: var(--muted); font-size: 14px; line-height: 1.85; }
+    .intro p + p { margin-top: 15px; }
+    .intro-signature { margin-top: 30px; color: var(--sand); font-family: "Cormorant Garamond", serif; font-size: 25px; font-style: italic; }
+    .journey-intro { max-width: 1120px; margin: auto; padding: 0 25px 45px; display: flex; justify-content: space-between; align-items: flex-end; gap: 40px; }
+    .journey-intro h2 { color: var(--forest); font-family: "Cormorant Garamond", serif; font-size: clamp(38px,5vw,52px); font-weight: 500; line-height: 1; }
+    .journey-intro p { max-width: 390px; color: var(--muted); font-size: 12px; line-height: 1.75; }
+    .experiences { max-width: 1120px; margin: auto; padding: 0 25px 115px; }
+    .experience-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 25px; }
+    .experience-card { background: var(--paper); border: 1px solid var(--line); overflow: hidden; transition: transform .28s ease,box-shadow .28s ease; }
+    .experience-card:hover { transform: translateY(-5px); box-shadow: 0 20px 45px rgba(38,58,47,.09); }
+    .experience-image { height: 285px; background-position: center; background-size: cover; position: relative; }
+    .experience-number { position: absolute; top: 18px; left: 18px; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,.93); color: var(--forest); font-family: "Cormorant Garamond",serif; font-size: 17px; }
+    .experience-body { padding: 31px 31px 29px; }
+    .experience-type { color: var(--sage); font-size: 9px; letter-spacing: .19em; text-transform: uppercase; margin-bottom: 9px; }
+    .experience-card h3 { color: var(--forest); font-family: "Cormorant Garamond",serif; font-size: 34px; font-weight: 500; line-height: .98; margin-bottom: 14px; }
+    .experience-card p { color: var(--muted); font-size: 13px; line-height: 1.75; margin-bottom: 26px; }
+    .experience-bottom { display: flex; justify-content: space-between; align-items: center; gap: 15px; }
+    .suggested { color: #898d86; font-size: 10px; letter-spacing: .02em; }
+    .contribute { flex-shrink: 0; border: 1px solid var(--forest); background: transparent; color: var(--forest); padding: 11px 18px; font-size: 11px; transition: background .2s ease,color .2s ease; }
+    .contribute:hover { background: var(--forest); color: white; }
+    .experience-card.featured { grid-column: span 2; display: grid; grid-template-columns: 1fr 1fr; }
+    .experience-card.featured .experience-image { height: 100%; min-height: 360px; }
+    .experience-card.featured .experience-body { display: flex; flex-direction: column; justify-content: center; padding: 50px; }
+    .modal { position: fixed; inset: 0; z-index: 100; display: none; align-items: center; justify-content: center; padding: 25px; background: rgba(24,38,30,.66); backdrop-filter: blur(5px); }
+    .modal.open { display: flex; animation: fadeIn .2s ease both; }
+    .payment-box { width: 100%; max-width: 520px; max-height: calc(100vh - 40px); overflow-y: auto; background: var(--paper); padding: 46px 40px 38px; text-align: center; position: relative; animation: fadeUp .3s ease both; }
+    .close-modal { position: absolute; top: 12px; right: 17px; border: 0; background: none; color: var(--sage); font-size: 28px; line-height: 1; }
+    .payment-label { color: var(--sage); font-size: 9px; letter-spacing: .22em; text-transform: uppercase; margin-bottom: 11px; }
+    .payment-box h2 { color: var(--forest); font-family: "Cormorant Garamond",serif; font-size: 40px; font-weight: 500; line-height: 1; margin-bottom: 13px; }
+    .payment-box p { color: var(--muted); font-size: 12px; margin-bottom: 28px; }
+    .amount-options { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; }
+    .amount { min-width: 73px; padding: 11px 14px; border: 1px solid var(--line); background: var(--ivory); color: var(--forest); font-size: 12px; transition: all .2s ease; }
+    .amount:hover { border-color: var(--forest); }
+    .amount.selected { background: var(--forest); border-color: var(--forest); color: white; }
+    .custom-wrapper { display: none; max-width: 280px; margin: 7px auto 20px; }
+    .custom-wrapper.visible { display: block; }
+    .custom-wrapper label { display: block; text-align: left; color: var(--muted); font-size: 10px; margin-bottom: 5px; }
+    .custom-input { width: 100%; padding: 12px; border: 1px solid var(--line); outline: none; background: white; font-family: "DM Sans",sans-serif; font-size: 13px; }
+    .custom-input:focus { border-color: var(--forest); }
+    .paypal-button { width: 100%; max-width: 280px; padding: 14px 20px; border: 0; background: #ffc439; color: #111; font-size: 12px; font-weight: 500; transition: transform .2s ease,box-shadow .2s ease; }
+    .paypal-button:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,.1); }
+    .paypal { font-size: 16px; font-style: italic; font-weight: 700; margin-right: 7px; }
+    .payment-note { margin-top: 14px; color: #9a9d97; font-size: 9px; }
+    .closing { background: var(--forest); color: white; text-align: center; padding: 105px 25px; }
+    .closing h2 { font-family: "Cormorant Garamond",serif; font-size: clamp(44px,7vw,68px); font-weight: 400; line-height: .95; margin-bottom: 24px; }
+    .closing p { max-width: 510px; margin: auto; color: rgba(255,255,255,.72); font-size: 13px; line-height: 1.75; }
+    .closing-signature { color: var(--sand); font-family: "Cormorant Garamond",serif; font-size: 27px; margin-top: 32px; }
+    footer { background: var(--forest); color: rgba(255,255,255,.4); text-align: center; padding: 0 25px 32px; font-size: 9px; letter-spacing: .12em; text-transform: uppercase; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @media (max-width: 760px) {
+      .nav { padding: 22px 20px; }
+      .nav-link { font-size: 9px; }
+      .hero { min-height: 88vh; }
+      .hero-content { padding-top: 100px; }
+      .hero-meta { max-width: 300px; margin-left: auto; margin-right: auto; line-height: 1.8; }
+      .intro { padding-top: 80px; padding-bottom: 65px; }
+      .journey-intro { display: block; padding-bottom: 32px; }
+      .journey-intro p { margin-top: 18px; }
+      .experience-grid { grid-template-columns: 1fr; }
+      .experience-card.featured { grid-column: span 1; display: block; }
+      .experience-card.featured .experience-image { min-height: 250px; height: 250px; }
+      .experience-card.featured .experience-body { padding: 31px; }
+      .experience-image { height: 230px; }
+      .experience-bottom { align-items: flex-start; }
+      .payment-box { padding: 42px 23px 32px; }
+      .payment-box h2 { font-size: 35px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav" aria-label="Main navigation">
+    <div class="nav-monogram">E &amp; G</div>
+    <a href="../" class="nav-link">Wedding</a>
+  </nav>
+
+  <header class="hero">
+    <div class="hero-content">
+      <div class="hero-eyebrow">A honeymoon idea · September 2027</div>
+      <h1>Japan</h1>
+      <div class="hero-subtitle">A journey for two</div>
+      <div class="hero-meta">Temples · Mountains · Food · Quiet moments</div>
+      <div class="hero-divider"></div>
+    </div>
+    <div class="hero-scroll">Discover the journey</div>
+  </header>
+
+  <div class="illustrative-banner">
+    <strong>Illustrative example only</strong>
+    Japan is used here to demonstrate how our wedding gift page could look. It is not a confirmed honeymoon destination or itinerary.
+  </div>
+
+  <section class="intro">
+    <div class="section-label">A different kind of wedding gift</div>
+    <h2>Instead of a present,<br>give us a memory.</h2>
+    <p>For this example, imagine a honeymoon in Japan: wandering through Kyoto's quiet lanes, discovering Tokyo's energy, admiring Mount Fuji and finding small restaurants we will remember long after we return.</p>
+    <p>This page is a sample of how we could turn a honeymoon into a collection of experiences. If you would like to give us a gift, you can choose one of the moments below and become a small part of the adventure. The destination and experiences shown are illustrative only.</p>
+    <div class="intro-signature">Edoardo &amp; Gaia</div>
+  </section>
+
+  <section class="journey-intro">
+    <div>
+      <div class="section-label">The journey</div>
+      <h2>Ten little pieces<br>of a honeymoon.</h2>
+    </div>
+    <p>The amounts shown are only suggestions. You are welcome to contribute whatever feels right, towards whichever part of the journey you like. Every gift would go towards our honeymoon fund rather than purchasing a specific item or booking.</p>
+  </section>
+
+  <section class="experiences" aria-label="Illustrative honeymoon gift experiences">
+    <div class="experience-grid">
+      <article class="experience-card featured">
+        <div class="experience-image" role="img" aria-label="Mount Fuji and a traditional Japanese landscape" style="background-image:url('https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=1200&q=85')"><div class="experience-number">01</div></div>
+        <div class="experience-body">
+          <div class="experience-type">The adventure</div>
+          <h3>Discovering Japan</h3>
+          <p>The big adventure itself: travelling somewhere new together, taking the scenic route, getting a little lost and collecting the kind of memories that do not fit into a suitcase.</p>
+          <div class="experience-bottom"><div class="suggested">Suggested contribution · €150</div><button class="contribute" type="button" onclick="openPayment('Discovering Japan',150)">Contribute</button></div>
+        </div>
+      </article>
+
+      <article class="experience-card">
+        <div class="experience-image" role="img" aria-label="Traditional streets in Kyoto" style="background-image:url('https://images.unsplash.com/photo-1528360983277-13d401cdc186?auto=format&fit=crop&w=1000&q=85')"><div class="experience-number">02</div></div>
+        <div class="experience-body">
+          <div class="experience-type">The traditions</div>
+          <h3>A Day in Kyoto</h3>
+          <p>Temple paths, wooden streets, small gardens and the pleasure of exploring a city where every turn seems to reveal another beautiful detail.</p>
+          <div class="experience-bottom"><div class="suggested">Suggested contribution · €100</div><button class="contribute" type="button" onclick="openPayment('A Day in Kyoto',100)">Contribute</button></div>
+        </div>
+      </article>
+
+      <article class="experience-card">
+        <div class="experience-image" role="img" aria-label="Mount Fuji rising above the landscape" style="background-image:url('https://images.unsplash.com/photo-1570459027562-4a916cc6113f?auto=format&fit=crop&w=1000&q=85')"><div class="experience-number">03</div></div>
+        <div class="experience-body">
+          <div class="experience-type">The view</div>
+          <h3>Mount Fuji</h3>
+          <p>A day spent chasing that postcard view, breathing in the mountain air and hopefully finding a quiet spot to take it all in together.</p>
+          <div class="experience-bottom"><div class="suggested">Suggested contribution · €125</div><button class="contribute" type="button" onclick="openPayment('Mount Fuji',125)">Contribute</button></div>
+        </div>
+      </article>
+
+      <article class="experience-card">
+        <div class="experience-image" role="img" aria-label="Tokyo city lights at night" style="background-image:url('https://images.unsplash.com/photo-1540959733332-eab4deebo?auto=format&fit=crop&w=1000&q=85')"><div class="experience-number">04</div></div>
+        <div class="experience-body">
+          <div class="experience-type">The city</div>
+          <h3>A Night in Tokyo</h3>
+          <p>Bright streets, tiny bars, late-night neighbourhoods and the excitement of a city that seems to keep going long after the rest of the world has gone to sleep.</p>
+          <div class="experience-bottom"><div class="suggested">Suggested contribution · €100</div><button class="contribute" type="button" onclick="openPayment('A Night in Tokyo',100)">Contribute</button></div>
+        </div>
+      </article>
+
+      <article class="experience-card">
+        <div class="experience-image" role="img" aria-label="Japanese cherry blossoms in spring" style="background-image:url('https://images.unsplash.com/photo-1522383225653-ed111181a951?auto=format&fit=crop&w=1000&q=85')"><div class="experience-number">05</div></div>
+        <div class="experience-body">
+          <div class="experience-type">The little moments</div>
+          <h3>A Walk Beneath the Blossoms</h3>
+          <p>A slow walk under flowering trees, a few photographs and a moment to pause. A reminder that the simplest parts of a trip often become the best memories.</p>
+          <div class="experience-bottom"><div class="suggested">Suggested contribution · €75</div><button class="contribute" type="button" onclick="openPayment('A Walk Beneath the Blossoms',75)">Contribute</button></div>
+        </div>
+      </article>
+
+      <article class="experience-card">
+        <div class="experience-image" role="img" aria-label="Japanese food served in a restaurant" style="background-image:url('https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=1000&q=85')"><div class="experience-number">06</div></div>
+        <div class="experience-body">
+          <div class="experience-type">The flavours</div>
+          <h3>A Japanese Food Tour</h3>
+          <p>Ramen, sushi, market stalls and little places we might never have found without turning down the right side street. The perfect excuse to taste a bit of everything.</p>
+          <div class="experience-bottom"><div class="suggested">Suggested contribution · €100</div><button class="contribute" type="button" onclick="openPayment('A Japanese Food Tour',100)">Contribute</button></div>
+        </div>
+      </article>
+
+      <article class="experience-card">
+        <div class="experience-image" role="img" aria-label="Traditional Japanese inn and peaceful garden" style="background-image:url('https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=1000&q=85')"><div class="experience-number">07</div></div>
+        <div class="experience-body">
+          <div class="experience-type">The stay</div>
+          <h3>A Night in a Ryokan</h3>
+          <p>A traditional Japanese inn, thoughtful details and a slower pace. One special night to experience a different way of staying somewhere new.</p>
+          <div class="experience-bottom"><div class="suggested">Suggested contribution · €200</div><button class="contribute" type="button" onclick="openPayment('A Night in a Ryokan',200)">Contribute</button></div>
+        </div>
+      </article>
+
+      <article class="experience-card">
+        <div class="experience-image" role="img" aria-label="Japanese hot spring town surrounded by mountains" style="background-image:url('https://images.unsplash.com/photo-1545569341-9eb8b30979d9?auto=format&fit=crop&w=1000&q=85')"><div class="experience-number">08</div></div>
+        <div class="experience-body">
+          <div class="experience-type">The pause</div>
+          <h3>A Quiet Onsen Escape</h3>
+          <p>A chance to slow down in a hot-spring town, surrounded by mountains and fresh air, with absolutely nothing on the schedule for a little while.</p>
+          <div class="experience-bottom"><div class="suggested">Suggested contribution · €150</div><button class="contribute" type="button" onclick="openPayment('A Quiet Onsen Escape',150)">Contribute</button></div>
+        </div>
+      </article>
+
+      <article class="experience-card">
+        <div class="experience-image" role="img" aria-label="Japanese tea served in a quiet setting" style="background-image:url('https://images.unsplash.com/photo-1544787219-7f47ccb76574?auto=format&fit=crop&w=1000&q=85')"><div class="experience-number">09</div></div>
+        <div class="experience-body">
+          <div class="experience-type">The ritual</div>
+          <h3>Tea for Two</h3>
+          <p>A cup of matcha, a peaceful tea room and time to enjoy the moment without rushing off to the next place. A small experience with room to breathe.</p>
+          <div class="experience-bottom"><div class="suggested">Suggested contribution · €50</div><button class="contribute" type="button" onclick="openPayment('Tea for Two',50)">Contribute</button></div>
+        </div>
+      </article>
+
+      <article class="experience-card">
+        <div class="experience-image" role="img" aria-label="Train travelling through the Japanese countryside" style="background-image:url('https://images.unsplash.com/photo-1478436127897-769e1b3f0f36?auto=format&fit=crop&w=1000&q=85')"><div class="experience-number">10</div></div>
+        <div class="experience-body">
+          <div class="experience-type">Getting there</div>
+          <h3>The Journey There</h3>
+          <p>Flights, trains and the miles between places. A contribution towards the journey that makes all those new landscapes, meals and shared moments possible.</p>
+          <div class="experience-bottom"><div class="suggested">Suggested contribution · €200</div><button class="contribute" type="button" onclick="openPayment('The Journey There',200)">Contribute</button></div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <div class="modal" id="paymentModal" role="dialog" aria-modal="true" aria-labelledby="paymentTitle" onclick="backgroundClose(event)">
+    <div class="payment-box">
+      <button class="close-modal" type="button" onclick="closePayment()" aria-label="Close dialog">&times;</button>
+      <div class="payment-label">Your contribution</div>
+      <h2 id="paymentTitle">Discovering Japan</h2>
+      <p>Choose an amount and continue securely with PayPal. Your contribution will go towards our honeymoon fund. Japan and the experiences on this page are illustrative examples only.</p>
+      <div class="amount-options">
+        <button class="amount" type="button" onclick="selectAmount(50,this)">€50</button>
+        <button class="amount" type="button" onclick="selectAmount(100,this)">€100</button>
+        <button class="amount" type="button" onclick="selectAmount(150,this)">€150</button>
+        <button class="amount" type="button" onclick="selectAmount(250,this)">€250</button>
+        <button class="amount" type="button" onclick="showCustom(this)">Other</button>
+      </div>
+      <div class="custom-wrapper" id="customWrapper">
+        <label for="customAmount">Your amount in euros</label>
+        <input id="customAmount" class="custom-input" type="number" min="1" max="10000" step="0.01" inputmode="decimal" placeholder="Enter amount in €" oninput="customChanged()">
+      </div>
+      <button class="paypal-button" type="button" onclick="goToPayPal()"><span class="paypal">PayPal</span> Give with PayPal</button>
+      <div class="payment-note">You will be redirected to PayPal to complete your gift.</div>
+    </div>
+  </div>
+
+  <section class="closing">
+    <h2>Thank you for being<br>part of our adventure.</h2>
+    <p>The best gifts are the memories we make and the people who help make them possible. Thank you for celebrating with us.</p>
+    <div class="closing-signature">Edoardo &amp; Gaia</div>
+  </section>
+
+  <footer>Edoardo &amp; Gaia · Wedding gifts · Illustrative Japan example</footer>
+
+  <script>
+    const PAYPAL_USERNAME = "edoardogaia";
+    let selectedAmount = null;
+    let selectedGift = "";
+
+    function openPayment(giftName, suggestedAmount) {
+      selectedGift = giftName;
+      document.getElementById("paymentTitle").textContent = giftName;
+      selectedAmount = null;
+      document.querySelectorAll(".amount").forEach(button => button.classList.remove("selected"));
+      document.getElementById("customWrapper").classList.remove("visible");
+      document.getElementById("customAmount").value = "";
+      document.getElementById("paymentModal").classList.add("open");
+      document.body.style.overflow = "hidden";
+      const suggestedButton = Array.from(document.querySelectorAll(".amount")).find(button => button.textContent.trim() === "€" + suggestedAmount);
+      if (suggestedButton) selectAmount(suggestedAmount, suggestedButton);
+      document.querySelector(".close-modal").focus();
+    }
+
+    function selectAmount(amount, button) {
+      selectedAmount = amount;
+      document.querySelectorAll(".amount").forEach(item => item.classList.remove("selected"));
+      button.classList.add("selected");
+      document.getElementById("customWrapper").classList.remove("visible");
+      document.getElementById("customAmount").value = "";
+    }
+
+    function showCustom(button) {
+      selectedAmount = null;
+      document.querySelectorAll(".amount").forEach(item => item.classList.remove("selected"));
+      button.classList.add("selected");
+      document.getElementById("customWrapper").classList.add("visible");
+      document.getElementById("customAmount").focus();
+    }
+
+    function customChanged() {
+      const field = document.getElementById("customAmount");
+      const value = Number(field.value);
+      selectedAmount = field.value !== "" && Number.isFinite(value) && value > 0 && value <= 10000 ? value : null;
+    }
+
+    function goToPayPal() {
+      if (!selectedAmount || selectedAmount <= 0 || selectedAmount > 10000) {
+        alert("Please choose or enter a valid amount first.");
+        return;
+      }
+      const amount = Number(selectedAmount).toFixed(2);
+      const paypalUrl = `https://paypal.me/${encodeURIComponent(PAYPAL_USERNAME)}/${amount}`;
+      window.location.href = paypalUrl;
+    }
+
+    function closePayment() {
+      document.getElementById("paymentModal").classList.remove("open");
+      document.body.style.overflow = "";
+    }
+
+    function backgroundClose(event) {
+      if (event.target === document.getElementById("paymentModal")) closePayment();
+    }
+
+    document.addEventListener("keydown", function(event) {
+      if (event.key === "Escape") closePayment();
+    });
+  </script>
+</body>
+</html>
