@@ -19,6 +19,7 @@
       --sage: #e9eee7;
       --line: #e4e4dc;
       --white: #ffffff;
+      --error: #a33131;
     }
 
     * { box-sizing: border-box; }
@@ -236,10 +237,18 @@
       font-family: "DM Sans", sans-serif;
       font-size: 14px;
       font-weight: 600;
-      transition: background 0.2s ease;
+      transition: background 0.2s ease, opacity 0.2s ease;
     }
 
     .payment-button:hover { background: #1d3529; }
+
+    .payment-button.is-disabled {
+      background: #a9b2aa;
+      cursor: not-allowed;
+      opacity: 0.8;
+    }
+
+    .payment-button.is-disabled:hover { background: #a9b2aa; }
 
     .secure {
       display: flex;
@@ -330,9 +339,106 @@
       cursor: pointer;
     }
 
-    .upgrade:hover {
-      background: var(--sage);
+    .upgrade:hover { background: var(--sage); }
+
+    .wedding-details {
+      margin: 24px 0;
+      padding: 20px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
     }
+
+    .wedding-details h3 {
+      margin: 0 0 14px;
+      font-size: 25px;
+    }
+
+    .detail-row {
+      display: grid;
+      grid-template-columns: 135px 1fr;
+      gap: 12px;
+      padding: 9px 0;
+      border-top: 1px solid var(--line);
+      font-size: 13px;
+      overflow-wrap: anywhere;
+    }
+
+    .detail-label { color: var(--muted); }
+    .detail-value { font-weight: 600; }
+
+    .save-box {
+      margin: 0 0 20px;
+      padding: 18px;
+      background: var(--sage);
+      border-radius: 12px;
+    }
+
+    .save-box h3 {
+      margin: 0 0 8px;
+      font-size: 25px;
+    }
+
+    .save-box > p {
+      margin: 0 0 14px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .field-label {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .email-input {
+      display: block;
+      width: 100%;
+      min-height: 46px;
+      padding: 12px;
+      border: 1px solid #cfd5cc;
+      border-radius: 7px;
+      background: white;
+      color: var(--ink);
+      font: inherit;
+      font-size: 14px;
+    }
+
+    .email-input:focus {
+      outline: 2px solid var(--forest);
+      outline-offset: 2px;
+    }
+
+    .save-button {
+      width: 100%;
+      margin-top: 12px;
+      padding: 13px 16px;
+      border: 0;
+      border-radius: 7px;
+      background: var(--forest);
+      color: white;
+      font: inherit;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .save-button:hover:not(:disabled) { background: #1d3529; }
+
+    .save-button:disabled {
+      cursor: not-allowed;
+      opacity: 0.65;
+    }
+
+    .save-status {
+      margin: 12px 0 0;
+      font-size: 12px;
+      overflow-wrap: anywhere;
+    }
+
+    .save-status:empty { display: none; }
+    .save-status.error { color: var(--error); }
+    .save-status.success { color: var(--forest); }
 
     .confirmation {
       display: none;
@@ -382,6 +488,7 @@
       .page { padding-top: 32px; }
       .card { padding: 21px; }
       .confirmation { padding: 24px 18px; }
+      .detail-row { grid-template-columns: 1fr; gap: 2px; }
     }
   </style>
 </head>
@@ -429,6 +536,30 @@
               <li><span class="check">✓</span>Our story pages</li>
             </ul>
           </div>
+
+          <section id="demoDetailsSection" class="wedding-details" hidden>
+            <h3>Your wedding details</h3>
+            <div class="detail-row">
+              <span class="detail-label">Couple</span>
+              <span class="detail-value" id="detailNames">Not provided</span>
+            </div>
+            <div class="detail-row">
+              <span class="detail-label">Wedding date</span>
+              <span class="detail-value" id="detailDate">Not provided</span>
+            </div>
+            <div class="detail-row">
+              <span class="detail-label">City</span>
+              <span class="detail-value" id="detailCity">Not provided</span>
+            </div>
+            <div class="detail-row">
+              <span class="detail-label">Ceremony venue</span>
+              <span class="detail-value" id="detailChurch">Not provided</span>
+            </div>
+            <div class="detail-row">
+              <span class="detail-label">Reception venue</span>
+              <span class="detail-value" id="detailVenue">Not provided</span>
+            </div>
+          </section>
 
           <div id="homepageUpgrade" hidden>
             <div class="section-label">Want more pages?</div>
@@ -484,6 +615,31 @@
             <strong id="totalPrice">€19.99</strong>
           </div>
 
+          <section id="saveDetailsSection" class="save-box" hidden>
+            <h3>Save your details</h3>
+            <p>
+              Enter your email so we can keep your wedding details with your
+              order. The payment button will unlock once your details are saved.
+            </p>
+
+            <label class="field-label" for="customerEmail">Email address</label>
+            <input
+              class="email-input"
+              type="email"
+              id="customerEmail"
+              name="email"
+              placeholder="you@example.com"
+              autocomplete="email"
+              required
+            >
+
+            <button class="save-button" type="button" id="saveDetailsButton">
+              Save details
+            </button>
+
+            <p id="saveStatus" class="save-status" role="status" aria-live="polite"></p>
+          </section>
+
           <a
             id="paymentLink"
             class="payment-button"
@@ -491,7 +647,7 @@
             target="_blank"
             rel="noopener noreferrer"
           >
-            <span>Pay securely by card</span>
+            <span id="paymentButtonText">Pay securely by card</span>
             <span id="paymentButtonPrice">€19.99 →</span>
           </a>
 
@@ -528,9 +684,8 @@
       <h2>You're nearly there.</h2>
 
       <p>
-        Your questionnaire details have been saved. Once you have completed
-        your payment on SumUp and it has been confirmed, we will contact you
-        by email.
+        Your details have been saved. Once you have completed your payment on
+        SumUp and it has been confirmed, we will contact you by email.
       </p>
 
       <p class="next-step">
@@ -551,6 +706,9 @@
       const params = new URLSearchParams(window.location.search);
       const isDemoPurchase = params.get("source") === "demo";
 
+      const WORKER_URL =
+        "https://wedding-website-submissions.e-laudani27.workers.dev";
+
       const packageContent = document.getElementById("packageContent");
       const paymentNextSteps = document.getElementById("paymentNextSteps");
       const paymentLink = document.getElementById("paymentLink");
@@ -568,8 +726,21 @@
       const summaryRows = document.getElementById("summaryRows");
       const totalPrice = document.getElementById("totalPrice");
       const paymentButtonPrice = document.getElementById("paymentButtonPrice");
+      const paymentButtonText = document.getElementById("paymentButtonText");
       const personalizeLink = document.getElementById("personalizeLink");
       const backLink = document.getElementById("backLink");
+
+      const demoDetailsSection = document.getElementById("demoDetailsSection");
+      const detailNames = document.getElementById("detailNames");
+      const detailDate = document.getElementById("detailDate");
+      const detailCity = document.getElementById("detailCity");
+      const detailChurch = document.getElementById("detailChurch");
+      const detailVenue = document.getElementById("detailVenue");
+
+      const saveDetailsSection = document.getElementById("saveDetailsSection");
+      const customerEmail = document.getElementById("customerEmail");
+      const saveDetailsButton = document.getElementById("saveDetailsButton");
+      const saveStatus = document.getElementById("saveStatus");
 
       const prices = {
         homepage: 9.99,
@@ -586,8 +757,25 @@
         fullRsvpGifts: "https://pay.sumup.com/b2c/QS3OPL82"
       };
 
+      let homepageDetailsSaved = false;
+      let savingDetails = false;
+
       function euro(amount) {
         return "€" + amount.toFixed(2);
+      }
+
+      function displayValue(value) {
+        return value && value.trim() ? value.trim() : "Not provided";
+      }
+
+      function displayDate(value) {
+        if (!value) return "Not provided";
+
+        // Format YYYY-MM-DD without risking a timezone shift.
+        const match = value.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+        if (match) return `${match[3]}/${match[2]}/${match[1]}`;
+
+        return value;
       }
 
       function buildPersonalizationUrl() {
@@ -602,14 +790,51 @@
         return "../finalise/" + (query ? "?" + query : "");
       }
 
+      function setPaymentLocked(locked) {
+        if (locked) {
+          paymentLink.href = "#";
+          paymentLink.classList.add("is-disabled");
+          paymentLink.setAttribute("aria-disabled", "true");
+          paymentLink.setAttribute("tabindex", "-1");
+        } else {
+          paymentLink.href = isDemoPurchase
+            ? sumupLinks.homepage
+            : paymentLink.dataset.paymentUrl;
+          paymentLink.classList.remove("is-disabled");
+          paymentLink.setAttribute("aria-disabled", "false");
+          paymentLink.removeAttribute("tabindex");
+        }
+      }
+
+      function showSaveStatus(message, type) {
+        saveStatus.textContent = message;
+        saveStatus.className = "save-status" + (type ? " " + type : "");
+      }
+
+      function showDemoDetails() {
+        const name1 = params.get("name1") || "";
+        const name2 = params.get("name2") || "";
+        const weddingDate = params.get("date") || "";
+        const city = params.get("city") || "";
+        const church = params.get("church") || "";
+        const venue = params.get("venue") || "";
+
+        detailNames.textContent =
+          [name1, name2].filter(Boolean).join(" & ") || "Not provided";
+        detailDate.textContent = displayDate(weddingDate);
+        detailCity.textContent = displayValue(city);
+        detailChurch.textContent = displayValue(church);
+        detailVenue.textContent = displayValue(venue);
+      }
+
       personalizeLink.href = buildPersonalizationUrl();
 
       if (isDemoPurchase) {
-        // Homepage-only visitors can also choose to start personalization.
         mainPackageTitle.textContent = "Homepage only";
         mainPackagePrice.textContent = euro(prices.homepage);
         mainPackageDescription.textContent =
           "A simple, personalised homepage with the essential information about your wedding.";
+
         mainPackageFeatures.innerHTML = `
           <li><span class="check">✓</span>Homepage with your wedding introduction</li>
           <li><span class="check">✓</span>Your wedding date and key details</li>
@@ -618,16 +843,25 @@
 
         homepageUpgrade.hidden = false;
         addonsSection.hidden = true;
+        demoDetailsSection.hidden = false;
+        saveDetailsSection.hidden = false;
+
         introText.textContent =
-          "Choose the simple homepage or start personalizing the full wedding website.";
+          "Review the details from your demo, save them with your email, and continue to payment.";
         backLink.href = "../wedding/";
         backLink.textContent = "← Back to the wedding demo";
+
+        showDemoDetails();
+
+        // A homepage-only visitor cannot pay before the save succeeds.
+        setPaymentLocked(true);
+        paymentButtonText.textContent = "Save details to unlock payment";
       } else {
-        // Anyone arriving without the demo flag sees the full website package.
         mainPackageTitle.textContent = "Wedding website";
         mainPackagePrice.textContent = euro(prices.full);
         mainPackageDescription.textContent =
           "A personalised website designed around your story and your day.";
+
         mainPackageFeatures.innerHTML = `
           <li><span class="check">✓</span>Homepage with your wedding introduction</li>
           <li><span class="check">✓</span>Ceremony details and location</li>
@@ -636,6 +870,9 @@
 
         homepageUpgrade.hidden = true;
         addonsSection.hidden = false;
+        demoDetailsSection.hidden = true;
+        saveDetailsSection.hidden = true;
+
         introText.textContent =
           "Your questionnaire is complete. Choose any optional pages and review your package before payment.";
         backLink.href = "../finalise/";
@@ -660,12 +897,16 @@
 
         if (selectedRsvp) {
           total += prices.rsvp;
-          rows.push(`<div class="summary-row"><span>RSVP page</span><span>${euro(prices.rsvp)}</span></div>`);
+          rows.push(
+            `<div class="summary-row"><span>RSVP page</span><span>${euro(prices.rsvp)}</span></div>`
+          );
         }
 
         if (selectedGifts) {
           total += prices.gifts;
-          rows.push(`<div class="summary-row"><span>Gifts page</span><span>${euro(prices.gifts)}</span></div>`);
+          rows.push(
+            `<div class="summary-row"><span>Gifts page</span><span>${euro(prices.gifts)}</span></div>`
+          );
         }
 
         if (!isDemoPurchase) {
@@ -681,15 +922,119 @@
         summaryRows.innerHTML = rows.join("");
         totalPrice.textContent = euro(total);
         paymentButtonPrice.textContent = euro(total) + " →";
-        paymentLink.href = link;
+
+        if (isDemoPurchase) {
+          paymentLink.dataset.paymentUrl = sumupLinks.homepage;
+          setPaymentLocked(!homepageDetailsSaved);
+        } else {
+          paymentLink.dataset.paymentUrl = link;
+          paymentLink.href = link;
+          paymentLink.classList.remove("is-disabled");
+          paymentLink.setAttribute("aria-disabled", "false");
+          paymentLink.removeAttribute("tabindex");
+        }
+      }
+
+      async function saveHomepageDetails() {
+        if (!isDemoPurchase || homepageDetailsSaved || savingDetails) return;
+
+        const email = customerEmail.value.trim();
+
+        if (!email || !customerEmail.checkValidity()) {
+          customerEmail.reportValidity();
+          return;
+        }
+
+        const name1 = (params.get("name1") || "").trim();
+        const name2 = (params.get("name2") || "").trim();
+
+        if (!name1 || !name2) {
+          showSaveStatus(
+            "We could not find both names in the demo details. Please go back to the demo and enter both names before continuing.",
+            "error"
+          );
+          return;
+        }
+
+        const payload = {
+          name1,
+          name2,
+          email,
+          date: params.get("date") || "",
+          city: params.get("city") || "",
+          church: params.get("church") || "",
+          venue: params.get("venue") || ""
+        };
+
+        savingDetails = true;
+        saveDetailsButton.disabled = true;
+        saveDetailsButton.textContent = "Saving...";
+        showSaveStatus("Saving your details securely...", "");
+
+        try {
+          const response = await fetch(`${WORKER_URL}/submit`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify(payload)
+          });
+
+          let result;
+          try {
+            result = await response.json();
+          } catch {
+            throw new Error("The server returned an unexpected response. Please try again.");
+          }
+
+          if (!response.ok || !result || result.success !== true) {
+            throw new Error(
+              result && result.message
+                ? result.message
+                : "We could not save your details. Please try again."
+            );
+          }
+
+          homepageDetailsSaved = true;
+          customerEmail.readOnly = true;
+          saveDetailsButton.textContent = "Details saved";
+          showSaveStatus(
+            "Your details have been saved. You can now continue to payment.",
+            "success"
+          );
+
+          paymentButtonText.textContent = "Pay securely by card";
+          updateSummary();
+        } catch (error) {
+          showSaveStatus(
+            error.message ||
+              "We could not save your details. Please check your connection and try again.",
+            "error"
+          );
+          saveDetailsButton.disabled = false;
+          saveDetailsButton.textContent = "Try saving again";
+        } finally {
+          savingDetails = false;
+        }
       }
 
       rsvpCheckbox.addEventListener("change", updateSummary);
       giftsCheckbox.addEventListener("change", updateSummary);
+      saveDetailsButton.addEventListener("click", saveHomepageDetails);
 
-      // Clicking this link opens SumUp in a new tab. This page only shows
-      // next steps; it does not confirm that the payment succeeded.
-      paymentLink.addEventListener("click", () => {
+      paymentLink.addEventListener("click", event => {
+        // Never allow homepage-only payment before the save is confirmed.
+        if (isDemoPurchase && !homepageDetailsSaved) {
+          event.preventDefault();
+          showSaveStatus(
+            "Please enter your email and save your details before continuing to payment.",
+            "error"
+          );
+          customerEmail.focus();
+          return;
+        }
+
+        // This shows the next-steps screen; it does not verify payment.
         packageContent.style.display = "none";
         paymentNextSteps.style.display = "block";
         paymentNextSteps.focus();
