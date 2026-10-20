@@ -1789,308 +1789,144 @@
   </div>
 
 
-  <!-- =========================
-       URL PARAMETERS
-  ========================= -->
+  
+<script>
+  /* =========================
+     URL PARAMETERS
+  ========================= */
 
-  <script>
+  const params = new URLSearchParams(window.location.search);
 
-    const params = new URLSearchParams(window.location.search);
-
-    const name1 = params.get("name1");
-    const name2 = params.get("name2");
-    const date = params.get("date");
-    const city = params.get("city");
-    const church = params.get("church");
-    const venue = params.get("venue");
-
-
-    /* =========================
-       NAMES
-    ========================= */
-
-    document.getElementById("hero-name1").textContent =
-      name1 || "";
-
-    document.getElementById("hero-name2").textContent =
-      name2 || "";
-
-    document.getElementById("closing-name1").textContent =
-      name1 || "";
-
-    document.getElementById("closing-name2").textContent =
-      name2 || "";
+  const name1 = params.get("name1");
+  const name2 = params.get("name2");
+  const date = params.get("date");
+  const city = params.get("city");
+  const church = params.get("church");
+  const venue = params.get("venue");
 
 
-    /* =========================
-       MONOGRAM
-    ========================= */
+  /* =========================
+     NAMES
+  ========================= */
 
-    if (name1 && name2) {
+  document.getElementById("hero-name1").textContent = name1 || "";
+  document.getElementById("hero-name2").textContent = name2 || "";
+  document.getElementById("closing-name1").textContent = name1 || "";
+  document.getElementById("closing-name2").textContent = name2 || "";
 
-      const monogram =
-        name1.charAt(0).toUpperCase() +
-        " & " +
-        name2.charAt(0).toUpperCase();
 
-      document.getElementById("nav-monogram").textContent =
-        monogram;
+  /* =========================
+     MONOGRAM
+  ========================= */
 
-      document.getElementById("footer-monogram").textContent =
-        monogram;
+  if (name1 && name2) {
+    const monogram =
+      name1.charAt(0).toUpperCase() +
+      " & " +
+      name2.charAt(0).toUpperCase();
 
-      document.getElementById("closing-monogram").textContent =
-        monogram;
+    document.getElementById("nav-monogram").textContent = monogram;
+    document.getElementById("footer-monogram").textContent = monogram;
+    document.getElementById("closing-monogram").textContent = monogram;
+  }
+
+
+  /* =========================
+     DATE
+  ========================= */
+
+  document.getElementById("hero-date").textContent = date || "";
+  document.getElementById("details-date").textContent = date || "";
+  document.getElementById("reception-date").textContent = date || "";
+  document.getElementById("footer-date").textContent = date || "";
+
+
+  /* =========================
+     CITY
+  ========================= */
+
+  document.getElementById("hero-city").textContent = city || "";
+  document.getElementById("details-city").textContent = city || "The city";
+  document.getElementById("ceremony-location").textContent = city || "";
+  document.getElementById("reception-city").textContent = city || "";
+  document.getElementById("footer-city").textContent = city || "";
+
+
+  /* =========================
+     CEREMONY AND RECEPTION
+  ========================= */
+
+  document.getElementById("ceremony-name").textContent =
+    church || "Ceremony venue";
+
+  document.getElementById("venue-name").textContent =
+    venue || "Our celebration";
+
+
+  /* =========================
+     PAGE TITLE
+  ========================= */
+
+  if (name1 && name2) {
+    document.title = name1 + " & " + name2;
+  }
+
+
+  /* =========================
+     LEAD POPUP CONTROLS
+  ========================= */
+
+  const leadTrigger = document.getElementById("lead-trigger");
+  const leadOverlay = document.getElementById("lead-overlay");
+  const leadClose = document.getElementById("lead-close");
+
+  function openLeadPopup() {
+    leadOverlay.classList.add("active");
+    leadOverlay.setAttribute("aria-hidden", "false");
+    leadTrigger.setAttribute("aria-expanded", "true");
+    leadClose.focus();
+  }
+
+  function closeLeadPopup() {
+    leadOverlay.classList.remove("active");
+    leadOverlay.setAttribute("aria-hidden", "true");
+    leadTrigger.setAttribute("aria-expanded", "false");
+    leadTrigger.focus();
+  }
+
+  /* Open from floating button */
+  leadTrigger.addEventListener("click", openLeadPopup);
+
+  /* Close from × button */
+  leadClose.addEventListener("click", closeLeadPopup);
+
+  /* Close by clicking outside the popup */
+  leadOverlay.addEventListener("click", function(event) {
+    if (event.target === leadOverlay) {
+      closeLeadPopup();
     }
+  });
 
-
-    /* =========================
-       DATE
-    ========================= */
-
-    document.getElementById("hero-date").textContent =
-      date || "";
-
-    document.getElementById("details-date").textContent =
-      date || "";
-
-    document.getElementById("reception-date").textContent =
-      date || "";
-
-    document.getElementById("footer-date").textContent =
-      date || "";
-
-
-    /* =========================
-       CITY
-    ========================= */
-
-    document.getElementById("hero-city").textContent =
-      city || "";
-
-    document.getElementById("details-city").textContent =
-      city || "The city";
-
-    document.getElementById("ceremony-location").textContent =
-      city || "";
-
-    document.getElementById("reception-city").textContent =
-      city || "";
-
-    document.getElementById("footer-city").textContent =
-      city || "";
-
-
-    /* =========================
-       CEREMONY
-    ========================= */
-
-    document.getElementById("ceremony-name").textContent =
-      church || "Ceremony venue";
-
-
-    /* =========================
-       RECEPTION
-    ========================= */
-
-    document.getElementById("venue-name").textContent =
-      venue || "Our celebration";
-
-
-    /* =========================
-       PAGE TITLE
-    ========================= */
-
-    if (name1 && name2) {
-
-      document.title =
-        name1 + " & " + name2;
-
+  /* Close with Escape */
+  document.addEventListener("keydown", function(event) {
+    if (
+      event.key === "Escape" &&
+      leadOverlay.classList.contains("active")
+    ) {
+      closeLeadPopup();
     }
+  });
 
 
-    /* =========================
-       LEAD POPUP DATA
-    ========================= */
+  /* =========================
+     AUTOMATIC POPUP
+  ========================= */
 
-    document.getElementById("lead-name1").value =
-      name1 || "";
-
-    document.getElementById("lead-name2").value =
-      name2 || "";
-
-    document.getElementById("lead-date").value =
-      date || "";
-
-    document.getElementById("lead-city").value =
-      city || "";
-
-    document.getElementById("lead-church").value =
-      church || "";
-
-    document.getElementById("lead-venue").value =
-      venue || "";
-
-
-    /* =========================
-       LEAD POPUP CONTROLS
-    ========================= */
-
-    const leadTrigger =
-      document.getElementById("lead-trigger");
-
-    const leadOverlay =
-      document.getElementById("lead-overlay");
-
-    const leadClose =
-      document.getElementById("lead-close");
-
-    const leadForm =
-      document.getElementById("lead-form");
-
-    const leadFormContent =
-      document.getElementById("lead-form-content");
-
-    const leadSuccess =
-      document.getElementById("lead-success");
-
-
-    /* Open popup */
-
-    function openLeadPopup() {
-
-      leadOverlay.classList.add("active");
-
-      leadOverlay.setAttribute(
-        "aria-hidden",
-        "false"
-      );
-
-      setTimeout(function() {
-
-        document.getElementById("lead-email").focus();
-
-      }, 300);
-
+  setTimeout(function() {
+    if (!leadOverlay.classList.contains("active")) {
+      openLeadPopup();
     }
-
-
-    /* Close popup */
-
-    function closeLeadPopup() {
-
-      leadOverlay.classList.remove("active");
-
-      leadOverlay.setAttribute(
-        "aria-hidden",
-        "true"
-      );
-
-    }
-
-
-    /* Floating button */
-
-    leadTrigger.addEventListener(
-      "click",
-      openLeadPopup
-    );
-
-
-    /* Close button */
-
-    leadClose.addEventListener(
-      "click",
-      closeLeadPopup
-    );
-
-
-    /* Click outside popup */
-
-    leadOverlay.addEventListener(
-      "click",
-      function(event) {
-
-        if (event.target === leadOverlay) {
-          closeLeadPopup();
-        }
-
-      }
-    );
-
-
-    /* Escape key */
-
-    document.addEventListener(
-      "keydown",
-      function(event) {
-
-        if (
-          event.key === "Escape" &&
-          leadOverlay.classList.contains("active")
-        ) {
-
-          closeLeadPopup();
-
-        }
-
-      }
-    );
-
-
-    /* =========================
-       AUTOMATIC POPUP
-    ========================= */
-
-    setTimeout(function() {
-
-      /*
-       * Only open automatically if the visitor
-       * has not already interacted with the button.
-       */
-
-      if (
-        !leadOverlay.classList.contains("active")
-      ) {
-
-        openLeadPopup();
-
-      }
-
-    }, 15000);
-
-
-    /* =========================
-       FORM SUBMISSION
-    ========================= */
-
-    leadForm.addEventListener(
-      "submit",
-      function(event) {
-
-        /*
-         * Formspree will be connected here later.
-         *
-         * For now we prevent the browser from
-         * actually submitting anywhere.
-         */
-
-        event.preventDefault();
-
-
-        /*
-         * Show the success message.
-         */
-
-        leadFormContent.style.display =
-          "none";
-
-        leadSuccess.classList.add("active");
-
-      }
-    );
-
-  </script>
-
+  }, 15000);
+</script>
 </body>
 </html>
