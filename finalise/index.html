@@ -950,8 +950,10 @@
       });
     }
 
+    
     // Pre-fill fields when wedding details are passed in the URL.
     const params = new URLSearchParams(window.location.search);
+
     const prefill = {
       name1: "name1",
       name2: "name2",
@@ -961,14 +963,55 @@
       reception: "venue"
     };
 
+    function normalizeDate(value) {
+      if (!value) return "";
+
+      // Already in the format required by an HTML date input.
+      if (/^\d{4}-\d{2}-\d{2}$/.test(value)) {
+        const date = new Date(value + "T00:00:00");
+        return !Number.isNaN(date.getTime()) &&
+          date.toISOString().slice(0, 10) === value
+          ? value
+          : "";
+      }
+
+      // Convert DD/MM/YYYY or DD-MM-YYYY.
+      const numericMatch = value.match(/^(\d{1,2})[\/.-](\d{1,2})[\/.-](\d{4})$/);
+
+      if (numericMatch) {
+        const day = numericMatch[1].padStart(2, "0");
+        const month = numericMatch[2].padStart(2, "0");
+        const year = numericMatch[3];
+        const isoDate = `${year}-${month}-${day}`;
+        const date = new Date(isoDate + "T00:00:00");
+
+        return !Number.isNaN(date.getTime()) &&
+          date.toISOString().slice(0, 10) === isoDate
+          ? isoDate
+          : "";
+      }
+
+      // Convert dates such as "12 June 2027".
+      const parsed = new Date(value);
+
+      if (Number.isNaN(parsed.getTime())) return "";
+
+      const year = parsed.getFullYear();
+      const month = String(parsed.getMonth() + 1).padStart(2, "0");
+      const day = String(parsed.getDate()).padStart(2, "0");
+
+      return `${year}-${month}-${day}`;
+    }
+
     Object.entries(prefill).forEach(([id, key]) => {
       const value = params.get(key);
       const field = document.getElementById(id);
 
-      if (value && field) {
-        // If date is provided in a human-readable format, leave it empty
-        // rather than incorrectly putting an invalid value into a date input.
-        if (field.type === "date" && !/^\d{4}-\d{2}-\d{2}$/.test(value)) return;
+      if (!value || !field) return;
+
+      if (field.type === "date") {
+        field.value = normalizeDate(value);
+      } else {
         field.value = value;
       }
     });
