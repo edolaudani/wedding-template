@@ -285,9 +285,14 @@
     const firstName = urlParams.get("name1");
     const secondName = urlParams.get("name2");
 
+
     // Keep the current wedding details when navigating to another page.
-    const queryString = urlParams.toString();
+    const queryParams = new URLSearchParams(urlParams);
+    queryParams.set("source", "demo");
+    
+    const queryString = queryParams.toString();
     const querySuffix = queryString ? "?" + queryString : "";
+
 
     document.querySelectorAll('a[href="../"]').forEach(function(link) {
       link.href = "../" + querySuffix;
