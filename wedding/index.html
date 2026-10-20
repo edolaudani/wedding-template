@@ -1837,7 +1837,8 @@
   const personalizeLink = document.getElementById("continue-personalizing");
 
   // Keep the purchase button linked to the packages page.
-  purchaseLink.href = "../packages/";
+  purchaseLink.href = "../packages/?source=demo" +
+  (window.location.search ? "&" + window.location.search.slice(1) : "");
 
   // Carry the existing wedding details into the questionnaire.
   const weddingParams = new URLSearchParams();
