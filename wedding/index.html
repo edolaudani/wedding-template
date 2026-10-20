@@ -947,35 +947,38 @@
       font-weight: 300;
     }
 
+
     .lead-submit {
       display: flex;
       align-items: center;
       justify-content: center;
+      box-sizing: border-box;
       width: 100%;
-      height: 50px;
-
+      min-height: 50px;
+      padding: 12px 20px;
       margin-top: 12px;
-
+    
       border: none;
       border-radius: 0;
-
+    
       background: var(--forest);
       color: white;
-
+    
       font-family: "DM Sans", sans-serif;
       font-size: 10px;
       font-weight: 600;
-
+      line-height: 1.4;
       letter-spacing: 0.15em;
       text-transform: uppercase;
-
+      text-align: center;
+    
       cursor: pointer;
-
+    
       transition:
         background 0.2s ease,
         transform 0.2s ease;
     }
-
+    
     .lead-submit:hover {
       background: var(--forest-dark);
       transform: translateY(-1px);
