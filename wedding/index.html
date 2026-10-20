@@ -1828,6 +1828,30 @@
   const church = params.get("church");
   const venue = params.get("venue");
 
+  
+  /* =========================
+     POPUP DESTINATION LINKS
+  ========================= */
+
+  const purchaseLink = document.getElementById("purchase-website");
+  const personalizeLink = document.getElementById("continue-personalizing");
+
+  // Keep the purchase button linked to the packages page.
+  purchaseLink.href = "../packages/";
+
+  // Carry the existing wedding details into the questionnaire.
+  const weddingParams = new URLSearchParams();
+
+  ["name1", "name2", "date", "city", "church", "venue"].forEach(function(key) {
+    const value = params.get(key);
+    if (value !== null && value !== "") {
+      weddingParams.set(key, value);
+    }
+  });
+
+  personalizeLink.href = "../finalise/?" + weddingParams.toString();
+
+
 
   /* =========================
      NAMES
