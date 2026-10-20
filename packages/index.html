@@ -1,10 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Create your personalised wedding website. Delivered within 24–48 hours after payment confirmation.">
+  <meta name="description" content="Choose your personalised wedding website package.">
   <title>Your Wedding Website | Packages</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -165,7 +164,6 @@
       gap: 14px;
       padding: 20px 0;
       border-top: 1px solid var(--line);
-      opacity: 0.65;
     }
 
     .addon-content { flex: 1; }
@@ -276,7 +274,66 @@
 
     .back:hover { text-decoration: underline; }
 
-    /* Message displayed after clicking the SumUp link */
+    .choice {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 15px 0;
+      border-top: 1px solid var(--line);
+      cursor: pointer;
+    }
+
+    .choice input {
+      width: 17px;
+      height: 17px;
+      margin-top: 4px;
+      accent-color: var(--forest);
+      flex-shrink: 0;
+      cursor: pointer;
+    }
+
+    .choice-content { flex: 1; }
+
+    .choice-title {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .choice-description {
+      display: block;
+      margin-top: 3px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .choice-price {
+      white-space: nowrap;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .upgrade {
+      display: block;
+      margin-top: 12px;
+      padding: 15px;
+      border: 1px solid var(--forest);
+      border-radius: 8px;
+      color: var(--forest);
+      background: transparent;
+      font-family: "DM Sans", sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-align: center;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .upgrade:hover {
+      background: var(--sage);
+    }
+
     .confirmation {
       display: none;
       margin-top: 32px;
@@ -336,10 +393,8 @@
 
       <h1>A beautiful home for your wedding.</h1>
 
-      <p class="intro">
-        Your questionnaire is complete. Your website will bring together
-        the details of your celebration in one beautiful place.
-        Review your package below and continue to payment when you are ready.
+      <p class="intro" id="introText">
+        Choose the website package that works best for your celebration.
       </p>
 
       <div class="delivery-note">
@@ -347,8 +402,9 @@
         <div>
           <strong>Your website, ready in 24–48 hours</strong>
           <p>
-            Once your payment is confirmed, we will finalise your personalised
-            wedding website and send it to you by email within 24–48 hours.
+            Once your payment is confirmed and we have the details we need,
+            we will finalise your personalised wedding website and send it
+            to you by email within 24–48 hours.
           </p>
         </div>
       </div>
@@ -359,39 +415,56 @@
 
           <div class="included">
             <div class="included-heading">
-              <h3>Wedding website</h3>
-              <div class="price">€19.99</div>
+              <h3 id="mainPackageTitle">Wedding website</h3>
+              <div class="price" id="mainPackagePrice">€19.99</div>
             </div>
 
-            <p>
+            <p id="mainPackageDescription">
               A personalised website designed around your story and your day.
             </p>
 
-            <ul>
+            <ul id="mainPackageFeatures">
               <li><span class="check">✓</span>Homepage with your wedding introduction</li>
               <li><span class="check">✓</span>Ceremony details and location</li>
               <li><span class="check">✓</span>Our story pages</li>
             </ul>
           </div>
 
-          <div class="section-label">Optional pages</div>
-
-          <div class="addon">
-            <div class="addon-content">
-              <h3>RSVP page</h3>
-              <p>Let your guests respond to your invitation online.</p>
-              <span class="coming-soon">Available soon</span>
-            </div>
-            <div class="addon-price">+€14.99</div>
+          <div id="homepageUpgrade" hidden>
+            <div class="section-label">Want more pages?</div>
+            <p style="font-size:14px;color:var(--muted);margin:0 0 12px">
+              Upgrade to the full website for €19.99. You will first need
+              to complete the wedding questionnaire.
+            </p>
+            <a id="personalizeLink" class="upgrade" href="../finalise/">
+              Personalize the full website · €19.99
+            </a>
           </div>
 
-          <div class="addon">
-            <div class="addon-content">
-              <h3>Gifts page</h3>
-              <p>Share your gift list or honeymoon contribution details.</p>
-              <span class="coming-soon">Available soon</span>
-            </div>
-            <div class="addon-price">+€19.99</div>
+          <div id="addonsSection">
+            <div class="section-label">Optional pages</div>
+
+            <label class="choice" for="rsvpCheckbox">
+              <input type="checkbox" id="rsvpCheckbox">
+              <span class="choice-content">
+                <span class="choice-title">RSVP page</span>
+                <span class="choice-description">
+                  Let your guests respond to your invitation online.
+                </span>
+              </span>
+              <span class="choice-price">+€14.99</span>
+            </label>
+
+            <label class="choice" for="giftsCheckbox">
+              <input type="checkbox" id="giftsCheckbox">
+              <span class="choice-content">
+                <span class="choice-title">Gifts page</span>
+                <span class="choice-description">
+                  Share your gift list or honeymoon contribution details.
+                </span>
+              </span>
+              <span class="choice-price">+€19.99</span>
+            </label>
           </div>
         </section>
 
@@ -399,17 +472,18 @@
           <div class="eyebrow">Ready when you are</div>
           <h2 class="summary-title">Order summary</h2>
 
-          <div class="summary-row">
-            <span>Wedding website</span>
-            <span>€19.99</span>
+          <div id="summaryRows">
+            <div class="summary-row">
+              <span>Wedding website</span>
+              <span>€19.99</span>
+            </div>
           </div>
 
           <div class="summary-row total">
             <span>Total</span>
-            <strong>€19.99</strong>
+            <strong id="totalPrice">€19.99</strong>
           </div>
 
-          <!-- Replace this URL with your reusable SumUp payment link. -->
           <a
             id="paymentLink"
             class="payment-button"
@@ -418,7 +492,7 @@
             rel="noopener noreferrer"
           >
             <span>Pay securely by card</span>
-            <span>€19.99 →</span>
+            <span id="paymentButtonPrice">€19.99 →</span>
           </a>
 
           <div class="secure">
@@ -438,7 +512,7 @@
         </aside>
       </div>
 
-      <a class="back" href="../finalise/">
+      <a class="back" id="backLink" href="../finalise/">
         ← Back to your questionnaire
       </a>
     </div>
@@ -473,21 +547,157 @@
   </main>
 
   <script>
-    const paymentLink = document.getElementById("paymentLink");
-    const packageContent = document.getElementById("packageContent");
-    const paymentNextSteps = document.getElementById("paymentNextSteps");
+    (() => {
+      const params = new URLSearchParams(window.location.search);
+      const isDemoPurchase = params.get("source") === "demo";
 
-    paymentLink.addEventListener("click", () => {
-      /*
-       * This records that the customer clicked the payment link.
-       * It does not verify whether the payment succeeded.
-       * The payment opens in a separate tab, leaving this page available.
-       */
-      packageContent.style.display = "none";
-      paymentNextSteps.style.display = "block";
-      paymentNextSteps.focus();
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    });
+      const packageContent = document.getElementById("packageContent");
+      const paymentNextSteps = document.getElementById("paymentNextSteps");
+      const paymentLink = document.getElementById("paymentLink");
+      const rsvpCheckbox = document.getElementById("rsvpCheckbox");
+      const giftsCheckbox = document.getElementById("giftsCheckbox");
+
+      const mainPackageTitle = document.getElementById("mainPackageTitle");
+      const mainPackagePrice = document.getElementById("mainPackagePrice");
+      const mainPackageDescription = document.getElementById("mainPackageDescription");
+      const mainPackageFeatures = document.getElementById("mainPackageFeatures");
+
+      const homepageUpgrade = document.getElementById("homepageUpgrade");
+      const addonsSection = document.getElementById("addonsSection");
+      const introText = document.getElementById("introText");
+      const summaryRows = document.getElementById("summaryRows");
+      const totalPrice = document.getElementById("totalPrice");
+      const paymentButtonPrice = document.getElementById("paymentButtonPrice");
+      const personalizeLink = document.getElementById("personalizeLink");
+      const backLink = document.getElementById("backLink");
+
+      const prices = {
+        homepage: 9.99,
+        full: 19.99,
+        rsvp: 14.99,
+        gifts: 19.99
+      };
+
+      const sumupLinks = {
+        homepage: "https://pay.sumup.com/b2c/QOV93D2J",
+        full: "https://pay.sumup.com/b2c/QFYNY7UY",
+        fullRsvp: "https://pay.sumup.com/b2c/QHNT871W",
+        fullGifts: "https://pay.sumup.com/b2c/QFFDDHRD",
+        fullRsvpGifts: "https://pay.sumup.com/b2c/QS3OPL82"
+      };
+
+      function euro(amount) {
+        return "€" + amount.toFixed(2);
+      }
+
+      function buildPersonalizationUrl() {
+        const weddingParams = new URLSearchParams();
+
+        ["name1", "name2", "date", "city", "church", "venue"].forEach(key => {
+          const value = params.get(key);
+          if (value) weddingParams.set(key, value);
+        });
+
+        const query = weddingParams.toString();
+        return "../finalise/" + (query ? "?" + query : "");
+      }
+
+      personalizeLink.href = buildPersonalizationUrl();
+
+      if (isDemoPurchase) {
+        // Homepage-only visitors can also choose to start personalization.
+        mainPackageTitle.textContent = "Homepage only";
+        mainPackagePrice.textContent = euro(prices.homepage);
+        mainPackageDescription.textContent =
+          "A simple, personalised homepage with the essential information about your wedding.";
+        mainPackageFeatures.innerHTML = `
+          <li><span class="check">✓</span>Homepage with your wedding introduction</li>
+          <li><span class="check">✓</span>Your wedding date and key details</li>
+          <li><span class="check">✓</span>A personalised design for your celebration</li>
+        `;
+
+        homepageUpgrade.hidden = false;
+        addonsSection.hidden = true;
+        introText.textContent =
+          "Choose the simple homepage or start personalizing the full wedding website.";
+        backLink.href = "../wedding/";
+        backLink.textContent = "← Back to the wedding demo";
+      } else {
+        // Anyone arriving without the demo flag sees the full website package.
+        mainPackageTitle.textContent = "Wedding website";
+        mainPackagePrice.textContent = euro(prices.full);
+        mainPackageDescription.textContent =
+          "A personalised website designed around your story and your day.";
+        mainPackageFeatures.innerHTML = `
+          <li><span class="check">✓</span>Homepage with your wedding introduction</li>
+          <li><span class="check">✓</span>Ceremony details and location</li>
+          <li><span class="check">✓</span>Our story pages</li>
+        `;
+
+        homepageUpgrade.hidden = true;
+        addonsSection.hidden = false;
+        introText.textContent =
+          "Your questionnaire is complete. Choose any optional pages and review your package before payment.";
+        backLink.href = "../finalise/";
+        backLink.textContent = "← Back to your questionnaire";
+      }
+
+      function updateSummary() {
+        const selectedRsvp = !isDemoPurchase && rsvpCheckbox.checked;
+        const selectedGifts = !isDemoPurchase && giftsCheckbox.checked;
+
+        const basePrice = isDemoPurchase ? prices.homepage : prices.full;
+        let total = basePrice;
+
+        const rows = [
+          `<div class="summary-row">
+            <span>${isDemoPurchase ? "Homepage only" : "Wedding website"}</span>
+            <span>${euro(basePrice)}</span>
+          </div>`
+        ];
+
+        let link = isDemoPurchase ? sumupLinks.homepage : sumupLinks.full;
+
+        if (selectedRsvp) {
+          total += prices.rsvp;
+          rows.push(`<div class="summary-row"><span>RSVP page</span><span>${euro(prices.rsvp)}</span></div>`);
+        }
+
+        if (selectedGifts) {
+          total += prices.gifts;
+          rows.push(`<div class="summary-row"><span>Gifts page</span><span>${euro(prices.gifts)}</span></div>`);
+        }
+
+        if (!isDemoPurchase) {
+          if (selectedRsvp && selectedGifts) {
+            link = sumupLinks.fullRsvpGifts;
+          } else if (selectedRsvp) {
+            link = sumupLinks.fullRsvp;
+          } else if (selectedGifts) {
+            link = sumupLinks.fullGifts;
+          }
+        }
+
+        summaryRows.innerHTML = rows.join("");
+        totalPrice.textContent = euro(total);
+        paymentButtonPrice.textContent = euro(total) + " →";
+        paymentLink.href = link;
+      }
+
+      rsvpCheckbox.addEventListener("change", updateSummary);
+      giftsCheckbox.addEventListener("change", updateSummary);
+
+      // Clicking this link opens SumUp in a new tab. This page only shows
+      // next steps; it does not confirm that the payment succeeded.
+      paymentLink.addEventListener("click", () => {
+        packageContent.style.display = "none";
+        paymentNextSteps.style.display = "block";
+        paymentNextSteps.focus();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+
+      updateSummary();
+    })();
   </script>
 </body>
 </html>
