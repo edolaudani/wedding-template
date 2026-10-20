@@ -778,13 +778,23 @@
         return value;
       }
 
-      function buildPersonalizationUrl() {
-        const weddingParams = new URLSearchParams();
 
+      function buildWeddingQuerySuffix() {
+        const weddingParams = new URLSearchParams();
+      
         ["name1", "name2", "date", "city", "church", "venue"].forEach(key => {
           const value = params.get(key);
           if (value) weddingParams.set(key, value);
         });
+      
+        const query = weddingParams.toString();
+        return query ? "?" + query : "";
+      }
+      
+      function buildPersonalizationUrl() {
+        return "../finalise/" + buildWeddingQuerySuffix();
+      }
+
 
         const query = weddingParams.toString();
         return "../finalise/" + (query ? "?" + query : "");
@@ -848,7 +858,7 @@
 
         introText.textContent =
           "Review the details from your demo, save them with your email, and continue to payment.";
-        backLink.href = "../wedding/";
+        backLink.href = "../wedding/" + buildWeddingQuerySuffix();
         backLink.textContent = "← Back to the wedding demo";
 
         showDemoDetails();
@@ -875,7 +885,7 @@
 
         introText.textContent =
           "Your questionnaire is complete. Choose any optional pages and review your package before payment.";
-        backLink.href = "../finalise/";
+        backLink.href = "../finalise/" + buildWeddingQuerySuffix();
         backLink.textContent = "← Back to your questionnaire";
       }
 
