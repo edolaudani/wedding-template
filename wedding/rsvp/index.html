@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Wedding RSVP page template.">
+  <title>RSVP | A & B</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ivory: #f7f4ed;
+      --paper: #fffdf8;
+      --forest: #30483a;
+      --forest-dark: #23372d;
+      --sage: #7b897b;
+      --sand: #c4ad83;
+      --text: #354238;
+      --muted: #70786f;
+      --line: rgba(48,72,58,.18);
+      --error: #9b443c;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: var(--ivory); color: var(--text); font-family: "DM Sans", sans-serif; font-weight: 300; line-height: 1.6; }
+    button, input, select, textarea { font: inherit; }
+    a { color: inherit; text-decoration: none; }
+    .topbar { position: absolute; top: 0; left: 0; width: 100%; padding: 26px 6vw; display: flex; justify-content: space-between; align-items: center; color: white; z-index: 3; }
+    .monogram { font-family: "Cormorant Garamond", serif; font-size: 25px; letter-spacing: .08em; }
+    .back-link { font-size: 10px; text-transform: uppercase; letter-spacing: .16em; border: 1px solid rgba(255,255,255,.6); border-radius: 40px; padding: 10px 16px; }
+    .hero { min-height: 370px; display: flex; align-items: flex-end; padding: 100px 7vw 62px; color: white; position: relative; background: linear-gradient(90deg, rgba(29,45,35,.78), rgba(29,45,35,.24)), url("https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=2000&q=85") center 52% / cover no-repeat; }
+    .hero-copy { max-width: 760px; }
+    .eyebrow { font-size: 10px; letter-spacing: .22em; text-transform: uppercase; margin-bottom: 14px; }
+    h1, h2, h3 { font-family: "Cormorant Garamond", serif; font-weight: 400; }
+    h1 { font-size: clamp(60px, 9vw, 104px); line-height: .9; letter-spacing: -.03em; margin: 0; }
+    .hero p { font-family: "Cormorant Garamond", serif; font-size: 24px; margin: 18px 0 0; }
+    .page-layout { width: min(1120px, 90vw); margin: -30px auto 90px; position: relative; z-index: 2; display: grid; grid-template-columns: minmax(0, 1fr) 310px; gap: 28px; align-items: start; }
+    .form-card { background: var(--paper); padding: clamp(26px, 5vw, 56px); box-shadow: 0 18px 55px rgba(35,55,45,.07); }
+    .section-kicker { font-size: 10px; text-transform: uppercase; letter-spacing: .19em; color: var(--sage); margin: 0 0 10px; }
+    .form-card h2 { font-size: 43px; line-height: 1.05; color: var(--forest); margin: 0 0 13px; }
+    .intro-copy { color: var(--muted); font-size: 13px; margin: 0 0 32px; }
+    .step-label { display: flex; align-items: center; gap: 12px; margin: 32px 0 17px; color: var(--forest); font-size: 10px; text-transform: uppercase; letter-spacing: .15em; font-weight: 600; }
+    .step-label::before { content: ""; display: block; width: 25px; height: 1px; background: var(--sand); }
+    .field-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 18px; }
+    .field { display: flex; flex-direction: column; gap: 7px; min-width: 0; }
+    .field.full { grid-column: 1 / -1; }
+    label, .field-label { font-size: 11px; color: var(--forest); font-weight: 500; }
+    .required { color: var(--sand); }
+    input[type="text"], input[type="email"], input[type="tel"], select, textarea {
+      width: 100%; border: 1px solid var(--line); background: #fff; border-radius: 0; min-height: 47px; padding: 12px 13px; color: var(--text); outline: none; transition: border .2s, box-shadow .2s;
+    }
+    textarea { min-height: 94px; resize: vertical; }
+    input:focus, select:focus, textarea:focus { border-color: var(--sage); box-shadow: 0 0 0 3px rgba(123,137,123,.12); }
+    .choice-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 12px; }
+    .choice { position: relative; }
+    .choice input { position: absolute; opacity: 0; pointer-events: none; }
+    .choice label { display: flex; gap: 12px; align-items: flex-start; border: 1px solid var(--line); padding: 16px; min-height: 84px; cursor: pointer; background: white; transition: border .2s, background .2s; }
+    .choice label::before { content: ""; flex: 0 0 15px; width: 15px; height: 15px; border: 1px solid var(--sage); border-radius: 50%; margin-top: 3px; }
+    .choice input:checked + label { border-color: var(--forest); background: #f1f3ed; }
+    .choice input:checked + label::before { border: 5px solid var(--forest); }
+    .choice strong { display: block; color: var(--forest); font-size: 12px; margin-bottom: 3px; }
+    .choice small { display: block; color: var(--muted); font-size: 11px; font-weight: 300; line-height: 1.45; }
+    .conditional { display: none; padding: 20px; margin-top: 15px; background: #f5f4ed; border-left: 2px solid var(--sand); }
+    .conditional.visible { display: block; }
+    .conditional .field-grid { margin-top: 14px; }
+    .check-row { display: flex; gap: 10px; align-items: flex-start; font-size: 11px; color: var(--muted); margin-top: 20px; }
+    .check-row input { margin-top: 4px; accent-color: var(--forest); }
+    .submit-row { margin-top: 28px; display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
+    .submit-button { border: 0; background: var(--forest); color: white; padding: 16px 25px; text-transform: uppercase; letter-spacing: .15em; font-size: 10px; font-weight: 600; cursor: pointer; transition: background .2s, transform .2s; }
+    .submit-button:hover { background: var(--forest-dark); transform: translateY(-1px); }
+    .privacy-note { font-size: 10px; color: var(--muted); max-width: 220px; line-height: 1.5; }
+    .form-message { display: none; margin-top: 22px; padding: 18px; background: #edf2eb; border: 1px solid rgba(48,72,58,.15); color: var(--forest); font-size: 13px; }
+    .form-message.visible { display: block; }
+    .aside { padding: 32px 28px; background: var(--forest); color: white; }
+    .aside .section-kicker { color: var(--sand-light, #d8c7a6); }
+    .aside h2 { font-size: 34px; line-height: 1.04; margin: 0 0 15px; }
+    .aside p { font-size: 12px; color: rgba(255,255,255,.74); margin: 0; }
+    .aside-divider { width: 38px; height: 1px; background: var(--sand); margin: 25px 0; }
+    .detail { display: flex; gap: 12px; margin-top: 17px; }
+    .detail-icon { color: var(--sand); font-size: 15px; min-width: 18px; }
+    .detail strong { display: block; font-size: 11px; font-weight: 500; margin-bottom: 2px; }
+    .detail span { display: block; font-size: 11px; color: rgba(255,255,255,.68); }
+    .aside-note { border-top: 1px solid rgba(255,255,255,.18); margin-top: 28px; padding-top: 20px; font-family: "Cormorant Garamond", serif; font-size: 22px; line-height: 1.2; color: white; }
+    footer { border-top: 1px solid var(--line); padding: 27px 6vw; display: flex; justify-content: space-between; gap: 16px; align-items: center; color: var(--muted); font-size: 10px; }
+    .footer-monogram { color: var(--forest); font-family: "Cormorant Garamond", serif; font-size: 21px; }
+    .popup-trigger { position: fixed; right: 25px; bottom: 24px; z-index: 20; border: 0; border-radius: 30px; background: var(--forest); color: white; padding: 14px 20px; font-family: "Cormorant Garamond", serif; font-size: 16px; cursor: pointer; box-shadow: 0 8px 24px rgba(35,55,45,.2); }
+    .popup-overlay { position: fixed; inset: 0; z-index: 50; background: rgba(35,55,45,.28); display: flex; justify-content: flex-end; align-items: flex-end; padding: 24px; opacity: 0; visibility: hidden; transition: .25s; }
+    .popup-overlay.active { opacity: 1; visibility: visible; }
+    .popup { width: 390px; max-width: 100%; background: var(--paper); padding: 38px 34px 32px; position: relative; box-shadow: 0 18px 55px rgba(35,55,45,.2); transform: translateY(15px); transition: transform .25s; }
+    .popup-overlay.active .popup { transform: translateY(0); }
+    .popup-close { position: absolute; top: 10px; right: 15px; background: none; border: 0; font-size: 24px; color: var(--muted); cursor: pointer; }
+    .popup h2 { color: var(--forest); font-size: 37px; line-height: 1.02; margin: 0 0 12px; }
+    .popup p { color: var(--muted); font-size: 12px; margin: 0 0 20px; }
+    .popup-actions { display: grid; gap: 10px; }
+    .popup-actions a { padding: 15px 12px; text-align: center; text-transform: uppercase; font-size: 9px; font-weight: 600; letter-spacing: .13em; }
+    .popup-primary { background: var(--forest); color: white; }
+    .popup-secondary { border: 1px solid var(--forest); color: var(--forest); }
+    @media (max-width: 850px) {
+      .page-layout { grid-template-columns: 1fr; margin-top: -20px; }
+      .aside { order: -1; }
+      .aside h2 { max-width: 450px; }
+    }
+    @media (max-width: 560px) {
+      .topbar { padding: 19px 6vw; }
+      .hero { min-height: 330px; padding: 90px 7vw 55px; }
+      .hero p { font-size: 21px; }
+      .page-layout { width: 92vw; margin-bottom: 55px; }
+      .form-card { padding: 27px 21px; }
+      .form-card h2 { font-size: 38px; }
+      .field-grid, .choice-grid { grid-template-columns: 1fr; }
+      .aside { padding: 26px 23px; }
+      .aside h2 { font-size: 31px; }
+      footer { flex-direction: column; text-align: center; }
+      .popup-trigger { right: 14px; bottom: 14px; }
+      .popup-overlay { padding: 12px; justify-content: center; }
+      .popup { padding: 35px 24px 25px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="topbar">
+      <a class="monogram" id="top-monogram" href="../">A &amp; B</a>
+      <a class="back-link" href="../">Wedding home</a>
+    </div>
+    <div class="hero-copy">
+      <div class="eyebrow">The celebration · RSVP</div>
+      <h1>Will you join us?</h1>
+      <p>We would love to celebrate with you.</p>
+    </div>
+  </header>
+
+  <main class="page-layout">
+    <section class="form-card">
+      <p class="section-kicker">Kindly reply by 30 June 2027</p>
+      <h2>Let us know<br>if you can make it.</h2>
+      <p class="intro-copy">Please complete one response per household. We would be grateful if you could share your plans and any details that will help us make the day comfortable for you.</p>
+
+      <form id="rsvp-form">
+        <div class="step-label">01 · Your details</div>
+        <div class="field-grid">
+          <div class="field">
+            <label for="guest-name">Full name <span class="required">*</span></label>
+            <input id="guest-name" name="guestName" type="text" autocomplete="name" placeholder="Your full name" required>
+          </div>
+          <div class="field">
+            <label for="guest-email">Email address <span class="required">*</span></label>
+            <input id="guest-email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
+          </div>
+          <div class="field full">
+            <label for="party-size">How many people are included in your invitation? <span class="required">*</span></label>
+            <select id="party-size" name="partySize" required>
+              <option value="1">Just me</option>
+              <option value="2">2 guests</option>
+              <option value="3">3 guests</option>
+              <option value="4">4 guests</option>
+              <option value="5">5 guests</option>
+              <option value="6">6 guests</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="step-label">02 · Your response</div>
+        <div class="choice-grid">
+          <div class="choice">
+            <input type="radio" id="attending-yes" name="attendance" value="yes" required>
+            <label for="attending-yes">
+              <span><strong>Joyfully accepts</strong><small>We cannot wait to celebrate together.</small></span>
+            </label>
+          </div>
+          <div class="choice">
+            <input type="radio" id="attending-no" name="attendance" value="no">
+            <label for="attending-no">
+              <span><strong>Regretfully declines</strong><small>We will be thinking of you on the day.</small></span>
+            </label>
+          </div>
+        </div>
+
+        <div class="conditional" id="attending-details">
+          <div class="field-grid">
+            <div class="field">
+              <label for="meal">Meal preference</label>
+              <select id="meal" name="meal">
+                <option value="">Please select</option>
+                <option>Standard</option>
+                <option>Vegetarian</option>
+                <option>Vegan</option>
+                <option>Fish</option>
+                <option>Child's meal</option>
+                <option>Other / dietary requirements below</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="transport">Transport plans</label>
+              <select id="transport" name="transport">
+                <option value="">Please select</option>
+                <option>We will arrange our own transport</option>
+                <option>We may need the shuttle</option>
+                <option>We would like more information</option>
+              </select>
+            </div>
+            <div class="field full">
+              <label for="dietary">Dietary requirements or allergies</label>
+              <textarea id="dietary" name="dietary" placeholder="Please let us know about any allergies or dietary needs."></textarea>
+            </div>
+            <div class="field full">
+              <label for="guest-names">Names of additional guests in your invitation</label>
+              <textarea id="guest-names" name="additionalGuests" placeholder="Please include each guest's name, if applicable."></textarea>
+            </div>
+          </div>
+        </div>
+
+        <div class="conditional" id="declining-details">
+          <div class="field">
+            <label for="decline-note">Would you like to leave us a message? (Optional)</label>
+            <textarea id="decline-note" name="declineNote" placeholder="We will miss you, but thank you for letting us know."></textarea>
+          </div>
+        </div>
+
+        <div class="step-label">03 · One last thing</div>
+        <div class="field">
+          <label for="message">A message for the couple (optional)</label>
+          <textarea id="message" name="message" placeholder="Any notes or wishes you would like to share..."></textarea>
+        </div>
+        <label class="check-row">
+          <input type="checkbox" id="updates" name="updates">
+          <span>I am happy to receive practical wedding updates by email.</span>
+        </label>
+
+        <div class="submit-row">
+          <button class="submit-button" type="submit">Send my RSVP&nbsp; ↗</button>
+          <span class="privacy-note">Your details will only be used to organise the wedding and communicate relevant information.</span>
+        </div>
+        <div class="form-message" id="form-message" role="status" aria-live="polite"></div>
+      </form>
+    </section>
+
+    <aside class="aside">
+      <p class="section-kicker">A day to remember</p>
+      <h2>We hope you can be part of it.</h2>
+      <p>We are so excited to bring our favourite people together. Here are the details to keep close while you plan.</p>
+      <div class="aside-divider"></div>
+      <div class="detail">
+        <span class="detail-icon">✳</span>
+        <div><strong>Saturday, 4 September 2027</strong><span>Example wedding date</span></div>
+      </div>
+      <div class="detail">
+        <span class="detail-icon">⌖</span>
+        <div><strong>Rome, Italy</strong><span>Example destination</span></div>
+      </div>
+      <div class="detail">
+        <span class="detail-icon">♡</span>
+        <div><strong>Kindly reply by 30 June 2027</strong><span>Please let us know either way.</span></div>
+      </div>
+      <div class="aside-divider"></div>
+      <p>Need help with travel, accommodation or anything else? Send us a message and we will do our best to help.</p>
+      <div class="aside-note">“The best part of the day is getting to share it with you.”</div>
+    </aside>
+  </main>
+
+  <footer>
+    <a class="footer-monogram" id="footer-monogram" href="../">A &amp; B</a>
+    <span>With love · We look forward to hearing from you</span>
+    <a href="../">Back to wedding website ↗</a>
+  </footer>
+
+  <button class="popup-trigger" id="popup-trigger" type="button">Like your website?</button>
+  <div class="popup-overlay" id="popup-overlay" aria-hidden="true">
+    <div class="popup" role="dialog" aria-modal="true" aria-labelledby="popup-title">
+      <button class="popup-close" id="popup-close" type="button" aria-label="Close popup">&times;</button>
+      <h2 id="popup-title">Love your wedding website?</h2>
+      <p>Make it yours, or get started with this design.</p>
+      <div class="popup-actions">
+        <a class="popup-primary" href="../../packages/">Purchase this website now</a>
+        <a class="popup-secondary" href="../../finalise/">Continue personalizing</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Personalise the demo with URL parameters when opened from the wedding preview.
+    const urlParams = new URLSearchParams(window.location.search);
+    const firstName = urlParams.get("name1");
+    const secondName = urlParams.get("name2");
+    if (firstName && secondName) {
+      const initials = firstName.charAt(0).toUpperCase() + " & " + secondName.charAt(0).toUpperCase();
+      document.getElementById("top-monogram").textContent = initials;
+      document.getElementById("footer-monogram").textContent = initials;
+    }
+
+    // Show the relevant follow-up fields based on the RSVP response.
+    const yesRadio = document.getElementById("attending-yes");
+    const noRadio = document.getElementById("attending-no");
+    const attendingDetails = document.getElementById("attending-details");
+    const decliningDetails = document.getElementById("declining-details");
+    function updateAttendanceFields() {
+      const attending = yesRadio.checked;
+      attendingDetails.classList.toggle("visible", attending);
+      decliningDetails.classList.toggle("visible", noRadio.checked);
+      ["meal", "transport", "dietary", "guest-names"].forEach(function(id) {
+        document.getElementById(id).disabled = !attending;
+      });
+      document.getElementById("decline-note").disabled = !noRadio.checked;
+    }
+    yesRadio.addEventListener("change", updateAttendanceFields);
+    noRadio.addEventListener("change", updateAttendanceFields);
+    updateAttendanceFields();
+
+    // Demonstration-only form: validates input and shows a confirmation.
+    // Connect this handler to a real form backend before collecting guest responses.
+    document.getElementById("rsvp-form").addEventListener("submit", function(event) {
+      event.preventDefault();
+      const form = event.currentTarget;
+      if (!form.reportValidity()) return;
+      const name = document.getElementById("guest-name").value.trim();
+      const attending = yesRadio.checked;
+      const message = document.getElementById("form-message");
+      message.textContent = attending
+        ? "Thank you, " + name + "! Your RSVP looks ready. This is a demo, so your response has not been sent to the couple yet."
+        : "Thank you for letting us know, " + name + ". This is a demo, so your response has not been sent to the couple yet.";
+      message.classList.add("visible");
+      message.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    });
+
+    // Template purchase popup, matching the main wedding preview pattern.
+    const popup = document.getElementById("popup-overlay");
+    const popupTrigger = document.getElementById("popup-trigger");
+    const popupClose = document.getElementById("popup-close");
+    function openPopup() {
+      popup.classList.add("active");
+      popup.setAttribute("aria-hidden", "false");
+      popupClose.focus();
+    }
+    function closePopup() {
+      popup.classList.remove("active");
+      popup.setAttribute("aria-hidden", "true");
+      popupTrigger.focus();
+    }
+    popupTrigger.addEventListener("click", openPopup);
+    popupClose.addEventListener("click", closePopup);
+    popup.addEventListener("click", function(event) {
+      if (event.target === popup) closePopup();
+    });
+    document.addEventListener("keydown", function(event) {
+      if (event.key === "Escape" && popup.classList.contains("active")) closePopup();
+    });
+    setTimeout(function() {
+      if (!popup.classList.contains("active")) openPopup();
+    }, 15000);
+  </script>
+</body>
+</html>
