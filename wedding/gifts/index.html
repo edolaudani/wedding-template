@@ -542,7 +542,7 @@
       <label class="custom-amount-label" for="custom-amount">Or enter another amount (€)</label>
       <input class="custom-amount" id="custom-amount" type="number" min="1" step="1" inputmode="numeric" placeholder="e.g. 75">
       <button class="modal-submit" id="gift-contribute" type="button">Continue with gift</button>
-      <p class="modal-footnote">Payment details must be configured by the couple before this page is published.</p>
+      <p class="modal-footnote" id="gift-message" aria-live="polite"></p>
     </div>
   </div>
 
@@ -673,22 +673,28 @@
       }
     });
 
+
     contributeButton.addEventListener("click", function() {
       const amount = customAmount.value !== "" ? Number(customAmount.value) : selectedAmount;
+      const message = document.getElementById("gift-message");
+    
       if (!Number.isFinite(amount) || amount < 1) {
+        message.textContent = "Please enter a contribution of at least €1.";
+        message.classList.add("visible");
         customAmount.focus();
-        customAmount.setCustomValidity("Please enter a contribution of at least €1.");
-        customAmount.reportValidity();
         return;
       }
-      customAmount.setCustomValidity("");
-
+    
       if (!PAYPAL_USERNAME || PAYPAL_USERNAME === "YOUR-PAYPAL-USERNAME") {
-        alert("This is a template preview. To enable contributions, replace YOUR-PAYPAL-USERNAME in the page script with the couple's PayPal.Me username.");
+        message.textContent = "This is a demo. Payment details have not been configured, so your contribution has not been processed.";
+        message.classList.add("visible");
         return;
       }
+    
+      customAmount.setCustomValidity("");
       window.location.href = "https://paypal.me/" + encodeURIComponent(PAYPAL_USERNAME) + "/" + encodeURIComponent(String(Math.round(amount)));
     });
+
 
     giftModalClose.addEventListener("click", closeGiftModal);
     giftOverlay.addEventListener("click", function(event) {
