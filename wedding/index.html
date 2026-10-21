@@ -1004,7 +1004,9 @@
     }
     
     .lead-popup-actions a {
-      display: block;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       box-sizing: border-box;
       width: 100%;
       text-align: center;
@@ -1751,7 +1753,7 @@
     </div>
 
     <div>
-      <a href="gifts/">
+      <a href="gifts/" id="footer-gifts-link">
         Honeymoon gifts
       </a>
     </div>
@@ -1856,7 +1858,9 @@
   personalizeLink.href = "../finalise/?" + weddingParams.toString();
   document.getElementById("gifts-cta").href =
     "gifts/?" + weddingParams.toString();
-
+  document.getElementById("footer-gifts-link").href =
+    "gifts/?" + weddingParams.toString();
+  
 
   /* =========================
      NAMES
