@@ -1804,11 +1804,6 @@
     </div>
   </div>
 
-  document.getElementById("nav-monogram").addEventListener("click", function (event) {
-    event.preventDefault();
-    window.location.reload();
-  });
-
 <script>
   /* =========================
      URL PARAMETERS
@@ -1845,6 +1840,12 @@
       weddingParams.set(key, value);
     }
   });
+
+  document.getElementById("nav-monogram").addEventListener("click", function (event) {
+    event.preventDefault();
+    window.location.reload();
+  });
+  
   
   // Pass wedding details to the honeymoon gifts page.
   document.getElementById("nav-gifts").href =
