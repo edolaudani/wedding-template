@@ -699,4 +699,12 @@
     });
   </script>
 </body>
+
+const weddingParams = new URLSearchParams(window.location.search);
+const weddingHomeUrl = "../?" + weddingParams.toString();
+
+document.getElementById("nav-monogram").href = weddingHomeUrl;
+document.querySelector(".back-button").href = weddingHomeUrl;
+document.querySelector(".nav-home").href = weddingHomeUrl;
+  
 </html>
