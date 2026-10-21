@@ -1258,7 +1258,7 @@
 
   <nav>
 
-    <a href="../" class="monogram" id="nav-monogram">
+    <a href="#" class="monogram" id="nav-monogram">
       A & B
     </a>
 
@@ -1801,6 +1801,11 @@
       </div>
     </div>
   </div>
+
+  document.getElementById("nav-monogram").addEventListener("click", function (event) {
+    event.preventDefault();
+    window.location.reload();
+  });
 
 <script>
   /* =========================
