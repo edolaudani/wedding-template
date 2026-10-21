@@ -588,6 +588,13 @@
       if (value !== null && value !== "") weddingParams.set(key, value);
     });
     personalizeLink.href = "../../finalise/?" + weddingParams.toString();
+    // Preserve wedding details when returning to the wedding home page.
+    const weddingHomeUrl = "../?" + weddingParams.toString();
+    
+    document.getElementById("nav-monogram").href = weddingHomeUrl;
+    document.querySelector(".back-button").href = weddingHomeUrl;
+    document.querySelector(".nav-home").href = weddingHomeUrl;
+    document.querySelector("footer a").href = weddingHomeUrl;
 
     // Purchase / personalisation popup: click to open, close button, outside click, Escape, auto-open at 15 seconds.
     const leadTrigger = document.getElementById("lead-trigger");
@@ -706,11 +713,4 @@
   </script>
 </body>
 
-const weddingParams = new URLSearchParams(window.location.search);
-const weddingHomeUrl = "../?" + weddingParams.toString();
-
-document.getElementById("nav-monogram").href = weddingHomeUrl;
-document.querySelector(".back-button").href = weddingHomeUrl;
-document.querySelector(".nav-home").href = weddingHomeUrl;
-  
 </html>
