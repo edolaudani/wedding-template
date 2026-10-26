@@ -207,6 +207,19 @@
     }
     .footer-monogram { font-family: "Cormorant Garamond", serif; font-size: 22px; color: var(--forest); }
 
+    
+    .footer-legal {
+      margin-top: 12px;
+      font-size: 12px;
+    }
+    
+    .footer-legal a {
+      color: inherit;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    
     /* Gift contribution modal */
     .gift-modal-overlay {
       position: fixed; inset: 0; z-index: 150;
@@ -533,11 +546,45 @@
     </section>
   </main>
 
+  
   <footer>
-    <div class="footer-monogram" id="footer-monogram">A &amp; B</div>
-    <div>Our Japan honeymoon · Wedding gifts</div>
-    <a href="../">Back to the wedding</a>
+    <a class="footer-monogram" id="footer-monogram" href="../">
+      A &amp; B
+    </a>
+  
+    <span>With love · We look forward to hearing from you</span>
+  
+    <a href="../">Back to wedding website ↗</a>
+  
+    <div class="footer-legal">
+      <a href="https://www.iubenda.com/privacy-policy/81013471"
+         class="iubenda-white iubenda-noiframe iubenda-embed"
+         title="Privacy Policy">Privacy Policy</a>
+      ·
+      <a href="https://www.iubenda.com/privacy-policy/81013471/cookie-policy"
+         class="iubenda-white iubenda-noiframe iubenda-embed"
+         title="Cookie Policy">Cookie Policy</a>
+    </div>
+  
+    <script type="text/javascript">
+      (function (w, d) {
+        var loader = function () {
+          var s = d.createElement("script");
+          var tag = d.getElementsByTagName("script")[0];
+          s.src = "https://cdn.iubenda.com/iubenda.js";
+          tag.parentNode.insertBefore(s, tag);
+        };
+        if (w.addEventListener) {
+          w.addEventListener("load", loader, false);
+        } else if (w.attachEvent) {
+          w.attachEvent("onload", loader);
+        } else {
+          w.onload = loader;
+        }
+      })(window, document);
+    </script>
   </footer>
+
 
   <!-- Gift contribution modal. Configure the PayPal username in the script below before using payments. -->
   <div class="gift-modal-overlay" id="gift-modal-overlay" aria-hidden="true">
