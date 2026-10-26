@@ -45,7 +45,16 @@
     .step-label::before { content: ""; display: block; width: 25px; height: 1px; background: var(--sand); }
     .field-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 18px; }
     .field { display: flex; flex-direction: column; gap: 7px; min-width: 0; }
-    .field.full { grid-column: 1 / -1; }
+    .field.full { grid-column: 1 / -1; }   
+    .footer-legal {
+      margin-top: 12px;
+      font-size: 12px;
+    }
+    .footer-legal a {
+      color: inherit;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
     label, .field-label { font-size: 11px; color: var(--forest); font-weight: 500; }
     .required { color: var(--sand); }
     input[type="text"], input[type="email"], input[type="tel"], select, textarea {
@@ -272,11 +281,45 @@
     </aside>
   </main>
 
+
   <footer>
-    <a class="footer-monogram" id="footer-monogram" href="../">A &amp; B</a>
+    <a class="footer-monogram" id="footer-monogram" href="../">
+      A &amp; B
+    </a>
+  
     <span>With love · We look forward to hearing from you</span>
+  
     <a href="../">Back to wedding website ↗</a>
+  
+    <div class="footer-legal">
+      <a href="https://www.iubenda.com/privacy-policy/81013471"
+         class="iubenda-white iubenda-noiframe iubenda-embed"
+         title="Privacy Policy">Privacy Policy</a>
+      ·
+      <a href="https://www.iubenda.com/privacy-policy/81013471/cookie-policy"
+         class="iubenda-white iubenda-noiframe iubenda-embed"
+         title="Cookie Policy">Cookie Policy</a>
+    </div>
+  
+    <script type="text/javascript">
+      (function (w, d) {
+        var loader = function () {
+          var s = d.createElement("script");
+          var tag = d.getElementsByTagName("script")[0];
+          s.src = "https://cdn.iubenda.com/iubenda.js";
+          tag.parentNode.insertBefore(s, tag);
+        };
+        if (w.addEventListener) {
+          w.addEventListener("load", loader, false);
+        } else if (w.attachEvent) {
+          w.attachEvent("onload", loader);
+        } else {
+          w.onload = loader;
+        }
+      })(window, document);
+    </script>
   </footer>
+
 
   <button class="popup-trigger" id="popup-trigger" type="button">Like your website?</button>
   <div class="popup-overlay" id="popup-overlay" aria-hidden="true">
