@@ -554,7 +554,7 @@
   
     <span>With love · We look forward to hearing from you</span>
   
-    <a href="../">Back to wedding website ↗</a>
+    <a href="../" id="back-to-wedding">Back to wedding website ↗</a>
   
     <div class="footer-legal">
       <a href="https://www.iubenda.com/privacy-policy/81013471"
@@ -770,6 +770,13 @@
     document.addEventListener("keydown", function(event) {
       if (event.key === "Escape" && giftOverlay.classList.contains("active")) closeGiftModal();
     });
+  </script>
+  <script>
+    const backToWedding = document.getElementById("back-to-wedding");
+  
+    if (backToWedding) {
+      backToWedding.href = "../" + window.location.search;
+    }
   </script>
 </body>
 
