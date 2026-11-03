@@ -517,7 +517,7 @@
           <div class="included">
             <div class="included-heading">
               <h3 id="mainPackageTitle">Wedding website</h3>
-              <div class="price" id="mainPackagePrice"><s>€19.99</s> 0.00 EUR</div>
+              <div class="price" id="mainPackagePrice"><s>€19.99</s> €0.00</div>
             </div>
 
             <p id="mainPackageDescription">
@@ -558,11 +558,11 @@
           <div id="homepageUpgrade" hidden>
             <div class="section-label">Want more pages?</div>
             <p style="font-size:14px;color:var(--muted);margin:0 0 12px">
-              Upgrade to the full website for <s>€19.99</s> 0.00 EUR. You will first need
+              Upgrade to the full website for <s>€19.99</s> €0.00. You will first need
               to complete the wedding questionnaire.
             </p>
             <a id="personalizeLink" class="upgrade" href="../finalise/">
-              Personalize the full website · <s>€19.99</s> 0.00 EUR
+              Personalize the full website · <s>€19.99</s> €0.00
             </a>
           </div>
 
@@ -577,7 +577,7 @@
                   Let your guests respond to your invitation online.
                 </span>
               </span>
-              <span class="choice-price"><s>+€14.99</s> 0.00 EUR</span>
+              <span class="choice-price"><s>+€14.99</s> €0.00</span>
             </label>
 
             <label class="choice" for="giftsCheckbox">
@@ -588,7 +588,7 @@
                   Share your gift list or honeymoon contribution details.
                 </span>
               </span>
-              <span class="choice-price"><s>+€19.99</s> 0.00 EUR</span>
+              <span class="choice-price"><s>+€19.99</s> €0.00</span>
             </label>
           </div>
         </section>
@@ -600,13 +600,13 @@
           <div id="summaryRows">
             <div class="summary-row">
               <span>Wedding website</span>
-              <span><s>€19.99</s> 0.00 EUR</span>
+              <span><s>€19.99</s> €0.00</span>
             </div>
           </div>
 
           <div class="summary-row total">
             <span>Total</span>
-            <strong id="totalPrice"><s>€19.99</s> 0.00 EUR</strong>
+            <strong id="totalPrice"><s>€19.99</s> €0.00</strong>
           </div>
 
           <section id="saveDetailsSection" class="save-box" hidden>
@@ -639,7 +639,7 @@
             class="payment-button"
             href="#"
           >
-            <span id="paymentButtonText">ordina ora</span>
+            <span id="paymentButtonText">Order Now</span>
           </a>
         </aside>
       </div>
@@ -726,7 +726,7 @@
       let savingDetails = false;
 
       function euro(amount) {
-        return `<s>€${amount.toFixed(2)}</s> 0.00 EUR`;
+        return `<s>€${amount.toFixed(2)}</s> €0.00`;
       }
 
       function displayValue(value) {
